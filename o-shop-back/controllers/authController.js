@@ -1,14 +1,27 @@
+const CustomError = require("../helpers/CustomError");
 
 module.exports = {
 
     login: async (request, response, next) => {
-        const {username, password} = request.body;
-        console.log(request.body);
-        response.status(200).json({
-            success: true,
-            username: username,
-            password: password
-        });
+
+        try {
+            const {username, password} = request.body;
+            if (!validateUserInput(username, password)) {
+                return next(new CustomError("Please check your inputs", 400));
+            }
+
+            console.log(request.body);
+            response.status(200).json({
+                success: true,
+                username: username,
+                password: password
+            });
+
+        } catch (error) {
+            
+        }
+        
+
     },
 
     logOut: async (request, response, next) => {

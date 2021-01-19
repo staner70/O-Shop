@@ -2,6 +2,12 @@
 
 BEGIN;
 
--- XXX Add DDLs here.
+DROP TABLE "possess";
+DROP TABLE "work";
+DROP TABLE "user";
+DROP TABLE "product";
+DROP TABLE "shop";
+DROP TABLE "category";
+DROP TABLE "role";
 
 COMMIT;
