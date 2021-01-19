@@ -1,5 +1,10 @@
 .App {
   text-align: center;
+  width:100vw;
+  height:10vh;
+  position:static;
+  overflow:hidden;
+
 }
 
 .App-logo {

@@ -13,22 +13,18 @@ const Article = () => (
       />
       <div className="my-4 flex justify-between items-center">
         <div className="flex items-center">
-          <div
-            className="bg-green-200 mr-2 text-green-500 py-1 px-2 rounded-lg"
-          >
-            -50%
-          </div>
-          Discount
+        
         </div>
         <div className="flex font-bold text-3xl text-center px-4 h-full">
-          <p className="text-sm self-start">$</p>
+        
           <p>99</p>
+          <p className="text-sm self-start">€</p>
         </div>
       </div>
       <button
         className="uppercase hover:text-white focus:ring-blue-300 hover:bg-blue-500 undefined bg-blue-300 ring-2 focus:ring-offset-2 ring-transparent transform duration-300 ease-in-out focus:outline-none text-white p-4 w-full rounded-lg font-semibold"
       >
-        Add to card
+        Ajouter au Panier
       </button>
     </div>
   </div>
