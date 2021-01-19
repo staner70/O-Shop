@@ -6,8 +6,12 @@ module.exports = {
       height: {
         '90' : '90%',
       },
-      
-    },
+      backgroundColor: theme => ({
+        ...theme('colors'),
+        'bgred': '#cc3e37',
+        'bgback': '#ebe8de'
+       })
+    }
   },
   variants: {
     extend: {},
