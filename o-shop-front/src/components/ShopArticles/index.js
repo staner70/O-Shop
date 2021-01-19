@@ -2,8 +2,8 @@ import React from 'react';
 import Article from './Article';
 
 const ShopArticles = () => (
-    <div className="flex flex-wrap">
-        <div className="flex flex-wrap overflow-scroll w-screen h-screen">
+    <div className="flex flex-wrap h-screen">
+        <div className="flex flex-wrap overflow-auto h-90">
             <Article />
             <Article />
             <Article />
