@@ -3,7 +3,6 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import apiMiddleware from '../middlewares/api';
 
-//import apiMiddleware from 'src/middlewares/api';
 // rootReducer = résultat de combineReducers
 import rootReducer from '../reducers';
 

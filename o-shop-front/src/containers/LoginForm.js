@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 
-import LoginForm from 'src/components/LoginForm';
-import { changeAuthField } from 'src/store/actions';
+import LoginForm from '../components/LoginForm';
+import { changeAuthField } from '../store/actions.js';
 
 // cablage des données
 const mapStateToProps = (state) => ({

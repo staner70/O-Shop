@@ -1,7 +1,7 @@
 import './App.css';
 import "tailwindcss/tailwind.css";
 import { Route } from 'react-router-dom'
-import  LoginForm from './components/LoginForm'
+import  LoginForm from './containers/LoginForm'
 
 import Header from './components/Header';
 import ShopArticles from './components/ShopArticles';

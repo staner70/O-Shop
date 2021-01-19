@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Field from './Field';
-// import { useField } from './hooks';
 
 import Logo from './logo.png';
 
@@ -13,8 +12,8 @@ const LoginForm = ({
   changeField,
   handleLogin,
 }) => {
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
     handleLogin();
   };
 
@@ -24,7 +23,7 @@ const LoginForm = ({
         <form autoComplete="off" className="flex flex-col  items-center justify-center" onSubmit={handleSubmit}>
           <Field
             name="email"
-            placeholder="Adresse Email"
+            placeholder="identifiant"
             onChange={changeField} // sera appelé avec value + name
             value={email}
           />
