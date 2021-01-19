@@ -13,8 +13,8 @@ const api = (store) => (next) => (action) => {
         method: 'post', // verbe POST
         url: 'http://localhost:3001/login', // endpoint de login
         headers: { // header pour dire qu'on parle en JSON
-          'Content-Type': 'application/json',
-        },
+        'Authorization': 'Bearer Bearer OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q', 
+        'Content-Type': 'application/json'},
         data: { // body de la requete (contenu du json)
           email,
           password,
