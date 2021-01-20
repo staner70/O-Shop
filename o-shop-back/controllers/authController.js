@@ -22,7 +22,7 @@ module.exports = {
             if (!result.rows[0]) {
                 response.json({
                     success: false,
-                    message: "Authetication failed"
+                    message: "Authentication failed"
                 });
             }
             // response.json({

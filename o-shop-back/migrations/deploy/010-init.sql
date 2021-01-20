@@ -40,7 +40,7 @@ CREATE TABLE "user" (
     "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "role_id" INT REFERENCES "role"("id"),
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW() CHECK("created_at" >= NOW()),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
