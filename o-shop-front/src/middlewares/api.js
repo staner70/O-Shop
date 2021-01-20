@@ -25,6 +25,13 @@ const api = (store) => (next) => (action) => {
         .then((response) => { // cas de réussite
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+          const { token } = response.data;
+          const { role } = response.data;
+          localStorage.setItem('token', token);
+          localStorage.getItem('token');
+          localStorage.setItem('role', role);
+          localStorage.getItem('role');
+
           store.dispatch({
             type: 'LOGIN_SUCCESS',
             // on déverse tout le contenu de response.data dans notre action
