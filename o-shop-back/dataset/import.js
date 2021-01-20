@@ -28,11 +28,11 @@ const {Client} = require('pg');
         // const categoryIdMap = {};
     
        
-            const resultRole = await client.query(`INSERT INTO "role"(name) VALUES ('admin') RETURNING id`);
+            const resultRole = await client.query(`INSERT INTO "role"(name) VALUES ('admin'),('employee') `);
             console.log(resultRole.rows[0]);
     
             const resultUser = await client.query(`INSERT INTO "user"(first_name, last_name, username, password, role_id) 
-            VALUES ('michel', 'michel', 'm_michel', '123456', 1 ) RETURNING id`);
+            VALUES ('michel', 'michel', 'm_michel', '123456', 1 ),('max','max','m_max','123456',2) `);
             console.log(resultUser.rows[0]);
         
     

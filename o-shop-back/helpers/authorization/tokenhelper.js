@@ -5,8 +5,8 @@ const tokenhelper = {
         const {JWT_SECRET_KEY,JWT_EXPIRE} = process.env;
 
         const payload = {
-            id: this._id,
-            name: this.name
+            id: user.id,
+            username: user.username
         };
     
         const token = jwt.sign(payload,JWT_SECRET_KEY, {
@@ -41,6 +41,19 @@ const tokenhelper = {
         // Response
     
     },
+
+    isTokenIncluded: (request) => {
+        return (
+            request.headers.authorization && request.headers.authorization.startsWith("Bearer:")
+        );
+    },
+
+    getAccessTokenFrom: (request) => {
+        const authorization = request.headers.authorization;
+        const access_token = authorization.split(" ")[1];
+        console.log(access_token, "<---getAccesTokenFrom");
+        return access_token;
+    }
 }
 
 module.exports = tokenhelper;

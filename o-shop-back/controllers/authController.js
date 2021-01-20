@@ -53,10 +53,12 @@ module.exports = {
     },
 
     profil: async (request, response, next) => {
-        const {id} = request.params;
-        response.status(200).json({
-            id: id,
-            success: true
+        response.json({
+            success: true,
+            data: {
+                id: request.user.id,
+                username: request.user.username
+            }
         })
     },
 }
