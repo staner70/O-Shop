@@ -3,9 +3,6 @@
 require('dotenv').config();
 const {Client} = require('pg');
 
-// const posts = require('../data/posts.json');
-// const categories = require('../data/categories.json');
-
 // Instant Invoke Function Execution(IIFE)
 // Cela nous permettra d'utiliser await directement dans notre fichier
 
