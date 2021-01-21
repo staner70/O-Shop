@@ -28,7 +28,7 @@ const reducer = (oldState = initialState, action = {}) => {
     case 'LOGOUT':
       return {
         ...oldState,
-        email: '',
+        username: '',
         password: '',
         logged: false,
         nickname: null,

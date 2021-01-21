@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { history } from '../index';
-import { useCookies } from "react-cookie";
-
+import Cookies from 'universal-cookie';
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -13,7 +12,7 @@ const api = (store) => (next) => (action) => {
       const { auth: { username, password } } = store.getState();
 const config = {
   method: 'post',
-  url: 'http://anthony-lin.vpnuser.lan:3500/auth/login',
+  url: 'http://localhost:3500/auth/login',
   headers: { 
     'Content-Type': 'application/json', 
     'Cookie': 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtX21pY2hlbCIsImlhdCI6MTYxMTIxNjQ2NSwiZXhwIjoxNjExMjE3MDY1fQ.LltbTuINRJdgYLGHzwxVR3GeV4g-i7IAeLOxp3jKl3E'
@@ -40,6 +39,9 @@ const config = {
             // on déverse tout le contenu de response.data dans notre action
             ...response.data,
           });
+          const cookies = new Cookies();
+          cookies.set('access_token', `Bearer: ${response.data.access_token}`, { path: '/' });
+          console.log(cookies.get('access_token')); 
           console.log('Je suis dans la réponse, et response.data vaut : ', response.data);
           history.push('/home');
 

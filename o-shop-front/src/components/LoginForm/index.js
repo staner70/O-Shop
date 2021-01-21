@@ -7,7 +7,7 @@ import Logo from './logo.png';
 
 
 const LoginForm = ({
-  email,
+  username,
   password,
   changeField,
   handleLogin,
@@ -22,10 +22,10 @@ const LoginForm = ({
       <img src={Logo} className="object-none"alt="Logo" />
         <form autoComplete="off" className="flex flex-col  items-center justify-center" onSubmit={handleSubmit}>
           <Field
-            name="email"
+            name="username"
             placeholder="identifiant"
             onChange={changeField} // sera appelé avec value + name
-            value={email}
+            value={username}
           />
           <Field
             name="password"
@@ -46,7 +46,7 @@ const LoginForm = ({
 };
 
 LoginForm.propTypes = {
-  email: PropTypes.string.isRequired,
+  username: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,
   handleLogin: PropTypes.func.isRequired,
