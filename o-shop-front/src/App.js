@@ -3,6 +3,7 @@ import "tailwindcss/tailwind.css";
 import { Route } from 'react-router-dom'
 import  LoginForm from './containers/LoginForm'
 import ShopArticles from './components/ShopArticles';
+import Home from './components/Home';
 
 
 function App() {
@@ -13,6 +14,9 @@ function App() {
       </Route>
       <Route exact path='/pos'>
         <ShopArticles />
+      </Route>
+      <Route exact path= '/home'>
+        <Home />
       </Route>
     </div>
   );

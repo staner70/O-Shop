@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { history } from '../index';
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -38,6 +39,8 @@ const api = (store) => (next) => (action) => {
             ...response.data,
           });
           console.log('Je suis dans la réponse, et response.data vaut : ', response.data);
+          history.push('/home');
+
         })
         .catch((error) => { // cas d'erreur
           console.log(error);
