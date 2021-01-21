@@ -3,5 +3,6 @@
 BEGIN;
 
 -- XXX Add verifications here.
+-- to verify 
 
 ROLLBACK;
