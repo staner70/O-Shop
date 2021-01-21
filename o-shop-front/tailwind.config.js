@@ -4,10 +4,15 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        '90' : '90%',
+        '80' : '80%',
+'20':'20%',
       },
-      
-    },
+      backgroundColor: theme => ({
+        ...theme('colors'),
+        'bgred': '#cc3e37',
+        'bgback': '#ebe8de'
+       })
+    }
   },
   variants: {
     extend: {},

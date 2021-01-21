@@ -1,4 +1,0 @@
-%syntax-version=1.0.0
-%project=eshop
-
-010-init 2021-01-18T14:20:22Z "Etudiant O'clock",,, <etudiant@teleporteur> # initialisation tables eshop
