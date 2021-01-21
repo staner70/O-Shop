@@ -5,11 +5,14 @@ import propTypes from 'prop-types';
 
 const SearchBar = ({
   searchInputValue, 
-  onChange,
+  onInputChange,
   search
 }) => {
   const onChangeSearchInput = (evt) => {
-    onChange(evt.target.value, search);
+    onInputChange(evt.target.value, search);
+    console.log('oninputchange vaut :',onInputChange);
+    console.log('Dans SearchBar')
+    
   };
   return(
     <div

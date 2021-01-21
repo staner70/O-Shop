@@ -1,7 +1,7 @@
 import { CHANGE_AUTH_FIELD } from '../store/actions';
 
 export const initialState = {
-  email: '',
+  username: '',
   password: '',
   logged: false,
   nickname: null,

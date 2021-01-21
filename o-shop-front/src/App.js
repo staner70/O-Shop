@@ -11,10 +11,6 @@ function App(props) {
       <Switch>
         <Route exact path= '/'>
           <LoginForm />
-        { props.logged ? <Redirect from='/' to="/pos"/> : <LoginForm />}
-        </Route>
-        <Route exact path='/pos'>
-        {props.logged && <Home /> }
         </Route>
         <Route exact path= '/home'>
           <Home />

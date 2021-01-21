@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { history } from '../index';
+import { useCookies } from "react-cookie";
+
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -8,19 +10,19 @@ const api = (store) => (next) => (action) => {
       // ici, on va faire la requete pour le login
       // on commence par récupérer email et password
       // Double destructuration !
-      const { auth: { email, password } } = store.getState();
-
-      const config = {
-        method: 'post', // verbe POST
-        url: 'http://localhost:3001/login', // endpoint de login
-        headers: { // header pour dire qu'on parle en JSON
-        'Authorization': 'Bearer Bearer OurSuperLongRandomSecretToSignOurJWTgre5ezg4jyt5j4ui64gn56bd4sfs5qe4erg5t5yjh46yu6knsw4q', 
-        'Content-Type': 'application/json'},
-        data: { // body de la requete (contenu du json)
-          email,
-          password,
-        },
-      };
+      const { auth: { username, password } } = store.getState();
+const config = {
+  method: 'post',
+  url: 'http://anthony-lin.vpnuser.lan:3500/auth/login',
+  headers: { 
+    'Content-Type': 'application/json', 
+    'Cookie': 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtX21pY2hlbCIsImlhdCI6MTYxMTIxNjQ2NSwiZXhwIjoxNjExMjE3MDY1fQ.LltbTuINRJdgYLGHzwxVR3GeV4g-i7IAeLOxp3jKl3E'
+  },
+  data: { // body de la requete (contenu du json)
+    username,
+    password,
+  },
+};
 
       axios(config) // on lance la requete...
         .then((response) => { // cas de réussite
