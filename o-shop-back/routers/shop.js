@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 const { 
     getAllShop, 
     getOneShop, 
@@ -9,15 +10,17 @@ const {
     updateShop,
     deleteShop 
     } = require('../controllers/shopController');
+const { catchErrors } = require('../helpers/catchError');
+const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
 
-router.get('/', getAllShop);
-router.get('/:id', getOneShop);
-router.get('/user/:userId', getAllShopByUser);
+router.get('/', getAccessToRoute, catchErrors(getAllShop));
+router.get('/:id', getAccessToRoute, catchErrors(getOneShop));
+router.get('/:shopId/user/:userId', getAccessToRoute, catchErrors(getAllShopByUser));
 
-router.post('/', createShop);
+router.post('/', getAccessToRoute, getAdminAccess, catchErrors(createShop));
 
-router.patch('/:id', updateShop);
+router.patch('/:id', getAccessToRoute, getAdminAccess, catchErrors(updateShop));
 
-router.delete('/:id', deleteShop);
+router.delete('/:id', getAccessToRoute, getAdminAccess, catchErrors(deleteShop));
 
 module.exports = router;
