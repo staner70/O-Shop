@@ -2,7 +2,7 @@ import './App.css';
 import "tailwindcss/tailwind.css";
 import { Route } from 'react-router-dom'
 import  LoginForm from './containers/LoginForm'
-import Home from './components/Home';
+import ShopArticles from './components/ShopArticles';
 
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <LoginForm />
       </Route>
       <Route exact path='/pos'>
-      <Home />
+        <ShopArticles />
       </Route>
     </div>
   );
