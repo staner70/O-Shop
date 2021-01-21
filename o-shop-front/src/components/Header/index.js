@@ -1,6 +1,8 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
+import Modal from '../Modal'
+
 
 const Header = () => (
     <div className="flex bg-gray-200 flex-row flex-wrap p-1 w-full">
@@ -16,8 +18,7 @@ const Header = () => (
         </div>
 
         <div className="flex justify-end w-6/12	 p-2">
-        <FontAwesomeIcon size="2x" icon={faUserCircle} />        
-        </div>
+<Modal />        </div>
     </div>
 );
 
