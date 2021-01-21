@@ -1,11 +1,12 @@
-
+const productDataMapper = require('../dataMapper/productDataMapper');
 
 module.exports = {
 
     getAllProducts: async (request, response, next) => {
-        
+        const products = await productDataMapper.getAllProduct();
         response.status(200).json({
-            success: true
+            success: true,
+            data: products
         });
     },
 
