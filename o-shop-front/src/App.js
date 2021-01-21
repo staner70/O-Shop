@@ -1,19 +1,21 @@
 import './App.css';
 import "tailwindcss/tailwind.css";
-import { Route } from 'react-router-dom'
-import  LoginForm from './containers/LoginForm'
+import { Route, Redirect, Switch } from 'react-router-dom';
+import  LoginForm from './containers/LoginForm';
 import Home from './components/Home';
 
-
-function App() {
+function App(logged) {
   return (
     <div className="App bg-bgback">
+      <Switch>
       <Route exact path= '/'>
-        <LoginForm />
+      { localStorage.getItem('logged')? <Redirect from='/' to="/pos"/> : <LoginForm />}
       </Route>
       <Route exact path='/pos'>
-      <Home />
+      {logged && <Home /> }
       </Route>
+      </Switch>
+      
     </div>
   );
 };
