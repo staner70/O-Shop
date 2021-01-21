@@ -27,10 +27,10 @@ const api = (store) => (next) => (action) => {
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           const { token } = response.data;
           const { role } = response.data;
+          const { logged} = response.data;
           localStorage.setItem('token', token);
-          localStorage.getItem('token');
           localStorage.setItem('role', role);
-          localStorage.getItem('role');
+          localStorage.setItem('logged', logged);
 
           store.dispatch({
             type: 'LOGIN_SUCCESS',
