@@ -13,10 +13,10 @@ const SearchBar = ({
   };
   return(
     <div
-    className="flex p-2 mx-4 m-2 h-14 w-full focus:border-blue-500 p-1 bg-white ring-transparent border transition-colors duration-300 ease-in-out rounded-md focus:outline-none"
+    className="flex mx-4 m-2 w-full focus:border-blue-500 p-1 bg-white ring-transparent border transition-colors duration-300 ease-in-out rounded-md focus:outline-none"
   >
     <input
-      className=" px-4 w-full focus:outline-none"
+      className="px-4 w-full focus:outline-none"
       type="text"
       name={search}
       placeholder="Rechercher un article"
