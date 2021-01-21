@@ -4,15 +4,17 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import  LoginForm from './containers/LoginForm';
 import Home from './components/Home';
 
-function App(logged) {
+function App(props) {
+  console.log(props);
   return (
     <div className="App bg-bgback">
       <Switch>
       <Route exact path= '/'>
-      { localStorage.getItem('logged')? <Redirect from='/' to="/pos"/> : <LoginForm />}
+        <LoginForm />
+      { props.logged ? <Redirect from='/' to="/pos"/> : <LoginForm />}
       </Route>
       <Route exact path='/pos'>
-      {logged && <Home /> }
+      {props.logged && <Home /> }
       </Route>
       </Switch>
       
