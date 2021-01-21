@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+
 const { 
     getAllShop, 
     getOneShop, 
@@ -14,7 +15,7 @@ const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorizati
 
 router.get('/', getAccessToRoute, catchErrors(getAllShop));
 router.get('/:id', getAccessToRoute, catchErrors(getOneShop));
-router.get('/user/:userId', getAccessToRoute, catchErrors(getAllShopByUser));
+router.get('/:shopId/user/:userId', getAccessToRoute, catchErrors(getAllShopByUser));
 
 router.post('/', getAccessToRoute, getAdminAccess, catchErrors(createShop));
 
