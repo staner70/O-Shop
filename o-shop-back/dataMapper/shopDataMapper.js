@@ -22,17 +22,19 @@ shopDataMapper = {
 
     // get list of shop by user( Owner or Manager)
     async getShopsByUser (userId) {
-        const result = await client.query(`SELECT shop.*, user.name 
-                                            FROM user
-                                            JOIN work ON work.user_id = user.id
-                                            JOIN shop ON shop_id = shop.id
-                                            WHERE user.id = $1`, [userId])
+        console.log("sérieux", userId);
+        const result = await client.query(`SELECT u.id, shop.* 
+                                            FROM "user" AS u 
+                                            JOIN "work" AS w ON w.user_id = u.id 
+                                            JOIN shop ON w.shop_id = shop.id 
+                                            WHERE u.id = $1`, [userId]);
 
+        console.log(result, "sérieux", userId);
          // if the user don't exist return null
          if (result.rowCount == 0) {
             return null;
         }
-        // if not then return the result
+        // if not then return the result list
         return result.rows;
     },
 

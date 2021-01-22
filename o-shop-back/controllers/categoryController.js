@@ -1,4 +1,5 @@
 const categoryDataMapper = require('../dataMapper/categoryDataMapper');
+const CustomError = require('../helpers/CustomError'); 
 
 module.exports = {
 
@@ -11,9 +12,14 @@ module.exports = {
     },
 
     getOneCategory: async (request, response, next) => {
-
+        const {id} = request.params;
+        const category = await categoryDataMapper.getOneCategory(id);
+        if (category == null) {
+            return next(new CustomError("Category not exist", 400));
+        }
         response.status(200).json({
-            success: true
+            success: true,
+            data: category
         });
     },
 
@@ -27,16 +33,27 @@ module.exports = {
     },
 
     updateCategory: async (request, response, next) => {
-
+        const {id} = request.params;
+        const categoryInfo = request.body;
+        const category = await categoryDataMapper.updateOneCategory(id, categoryInfo);
+        if (category == null) {
+            return next(new CustomError("Category not exist", 400));
+        }
         response.status(200).json({
-            success: true
+            success: true,
+            data: category
         });
     },
 
     deleteCategory: async (request, response, next) => {
-
+        const {id} = request.params;
+        const category = await categoryDataMapper.deleteOneCategory(id);
+        if (category == null) {
+            return next(new CustomError("Category not exist", 400));
+        }
         response.status(200).json({
-            success: true
+            success: true,
+            data: category
         });
     },
 }

@@ -25,11 +25,14 @@ module.exports = {
     },
 
     getAllShopByUser: async (request, response, next) => {
-        // const {shopId, userId} = request.params;
-        // const shops = await shopDataMapper.getAllShopByUser(shopId, userId);
+        const {userId} = request.params;
+        const shops = await shopDataMapper.getShopsByUser(userId);
+        if (shop == null) {
+            return next(new CustomError("User not exist", 400));
+        }
         response.status(200).json({
             success: true,
-            message: "Work in progress"
+            data: shops
         });
     },
 

@@ -40,31 +40,47 @@ productDataMapper = {
     },
 
     // create a new product
-    async addOneProduct(productName) {
-        const {name, price, description, image, quantity, shop_id} = productName;
+    async addOneProduct(productInfo) {
+        const {name, price, description, image, quantity, shop_id} = productInfo;
         // we test if the product alreayd exist 
-        const existProduct = await client.query(`SELECT name FROM "product" WHERE name = $1`, [productName]);
+        const existProduct = await client.query(`SELECT name FROM "product" WHERE name = $1`, [name]);
         // if it exist , return null
         if (existProduct.rowCount != 0){
             return null;
         }
-        const shopId = await client.query(`SELECT id FROM "shop" WHERE name = $1`,[productName.shop]);
-        console.log(shopId.rows[0].id);
-        const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [productName.category]);
-        console.log(productName.category, 'productName.category');
+        // we search the shop id based  on one shop name
+        const shopId = await client.query(`SELECT id FROM "shop" WHERE name = $1`,[productInfo.shop]);
+        console.log(shopId.rows[0].id); // 1
+        // we search for the category id based on the categorie name
+        const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [productInfo.category]);
+        console.log(productInfo.category, 'productInfo.category',categoryId); //thé
+        
+        
         // if not return the result
         const result = await client.query(`INSERT INTO "product"(name, price, description, image, quantity, shop_id) VALUES ($1,$2,$3, $4, $5, $6) RETURNING *`,
         [name, price, description, image, quantity, shopId.rows[0].id]);
+        
+        // we associate the product on a (can be multiple) category
+        const associate = await client.query(`INSERT INTO "possess"(category_id, product_id) VALUES ($1, $2) RETURNING *`, [categoryId.rows[0].id, result.rows[0].id]);
+        console.log(associate.rows[0]); // undefined
         return result.rows[0];
 
     },
 
     //update a product
     async updateOneProduct(productId, productInfo) {
-        const {name, color} = productInfo ;
+        const {name, price, description, image, quantity} = productInfo ;
 
-        const result = await client.query(`UPDATE "product" SET name = $1, price = $2, description = $3, image = $4, quantity = $5, shop_id = $6 WHERE id = $7 RETURNING *`,
-        [name, price, description, image, quantity, shop_id, productId]);
+        // we search for the category id based on the categorie name
+        const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [productInfo.category]);
+        console.log(productInfo.category, 'productInfo.category',categoryId); //thé
+
+        const result = await client.query(`UPDATE "product" SET name = $1, price = $2, description = $3, image = $4, quantity = $5 WHERE id = $6 RETURNING *`,
+        [name, price, description, image, quantity, productId]);
+
+        // we associate the product on a (can be multiple) category
+        const associate = await client.query(`UPDATE "possess" SET category_id = $1, product_id =  $2 WHERE product_id = $3 RETURNING *`, [categoryId.rows[0].id, result.rows[0].id, productId]);
+        console.log(associate.rows[0]); // undefined
         
         // if there is no product return null
         if (result.rowCount == 0) {

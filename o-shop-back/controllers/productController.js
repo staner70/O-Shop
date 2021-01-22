@@ -39,6 +39,9 @@ module.exports = {
     addNewProduct: async (request, response, next) => {
         const productInfo = request.body;
         const product = await productDataMapper.addOneProduct(productInfo);
+        if (product == null) {
+            return next(new CustomError("Product already exist", 400));
+        }
         response.status(200).json({
             success: true,
             message: "product added",
@@ -48,17 +51,25 @@ module.exports = {
 
     updateProduct: async (request, response, next) => {
         const {id} = request.params;
+        const productInfo = request.body;
+        const product = await productDataMapper.updateOneProduct(id,productInfo);
         response.status(200).json({
             success: true,
-            message: `product ${id} updated`
+            message: `product ${id} updated`,
+            data: product
         });
     },
 
     deleteProduct: async (request, response, next) => {
         const {id} = request.params;
+        const product = await productDataMapper.deleteOneProduct(id);
+        if (product == null) {
+            return next(new CustomError("Product not exist", 400));
+        }
         response.status(200).json({
             success: true,
-            message: `product ${id} deleted`
+            message: `product ${id} deleted`,
+            data: product
         });
     },
 

@@ -28,7 +28,7 @@ CREATE TABLE "product" (
     "description" TEXT NOT NULL,
     "image" TEXT NOT NULL,
     "quantity" INT NOT NULL,
-    "shop_id" INT REFERENCES "shop"("id"),
+    "shop_id" INT REFERENCES "shop"("id"), -- ON DELETE CASCADE ON UPDATE CASCADE
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -39,7 +39,7 @@ CREATE TABLE "user" (
     "last_name" TEXT NOT NULL,
     "username" TEXT NOT NULL, -- unique
     "password" TEXT NOT NULL,
-    "role_id" INT REFERENCES "role"("id"),
+    "role_id" INT REFERENCES "role"("id"), -- ON DELETE CASCADE ON UPDATE CASCADE
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW() CHECK("created_at" >= NOW()),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
@@ -47,13 +47,13 @@ CREATE TABLE "user" (
 
 CREATE TABLE "work" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "shop_id" INT REFERENCES "shop"("id"),
-    "user_id" INT REFERENCES "user"("id")
+    "shop_id" INT REFERENCES "shop"("id"), -- ON DELETE CASCADE ON UPDATE CASCADE
+    "user_id" INT REFERENCES "user"("id") -- ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE "possess" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "product_id" INT REFERENCES "product"("id"),
-    "category_id" INT REFERENCES "category"("id")
+    "product_id" INT REFERENCES "product"("id"), -- ON DELETE CASCADE ON UPDATE CASCADE
+    "category_id" INT REFERENCES "category"("id") -- ON DELETE CASCADE ON UPDATE CASCADE
 );
 COMMIT;
