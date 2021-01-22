@@ -1,22 +1,58 @@
 import React from 'react';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
+import { faPlusSquare } from '@fortawesome/free-solid-svg-icons'
+import { faMinusSquare } from '@fortawesome/free-solid-svg-icons'
 const ShoppingCart = () => (
 
-<div className="bg-yellow-600 xl:w-2/5 xl:visible	lg:invisible md:invisible sm:invisible">2
+  
+  <div className="w-full tracking-wider">
+    
+    
+    
+    
+      
+      <div className="flex align-justify bg-bgred rounded-lg m-4">
+        <div className="w-1/5 ">Produit</div>
+        <div className="w-1/5">Prix</div>
+        <div className="w-1/5">Quantité</div>
+        <div className="w-1/5">Total</div>
+        <div classNaùe="w-1/5"></div>
+      </div>
+      
 
 
-</div>
-)
+
+      
+      <div className=" flex inline-block flex m-4 " >
+          <div className=" w-1/5 ">NameProduct</div>
+          <div className="w-1/5">€59.99 </div>
+          <div className="w-1/5">
+            <a href="#" className="m-1"><FontAwesomeIcon icon={faMinusSquare} /></a>
+            <input type="numeric" value="3" className="text-center w-10 b-3 rounded-lg	"/>
+            <a href="#" className="m-1 "><FontAwesomeIcon icon={faPlusSquare} /></a></div>
+          <div className="w-1/5"> €182.95   </div> 
+          <div className="w-1/5"> <FontAwesomeIcon icon={faTrashAlt} /></div>          
+      </div>
+
+      
+
+     
+    
+     
+    
+    
+
+      <div className="bg-bgred rounded-lg m4 content-end h-28">TOTAL</div>
 
 
 
 
-export default ShoppingCart;
-<div className="flex items-center"> <img src="https://i.imgur.com/EEguU02.jpg" width="60" className="rounded-full ">
-                                    <div className="flex flex-col ml-3"> <span className="md:text-md font-medium">Chicken momo</span> <span className="text-xs font-light text-gray-400">#41551</span> </div>
-                                </div>
-                                <div className="flex justify-center items-center">
-                                    <div className="pr-8 flex "> <span className="font-semibold">-</span> <input type="text" className="focus:outline-none bg-gray-100 border h-6 w-8 rounded text-sm px-2 mx-2" value="1"> <span className="font-semibold">+</span> </div>
-                                    <div className="pr-8 "> <span className="text-xs font-medium">$10.50</span> </div>
-                                    <div> <i className="fa fa-close text-xs font-medium"></i> </div>
-                                </div>
+  </div>
+      
+        
+      
+) 
+  export default ShoppingCart; 
+   
+
