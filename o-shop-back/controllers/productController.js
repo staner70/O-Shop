@@ -27,10 +27,10 @@ module.exports = {
         const {categoryId} = request.params;
         const productsByCategory = await productDataMapper.getProductsByCategory(categoryId);
         if (productsByCategory == null) {
-            return next(new CustomError("Produit not exist", 400));
+            return next(new CustomError("Category not exist", 400));
         }
         response.status(200).json({
-            id: categoryId,
+            
             success: true,
             data: productsByCategory
         })

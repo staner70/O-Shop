@@ -3,9 +3,10 @@ const categoryDataMapper = require('../dataMapper/categoryDataMapper');
 module.exports = {
 
     getAllCategories: async (request, response, next) => {
-
+        const categories = await categoryDataMapper.getAllCategories();
         response.status(200).json({
-            success: true
+            success: true,
+            data: categories
         });
     },
 

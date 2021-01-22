@@ -13,7 +13,9 @@ module.exports = {
                 return next(new CustomError("Please check your inputs", 400));
             }
 
-            const result = await client.query(`SELECT * FROM "user" WHERE username = $1 AND password = $2`, [username, password]);
+            // we look for the info of the user: the username and the role
+            const result = await client.query(`SELECT u.* , r.name AS role_name FROM "user" As u JOIN "role" AS r ON u.role_id = r.id WHERE username = $1 AND password = $2`, [username, password]);
+           
 
             console.log(result.rows[0], password);
             // if (!comparePassword(password, user.password)) {
@@ -29,6 +31,7 @@ module.exports = {
             //     success: true
             // });
             const user = result.rows[0];
+           
             sendJwtToClient(user,response);  
 
         } catch (error) {

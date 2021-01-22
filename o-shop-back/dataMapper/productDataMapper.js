@@ -21,18 +21,22 @@ productDataMapper = {
 
     // get all product by categories
     async getProductsByCategory (categoryId) {
-        const result = await client.query(`SELECT product.*, category.name 
-                                            FROM product 
-                                            JOIN possess  ON  possess.product_id= product.id 
-                                            JOIN category  ON category.id = possess.category_id
-                                            WHERE category.id = $1`, [categoryId]);
         // if category doesn't exist, return null
-        const existCategory = await client.query('SELECT * FROM "product" WHERE product.id = $1', [categoryId])
-        if (existCategory.rowCount == 0 ){
+        const existCategory = await client.query('SELECT * FROM "category" WHERE category.id = $1', [categoryId]);
+        console.log(existCategory);
+        if (existCategory.rowCount === 0 ){
+            console.log("null");
             return null ;
         }
+        const result = await client.query(`SELECT category.name as category, product.*
+                                            FROM product 
+                                            JOIN possess  ON  possess.product_id = product.id 
+                                            JOIN category  ON category.id = possess.category_id
+                                            WHERE category.id = $1`, [categoryId]);
 
-        return result.rows[0];
+        // console.log(categoryId);
+        // console.log(result.rows);
+        return result.rows;
     },
 
     // create a new product
@@ -44,9 +48,13 @@ productDataMapper = {
         if (existProduct.rowCount != 0){
             return null;
         }
+        const shopId = await client.query(`SELECT id FROM "shop" WHERE name = $1`,[productName.shop]);
+        console.log(shopId.rows[0].id);
+        const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [productName.category]);
+        console.log(productName.category, 'productName.category');
         // if not return the result
         const result = await client.query(`INSERT INTO "product"(name, price, description, image, quantity, shop_id) VALUES ($1,$2,$3, $4, $5, $6) RETURNING *`,
-        [name, price, description, image, quantity, shop_id]);
+        [name, price, description, image, quantity, shopId.rows[0].id]);
         return result.rows[0];
 
     },
