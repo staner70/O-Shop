@@ -62,6 +62,7 @@ const api = (store) => (next) => (action) => {
       // Double destructuration !
       const { adminuser: { username, password, firstname, lastname, role } } = store.getState();
       console.log('submit_user');
+      console.log(username);
 const token =  localStorage.getItem('token');
       const userconfig = {
         method: 'post',
