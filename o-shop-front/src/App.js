@@ -4,6 +4,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import  LoginForm from './containers/LoginForm';
 import Home from './components/Home';
 import AccessForbidden from './components/AccessForbidden';
+import UserModal from './containers/UserModal';
 
 function App(props) {
   console.log(props);

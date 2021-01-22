@@ -1,8 +1,7 @@
 import React from "react";
-import redux from 'react-redux';
 
-export default function Modal() {
-  const [showModal, setShowModal] = React.useState(false);
+export default function PaymentModal() {
+  const [showModal, setShowModal] = React.useState();
   return (
     <>
       <button
@@ -11,13 +10,12 @@ export default function Modal() {
         style={{ transition: "all .15s ease" }}
         onClick={() => setShowModal(true)}
       >
-       Profil
+       Multiple
       </button>
       {showModal ? (
         <>
           <div
             className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
-            onClick={() => setShowModal(false)}
           >
             <div className="relative w-auto my-6 mx-auto max-w-3xl">
               {/*content*/}
@@ -25,7 +23,7 @@ export default function Modal() {
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                   <h3 className="text-3xl font-semibold">
-Votre Profil                  </h3>
+Paiement multiple                </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
@@ -37,30 +35,51 @@ Votre Profil                  </h3>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                 
-<div className="shadow-lg rounded-2xl w-64 bg-white dark:bg-gray-800">
-    <img alt="profil" src="https://images.pexels.com/photos/3978352/pexels-photo-3978352.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" className="rounded-t-lg h-28 w-full mb-4"/>
-    <div className="flex flex-col items-center justify-center p-4 -mt-16">
-        <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
-        `${localStorage.getItem("username")}``        </p>
-        <p class="text-gray-400 text-xs">
-        `${localStorage.getItem("role")}``         
-</p>
-        
-    </div>
-</div>
+      <div className="flex flex-col m-2">
+        <label for="CB" className="self-start w-auto"  text-gray-900>Carte Bancaire</label>
+        <input
+          className="px-4 focus:border-blue-500 py-2 ring ring-transparent border transition-colors duration-300 ease-in-out rounded-md focus:outline-none"
+          type="number"
+          name="CB"
+          placeholder="Carte Bancaire"
+          id="CB"
+        />
+      </div>
 
+      <div className="flex flex-col m-2">
+        <label for="espece" className="self-start w-auto"  text-gray-900>Espece</label>
+        <input
+          className="px-4 focus:border-blue-500 py-2 ring ring-transparent border transition-colors duration-300 ease-in-out rounded-md focus:outline-none"
+          type="number"
+          name="espece"
+          placeholder="Espece"
+          id="espce"
+        />
+      </div>
+
+      <div className="flex flex-col m-2">
+        <label for="cheque" className="self-start w-auto"  text-gray-900>Cheque</label>
+        <input
+          className="px-4 focus:border-blue-500 py-2 ring ring-transparent border transition-colors duration-300 ease-in-out rounded-md focus:outline-none"
+          type="number"
+          name="cheque"
+          placeholder="Cheque"
+          id="Cheque"
+        />
+      </div>
+      
                 </div>
+                {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+                  
                   <button
-                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                    className="bg-green-500 text-white active:bg-green-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
                     style={{ transition: "all .15s ease" }}
                     onClick={() => setShowModal(false)}
                   >
-                    Close
+                    Valider
                   </button>
-                  
                 </div>
               </div>
             </div>

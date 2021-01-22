@@ -3,6 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import apiMiddleware from '../middlewares/api';
 
+
 // rootReducer = résultat de combineReducers
 import rootReducer from '../reducers';
 
@@ -12,6 +13,7 @@ const store = createStore(
   composeWithDevTools( // devtools
     // branchement de middleware
    applyMiddleware(apiMiddleware),
+
   ),
 );
 

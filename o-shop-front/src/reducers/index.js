@@ -4,6 +4,7 @@ import { combineReducers } from 'redux';
 
 import authReducer from './auth';
 import shopReducer from './shop';
+import adminUserReducer from './adminUser';
 
 
 // combineReducers : on lui donne un objet
@@ -14,4 +15,5 @@ import shopReducer from './shop';
 export default combineReducers({
   auth: authReducer,
   shop: shopReducer,
+  adminuser: adminUserReducer,
 });

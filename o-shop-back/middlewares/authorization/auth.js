@@ -9,7 +9,7 @@ module.exports = {
         // const {JWT_SECRET_KEY} = process.env;
         
         if(!isTokenIncluded(request)) {
-            return next(new CustomError("You are not authorized to access this route", 401));
+            return next(new CustomError("You are not authorized to access this route, is token included", 401));
         }
 
         const accessToken = getAccessTokenFrom(request);
@@ -17,7 +17,7 @@ module.exports = {
         jwt.verify(accessToken, process.env.JWT_SECRET_KEY, (err, decoded) => {
             if (err) {
                 console.log(accessToken, "<--- verify");
-                return next(new CustomError("You are not authorized to access this route", 401));
+                return next(new CustomError("You are not authorized to access this route, token", 401));
             }
             request.user = {
                 id: decoded.id,

@@ -2,6 +2,7 @@ import React from 'react';
 import Header from '../Header';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons'
+import {NavLink} from 'react-router-dom';
 
 const AccessForbidden = () => (
     <>
@@ -32,9 +33,14 @@ Vous n'avez pas les acces necessaires pour acceder a cette page              </p
         </div>
       </div>
       <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+        <NavLink 
+        activeClassName="border-black"
+        exact
+        to="/home">
         <button type="button" className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">
           Retour
         </button>
+        </NavLink>
         
       </div>
     </div>

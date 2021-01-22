@@ -4,16 +4,15 @@ import PropTypes from 'prop-types';
 
 
 // == Composant
-const Field = ({
+const UserField = ({
   value,
   type,
   name,
   placeholder,
   onChange,
 }) => {
-  const handleChange = (evt) => {
+  const handleUserChange = (evt) => {
     onChange(evt.target.value, name);
-    console.log(evt.target.value);
   };
 
   const inputId = `field-${name}`;
@@ -23,7 +22,7 @@ const Field = ({
       <input
         // React - state
         value={value}
-        onChange={handleChange}
+        onChange={handleUserChange}
         // infos de base
         id={inputId}
         type={type}
@@ -35,19 +34,18 @@ const Field = ({
   );
 };
 
-Field.propTypes = {
+UserField.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
+  onUserChange: PropTypes.func.isRequired,
 };
 
 // Valeurs par défaut pour les props
-Field.defaultProps = {
+UserField.defaultProps = {
   value: '',
-  type: 'text',
 };
 
 // == Export
-export default Field;
+export default UserField;
