@@ -23,4 +23,8 @@ router.patch('/:id', getAccessToRoute, getAdminAccess, catchErrors(updateProduct
 
 router.delete('/:id', getAccessToRoute, getAdminAccess, catchErrors(deleteProduct));
 
+// associate route
+// router.post('/:productId/category/:categoryId',  getAccessToRoute, getAdminAccess,catchErrors(associatePossess));
+// router.delete('/:productId/category/categoryId',  getAccessToRoute, getAdminAccess,catchErrors(dissociatePoses));
+
 module.exports = router;

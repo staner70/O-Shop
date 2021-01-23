@@ -4,7 +4,19 @@ productDataMapper = {
 
     // get the list of all products
     async getAllProduct() {
-        const result = await client.query('SELECT * FROM "product"');
+        const result = await client.query(`SELECT * FROM "product" `);
+
+        // const result = await client.query(`SELECT s.*, c.* ,pr.*
+        //                                 FROM "product" AS pr
+        //                                 JOIN "shop" AS s
+        //                                     ON s.id = pr.shop_id
+        //                                 JOIN "possess" AS pos
+        //                                     ON pr.id = pos.product_id
+        //                                 JOIN "category" AS c
+        //                                     ON c.id = pos.category_id
+        //                                 JOIN "work" AS w
+        //                                     ON w.shop_id = s.id
+        // `);                                            
         return result.rows;
     },
 
@@ -55,21 +67,19 @@ productDataMapper = {
         const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [productInfo.category]);
         console.log(productInfo.category, 'productInfo.category',categoryId); //thé
         
-        
-        // if not return the result
         const result = await client.query(`INSERT INTO "product"(name, price, description, image, quantity, shop_id) VALUES ($1,$2,$3, $4, $5, $6) RETURNING *`,
         [name, price, description, image, quantity, shopId.rows[0].id]);
         
         // we associate the product on a (can be multiple) category
         const associate = await client.query(`INSERT INTO "possess"(category_id, product_id) VALUES ($1, $2) RETURNING *`, [categoryId.rows[0].id, result.rows[0].id]);
-        console.log(associate.rows[0]); // undefined
+        console.log(associate.rows[0]); 
         return result.rows[0];
 
     },
 
     //update a product
     async updateOneProduct(productId, productInfo) {
-        const {name, price, description, image, quantity} = productInfo ;
+        const {name, price, description, image, quantity, shop_id} = productInfo ;
 
         // we search for the category id based on the categorie name
         const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [productInfo.category]);
