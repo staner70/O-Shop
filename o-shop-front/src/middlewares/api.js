@@ -2,6 +2,8 @@ import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
 
+import { GET_USERS_FROM_API, updateUsersAdmin } from '../store/actions';
+
 const api = (store) => (next) => (action) => {
   switch (action.type) {
 
@@ -55,9 +57,7 @@ const api = (store) => (next) => (action) => {
     }
 
     case 'SUBMIT_USER': {
-      // ici, on va faire la requete pour le login
-      // on commence par récupérer email et password
-      // Double destructuration !
+      
       const { adminuser: { username, password, first_name, last_name, role, shop } } = store.getState();
       console.log('submit_user');
 const localtoken =  localStorage.getItem('token');
@@ -92,8 +92,27 @@ console.log('token:', localtoken)
           break;
       
     }
-    
+    case GET_USERS_FROM_API: {
+      const localtoken =  localStorage.getItem('token');
+      const userconfig = {
+        method: 'get',
+        url: 'http://salih-taner.vpnuser.lan:3500/user',
+        headers: { 
+          'Authorization': `Bearer: ${localtoken}`, 
+          'Content-Type': 'application/json'
+        }
+      };
 
+      axios(userconfig)
+        .then((response) => {
+          if(response.data.success){
+            store.dispatch(updateUsersAdmin(response.data.data));
+          }else{
+            console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/user"));
+          }
+        });
+      break
+    }
     default:
       next(action);
   }

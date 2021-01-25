@@ -4,7 +4,7 @@ import { combineReducers } from 'redux';
 
 import authReducer from './auth';
 import shopReducer from './shop';
-import adminUserReducer from './adminUser';
+import adminUserReducer from './adminUsers';
 
 
 // combineReducers : on lui donne un objet
