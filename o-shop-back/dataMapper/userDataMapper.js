@@ -4,26 +4,14 @@ userDataMapper = {
 
     // get the list of all users
     async getAllUser() {
-        const result = await client.query(`SELECT u.* , r.name AS role, s.name AS shop
-                                            FROM "user" As u 
-                                            JOIN "role" AS r 
-                                            ON u.role_id = r.id
-                                            JOIN "work" AS w
-                                            ON w.user_id = u.id
-                                            JOIN "shop" AS s
-                                            ON s.id = w.shop_id`);
+        const result = await client.query(`SELECT * from userView`);
 
         return result.rows;
     },
 
     // get one user
     async getOneUser(id) {
-        const result = await client.query('SELECT * FROM "user" WHERE id = $1', [id]);
-        // if the user don't exist get nothing and return null
-        // if (result.rowCount == 0 ){
-        //     return null ;
-        // }
-
+        const result = await client.query('SELECT * FROM userView WHERE id = $1', [id]);
         return result.rows[0];
     },
 

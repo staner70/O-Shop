@@ -4,23 +4,14 @@ productDataMapper = {
 
     // get the list of all products
     async getAllProduct() {
-        // const result = await client.query(`SELECT * FROM "product" `);
-
-        const result = await client.query(`SELECT pr.*, s.name AS shop, c.name AS category, c.color AS categoryColor 
-                                        FROM "product" AS pr
-                                        JOIN "shop" AS s
-                                            ON s.id = pr.shop_id
-                                        JOIN "possess" AS pos
-                                            ON pr.id = pos.product_id
-                                        JOIN "category" AS c
-                                            ON c.id = pos.category_id
-                                 `);                                            
+        
+        const result = await client.query(`SELECT * FROM productView`);                                            
         return result.rows;
     },
 
     // get one product
     async getOneProduct(productId) {
-        const result = await client.query('SELECT * FROM "product" WHERE id = $1', [productId]);
+        const result = await client.query('SELECT * FROM productView WHERE id = $1', [productId]);
 
         return result.rows[0];
     },
