@@ -2,3 +2,4 @@
 %project=eshop
 
 010-init 2021-01-18T14:20:22Z "Etudiant O'clock",,, <etudiant@teleporteur> # initialisation tables eshop
+020-contraint 2021-01-25T09:34:42Z "Etudiant O'clock",,, <etudiant@teleporteur> # add contraint unique and type double

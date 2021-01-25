@@ -13,7 +13,7 @@ const {
 const { catchErrors } = require('../helpers/catchError');
 const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
 
-router.get('/', getAccessToRoute, catchErrors(getAllShop));
+router.get('/', catchErrors(getAllShop));
 router.get('/:id', getAccessToRoute, catchErrors(getOneShop));
 router.get('/user/:userId', getAccessToRoute, catchErrors(getAllShopByUser));
 

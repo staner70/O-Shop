@@ -9,6 +9,7 @@ module.exports = {
         // const {JWT_SECRET_KEY} = process.env;
         
         if(!isTokenIncluded(request)) {
+            console.log("<-- isTokenIncluded");
             return next(new CustomError("You are not authorized to access this route", 401));
         }
 

@@ -24,6 +24,7 @@ userDataMapper = {
         const {username, first_name, last_name, password, role, shop} = userInfo;
         // we test if the user alreayd exist 
         const existUser = await client.query(`SELECT username, password FROM "user" WHERE username = $1 AND password = $2`, [username, password ]);
+        
         // if it exist , return null
         if (existUser.rowCount != 0){
             return null;

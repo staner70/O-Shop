@@ -44,7 +44,7 @@ const tokenhelper = {
     },
 
     isTokenIncluded: (request) => {
-        console.log(request.headers.authorization);
+        console.log(request.headers.authorization, "<-- istokenincluded");
         return (
             request.headers.authorization && request.headers.authorization.startsWith("Bearer:")
         );

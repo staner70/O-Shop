@@ -16,10 +16,10 @@ module.exports = {
         if (error.name === "CastError") {
             customError = new CustomError("Please provide a valid id", 400);
         }
-        // if (error.code === 11000) {
-        //     // Duplicate Key
-        //     customError = new CustomError("Duplicate Key Found : Check Your Input",400);
-        // }
+        if (error.code === 23505) {
+            // Duplicate Key
+            customError = new CustomError("Duplicate Key Found : Check Your Input",400);
+        }
         console.log(customError.message,customError.status);
 
         response.status(customError.status || 500)

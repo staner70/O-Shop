@@ -18,7 +18,7 @@ CREATE TABLE "shop" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL,
     "adress" TEXT NOT NULL, -- unique
-    "tel" TEXT NOT NULL
+    "tel" TEXT NOT NULL 
 );
 
 CREATE TABLE "product" (
