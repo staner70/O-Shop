@@ -7,8 +7,10 @@ export const initialState = {
     password: '',
     first_name:'',
     last_name:'',
-role:'',
-shop:'OSHOP',
+    role:'',
+    shop:'OSHOP',
+    done: false,
+
 }
 
 const reducer = (oldState = initialState, action ={}) => {
@@ -20,6 +22,18 @@ const reducer = (oldState = initialState, action ={}) => {
                 [action.name]: action.value,
 
               };
+              case 'USER_ADD_SUCCESS':
+      return {
+        ...oldState,
+        // on copie les données de l'action dans le reducer
+        done: true,
+        username: '',
+        password: '',
+        first_name:'',
+        last_name:'',
+        role:'',
+        shop:'OSHOP',
+      };
            default: 
            return {...oldState} ;
     }

@@ -9,6 +9,7 @@ export const initialState = {
     quantity:'',
     image:'',
     shop:'OSHOP',
+    done: false,
 }
 
 const reducer = (oldState = initialState, action ={}) => {
@@ -20,6 +21,20 @@ const reducer = (oldState = initialState, action ={}) => {
                 [action.name]: action.value,
 
               };
+              case 'PRODUCT_ADD_SUCCESS':
+      return {
+        ...oldState,
+        // on copie les données de l'action dans le reducer
+        done: true,
+        name: '',
+        description: '',
+        price: '',
+        quantity:'',
+        image:'',
+        shop:'OSHOP',
+        
+      
+      };
            default: 
            return {...oldState} ;
     }

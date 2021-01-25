@@ -22,8 +22,7 @@ const reducer = (oldState = initialState, action = {}) => {
         ...oldState,
         // on copie les données de l'action dans le reducer
         logged: action.logged,
-        token: action.token,
-        nickname: action.pseudo,
+      
       };
     case 'LOGOUT':
       return {

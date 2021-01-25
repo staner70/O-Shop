@@ -5,6 +5,7 @@ import {
 export const initialState = {
     name: '',
     color: '',
+    done:false,
 }
 
 const reducer = (oldState = initialState, action ={}) => {
@@ -16,6 +17,16 @@ const reducer = (oldState = initialState, action ={}) => {
                 [action.name]: action.value,
 
               };
+              case 'CATEGORY_ADD_SUCCESS':
+                return {
+                  ...oldState,
+                  // on copie les données de l'action dans le reducer
+                done: true,
+                name: '',
+                color: '',
+                  
+                
+                };
            default: 
            return {...oldState} ;
     }

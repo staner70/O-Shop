@@ -12,7 +12,7 @@ const api = (store) => (next) => (action) => {
       const { auth: { username, password } } = store.getState();
       const config = {
         method: 'post',
-        url: 'http://salih-taner.vpnuser.lan:3500/auth/login',
+        url: 'https://oshop-lyra.herokuapp.com/auth/login',
         headers: {
           'Content-Type': 'application/json',
           'Cookie': 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtX21pY2hlbCIsImlhdCI6MTYxMTIxNjQ2NSwiZXhwIjoxNjExMjE3MDY1fQ.LltbTuINRJdgYLGHzwxVR3GeV4g-i7IAeLOxp3jKl3E'
@@ -37,7 +37,6 @@ const api = (store) => (next) => (action) => {
 
           store.dispatch({
             type: 'LOGIN_SUCCESS',
-            // on déverse tout le contenu de response.data dans notre action
             ...response.data,
           });
           const cookies = new Cookies();
@@ -64,7 +63,7 @@ const api = (store) => (next) => (action) => {
       console.log('token:', localtoken)
       const userconfig = {
         method: 'post',
-        url: 'http://salih-taner.vpnuser.lan:3500/user',
+        url: 'https://oshop-lyra.herokuapp.com/user',
         headers: { 
           'Authorization': `Bearer: ${localtoken}`, 
           'Content-Type': 'application/json'
@@ -87,8 +86,9 @@ const api = (store) => (next) => (action) => {
           console.log(userconfig);
           console.log(response.data);
           console.log('inscription user');
+          store.dispatch({ type: 'USER_ADD_SUCCESS' })
+
           });
-          console.log(userconfig);
           break;
       
     }
@@ -103,7 +103,7 @@ const api = (store) => (next) => (action) => {
       console.log('token:', localtoken)
       const categoryconfig = {
         method: 'post',
-        url: 'http://salih-taner.vpnuser.lan:3500/category',
+        url: 'https://oshop-lyra.herokuapp.com/category',
         headers: { 
           'Authorization': `Bearer: ${localtoken}`, 
           'Content-Type': 'application/json'
@@ -122,6 +122,8 @@ const api = (store) => (next) => (action) => {
           console.log(categoryconfig);
           console.log(response.data);
           console.log('Ajout de category');
+          store.dispatch({ type: 'CATEGORY_ADD_SUCCESS' })
+
           });
           break;
       
@@ -130,13 +132,13 @@ const api = (store) => (next) => (action) => {
       // ici, on va faire la requete pour le login
       // on commence par récupérer email et password
       // Double destructuration !
-      const { adminproduct: { name, description, price, quantity, image, shop } } = store.getState();
+      const { adminproduct: { name, description, price, quantity, image, shop, category } } = store.getState();
       console.log('submit_product');
       const localtoken =  localStorage.getItem('token');
       console.log('token:', localtoken)
       const productconfig = {
         method: 'post',
-        url: 'http://salih-taner.vpnuser.lan:3500/product',
+        url: 'https://oshop-lyra.herokuapp.com/product',
         headers: { 
           'Authorization': `Bearer: ${localtoken}`, 
           'Content-Type': 'application/json'
@@ -148,6 +150,7 @@ const api = (store) => (next) => (action) => {
           quantity,
           image,
           shop,
+          category,
         },
         
       };
@@ -156,10 +159,11 @@ const api = (store) => (next) => (action) => {
         .then((response) => { // cas de réussite
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-          console.log(productconfig);
           console.log(response.data);
           console.log('Ajout de produit');
-          });
+          console.log(store.getState());
+          store.dispatch({ type: 'PRODUCT_ADD_SUCCESS' })
+        });
           break;
       
     }

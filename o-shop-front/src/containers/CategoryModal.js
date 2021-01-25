@@ -7,7 +7,8 @@ import { changeAddCategoryField } from '../store/actions.js'; //A mettre dans ac
 const mapStateToProps = (state) => ({
   name: state.admincategory.name,
   color: state.admincategory.color,
-  
+  isDone: state.admincategory.done,
+
 });
 
 // cablage des actions

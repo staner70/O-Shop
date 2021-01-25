@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
 import PropTypes from 'prop-types';
+import AlertModal from './AlertModal'
 
 
 const CategoryModal = ({
@@ -8,6 +9,7 @@ const CategoryModal = ({
     changeCategoryField, // changeField
     name,
     color,
+    isDone
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -77,8 +79,10 @@ const CategoryModal = ({
             className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
           >
             OK
-          </button>            </form>
-
+          </button>            
+          </form>
+          {isDone && (
+          <AlertModal /> )}
                                     </div>
                                     {/*footer*/}
                                     <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">

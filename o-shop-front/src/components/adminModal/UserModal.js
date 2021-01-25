@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
 import PropTypes from 'prop-types';
+import AlertModal from './AlertModal'
 
 
 const UserModal = ({
@@ -12,6 +13,7 @@ const UserModal = ({
     password,
     role,
     shop,
+    isDone
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -23,7 +25,6 @@ const UserModal = ({
 
     return (
         <>
-
                 <button
                     className="bg-bgred text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
@@ -108,7 +109,8 @@ const UserModal = ({
           >
             OK
           </button>            </form>
-
+          {isDone && (
+          <AlertModal /> )}
                                     </div>
                                     {/*footer*/}
                                     <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
