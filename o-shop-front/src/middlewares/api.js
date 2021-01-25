@@ -4,35 +4,36 @@ import Cookies from 'universal-cookie';
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
-    
+
     case 'LOGIN': {
       // ici, on va faire la requete pour le login
       // on commence par récupérer email et password
       // Double destructuration !
       const { auth: { username, password } } = store.getState();
-const config = {
-  method: 'post',
-  url: 'http://localhost:3500/auth/login',
-  headers: { 
-    'Content-Type': 'application/json', 
-    'Cookie': 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtX21pY2hlbCIsImlhdCI6MTYxMTIxNjQ2NSwiZXhwIjoxNjExMjE3MDY1fQ.LltbTuINRJdgYLGHzwxVR3GeV4g-i7IAeLOxp3jKl3E'
-  },
-  data: { // body de la requete (contenu du json)
-    username,
-    password,
-  },
-};
+      const config = {
+        method: 'post',
+        url: 'http://salih-taner.vpnuser.lan:3500/auth/login',
+        headers: {
+          'Content-Type': 'application/json',
+          'Cookie': 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtX21pY2hlbCIsImlhdCI6MTYxMTIxNjQ2NSwiZXhwIjoxNjExMjE3MDY1fQ.LltbTuINRJdgYLGHzwxVR3GeV4g-i7IAeLOxp3jKl3E'
+        },
+        data: { // body de la requete (contenu du json)
+          username,
+          password,
+        },
+      };
 
       axios(config) // on lance la requete...
         .then((response) => { // cas de réussite
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-          const { token } = response.data;
-          const { role } = response.data;
-          const { logged} = response.data;
-          localStorage.setItem('token', token);
+          const { access_token } = response.data;
+          const { role } = response.data.data;
+          const { name } = response.data.data;
+          localStorage.setItem('token', access_token);
           localStorage.setItem('role', role);
-          localStorage.setItem('logged', logged);
+          localStorage.setItem('username', name);
+
 
           store.dispatch({
             type: 'LOGIN_SUCCESS',
@@ -40,10 +41,11 @@ const config = {
             ...response.data,
           });
           const cookies = new Cookies();
-          cookies.set('access_token', `Bearer: ${response.data.access_token}`, { path: '/' });
-          console.log(cookies.get('access_token')); 
+          cookies.set(`Bearer: ${response.data.access_token}`, "{ path: '/' }");
+          console.log(cookies.get('access_token'));
           console.log('Je suis dans la réponse, et response.data vaut : ', response.data);
           history.push('/home');
+
 
         })
         .catch((error) => { // cas d'erreur
@@ -51,7 +53,47 @@ const config = {
         });
       break;
     }
+
+    case 'SUBMIT_USER': {
+      // ici, on va faire la requete pour le login
+      // on commence par récupérer email et password
+      // Double destructuration !
+      const { adminuser: { username, password, first_name, last_name, role, shop } } = store.getState();
+      console.log('submit_user');
+const localtoken =  localStorage.getItem('token');
+console.log('token:', localtoken)
+      const userconfig = {
+        method: 'post',
+        url: 'http://salih-taner.vpnuser.lan:3500/user',
+        headers: { 
+          'Authorization': `Bearer: ${localtoken}`, 
+          'Content-Type': 'application/json'
+        },
+        data: { // body de la requete (contenu du json)
+          username,
+          password,
+          first_name,
+          last_name,
+          role,
+          shop,
+        },
+        
+      };
+
+      axios(userconfig) // on lance la requete...
+        .then((response) => { // cas de réussite
+          // on envoie une action, pour sauvegarder les données dans le reducer
+          // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+          console.log(userconfig);
+          console.log(response.data);
+          console.log('inscription user');
+          });
+          console.log(userconfig);
+          break;
+      
+    }
     
+
     default:
       next(action);
   }

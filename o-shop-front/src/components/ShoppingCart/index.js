@@ -7,10 +7,6 @@ const ShoppingCart = () => (
 
   
   <div className="w-full tracking-wider">
-    
-    
-    
-    
       
       <div className="flex align-justify bg-bgred rounded-lg m-4">
         <div className="w-1/5 ">Produit</div>
@@ -19,10 +15,6 @@ const ShoppingCart = () => (
         <div className="w-1/5">Total</div>
         <div classNaùe="w-1/5"></div>
       </div>
-      
-
-
-
       
       <div className=" flex inline-block flex m-4 " >
           <div className=" w-1/5 ">NameProduct</div>
@@ -35,18 +27,7 @@ const ShoppingCart = () => (
           <div className="w-1/5"> <FontAwesomeIcon icon={faTrashAlt} /></div>          
       </div>
 
-      
-
-     
-    
-     
-    
-    
-
       <div className="bg-bgred rounded-lg m4 content-end h-28">TOTAL</div>
-
-
-
 
   </div>
       

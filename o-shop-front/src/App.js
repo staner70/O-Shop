@@ -7,6 +7,8 @@ import Admin from './components/Admin';
 import AdminUser from './components/AdminUser';
 import AdminProducts from './components/AdminProducts';
 import AdminCategories from './components/AdminCategories';
+import AccessForbidden from './components/AccessForbidden';
+import UserModal from './containers/UserModal';
 
 function App(props) {
   console.log(props);
@@ -30,6 +32,9 @@ function App(props) {
         </Route>
         <Route exact path= '/admin/categories'>
         <AdminCategories />
+        </Route>
+        <Route exact path= '/accessforbidden'>
+          <AccessForbidden />
         </Route>
       </Switch>
     </div>

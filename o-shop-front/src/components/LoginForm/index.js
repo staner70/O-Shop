@@ -1,16 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import Field from './Field';
-
 import Logo from './logo.png';
 
 
 const LoginForm = ({
   username,
   password,
-  changeField,
-  handleLogin,
+  changeField,//done
+  handleLogin,//done
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
