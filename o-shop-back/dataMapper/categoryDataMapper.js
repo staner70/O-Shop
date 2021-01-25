@@ -20,16 +20,17 @@ categoryDataMapper = {
     },
 
     // create a new category
-    async addOneCategory(categoryName) {
+    async addOneCategory(categoryInfo) {
+        const {name, color} = categoryInfo;
         // we test if the category alreayd exist 
-        const existCategory = await client.query(`SELECT name, adress, tel FROM "category" WHERE name = $1`, [categoryName]);
+        const existCategory = await client.query(`SELECT name, color FROM "category" WHERE name = $1`, [categoryInfo]);
         // if it exist , return null
         if (existCategory.rowCount != 0){
             return null;
         }
         // if not return the result
-        const result = await client.query(`INSERT INTO "category"(name,price, description, image, quantity, shop_id) VALUES ($1,$2,$3, $4, $5, $6) RETURNING *`,
-        [name, price, description, image, quantity, shop_id]);
+        const result = await client.query(`INSERT INTO "category"(name,color) VALUES ($1,$2) RETURNING *`,
+        [name,color]);
         return result.rows[0];
 
     },

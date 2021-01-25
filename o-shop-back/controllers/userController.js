@@ -38,6 +38,9 @@ module.exports = {
         const {id} = request.params;
         const userInfo = request.body;
         const user = await userDataMapper.updateOneUser(id, userInfo);
+        if (user == null) {
+            return next(new CustomError("User not exist", 400));
+        }
         console.log(user);
         response.status(200).json({
             id: id,
@@ -58,4 +61,32 @@ module.exports = {
             user: user
         });
     },
+
+    associateWork: async (request, response, next) => {
+        const {userId, shopId} = request.params;
+        const associate = await userDataMapper.associateWork(userId, shopId);
+
+        if (associate == null) {
+            return next(new CustomError("Associate already exist", 400));
+        }
+       
+        response.status(200).json({
+            success: true,
+            message: `user with id: ${userId} associated shop with id: ${shopId}`,// au lieu de ${userId} faudrait retourner un nom , prénom et username et ${shopId} retourner un nom et une address
+            data: associate
+        });
+    },
+
+    dissociateWork: async (request, response, next) => {
+        const {userId, shopId} = request.params;
+        const dissociate = await userDataMapper.dissociateWork(userId, shopId);
+        if (dissociate == null) {
+            return next(new CustomError("Associate NOT exist", 400));
+        }
+        response.status(200).json({
+            success: true,
+            message: `user with id: ${userId} dissociated shop with id: ${shopId}`,
+            data: dissociate
+        });
+    }
 }

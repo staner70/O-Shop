@@ -1,37 +1,59 @@
+const categoryDataMapper = require('../dataMapper/categoryDataMapper');
+const CustomError = require('../helpers/CustomError'); 
+
 module.exports = {
 
-    getAllCategories: async (resquest, response, next) => {
-
+    getAllCategories: async (request, response, next) => {
+        const categories = await categoryDataMapper.getAllCategories();
         response.status(200).json({
-            success: true
+            success: true,
+            data: categories
         });
     },
 
-    getOneCategory: async (resquest, response, next) => {
-
+    getOneCategory: async (request, response, next) => {
+        const {id} = request.params;
+        const category = await categoryDataMapper.getOneCategory(id);
+        if (category == null) {
+            return next(new CustomError("Category not exist", 400));
+        }
         response.status(200).json({
-            success: true
+            success: true,
+            data: category
         });
     },
 
-    createCategory: async (resquest, response, next) => {
-
+    createCategory: async (request, response, next) => {
+        const categoryInfo = request.body;
+        const category = await categoryDataMapper.addOneCategory(categoryInfo);
         response.status(200).json({
-            success: true
+            success: true,
+            data: category
         });
     },
 
-    updateCategory: async (resquest, response, next) => {
-
+    updateCategory: async (request, response, next) => {
+        const {id} = request.params;
+        const categoryInfo = request.body;
+        const category = await categoryDataMapper.updateOneCategory(id, categoryInfo);
+        if (category == null) {
+            return next(new CustomError("Category not exist", 400));
+        }
         response.status(200).json({
-            success: true
+            success: true,
+            data: category
         });
     },
 
-    deleteCategory: async (resquest, response, next) => {
-
+    deleteCategory: async (request, response, next) => {
+        const {id} = request.params;
+        const category = await categoryDataMapper.deleteOneCategory(id);
+        if (category == null) {
+            return next(new CustomError("Category not exist", 400));
+        }
         response.status(200).json({
-            success: true
+            success: true,
+            data: category
         });
     },
 }

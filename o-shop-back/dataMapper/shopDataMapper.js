@@ -20,6 +20,24 @@ shopDataMapper = {
         return result.rows;
     },
 
+    // get list of shop by user( Owner or Manager)
+    async getShopsByUser (userId) {
+        console.log("sérieux", userId);
+        const result = await client.query(`SELECT u.id, shop.* 
+                                            FROM "user" AS u 
+                                            JOIN "work" AS w ON w.user_id = u.id 
+                                            JOIN shop ON w.shop_id = shop.id 
+                                            WHERE u.id = $1`, [userId]);
+
+        console.log(result, "sérieux", userId);
+         // if the user don't exist return null
+         if (result.rowCount == 0) {
+            return null;
+        }
+        // if not then return the result list
+        return result.rows;
+    },
+
     // create a new shop
     async addOneShop(shopInfo) {
 

@@ -18,7 +18,7 @@ const tokenhelper = {
 
     sendJwtToClient: (user, response) => {
         // Generate JWT
-        console.log(user);
+        
         const token = tokenhelper.generateJwtFromUser(user);
         console.log(token);
         const { JWT_COOKIE, NODE_ENV} = process.env;
@@ -34,7 +34,8 @@ const tokenhelper = {
             success: true,
             access_token : token,
             data : {
-                name: user.username
+                name: user.username,
+                role: user.role_name               
                 
             }
         });
@@ -43,6 +44,7 @@ const tokenhelper = {
     },
 
     isTokenIncluded: (request) => {
+        console.log(request.headers.authorization);
         return (
             request.headers.authorization && request.headers.authorization.startsWith("Bearer:")
         );
