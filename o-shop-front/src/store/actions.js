@@ -15,7 +15,7 @@ export const searchChangeField = (searchField, searchText) => ({
   searchField: searchField,
   searchText: searchText,
 });
-// todo : finir de typer toutes les actions
+
 export const changeAddUserField = (value, name) => ({
   type: CHANGE_ADD_USER_FIELD,
   value,

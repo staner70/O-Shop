@@ -28,13 +28,11 @@ const api = (store) => (next) => (action) => {
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           const { access_token } = response.data;
-          const { role } = response.data;
-          const { username } = response.data;
-          const { logged } = response.data;
+          const { role } = response.data.data;
+          const { name } = response.data.data;
           localStorage.setItem('token', access_token);
           localStorage.setItem('role', role);
-          localStorage.setItem('logged', logged);
-          localStorage.setItem('username', username);
+          localStorage.setItem('username', name);
 
 
           store.dispatch({
@@ -62,13 +60,8 @@ const api = (store) => (next) => (action) => {
       // Double destructuration !
       const { adminuser: { username, password, first_name, last_name, role, shop } } = store.getState();
       console.log('submit_user');
-<<<<<<< HEAD
 const localtoken =  localStorage.getItem('token');
 console.log('token:', localtoken)
-=======
-      console.log(username);
-const token =  localStorage.getItem('token');
->>>>>>> b487f5063bd4565c48e70dade82adcc7285be1f3
       const userconfig = {
         method: 'post',
         url: 'http://salih-taner.vpnuser.lan:3500/user',

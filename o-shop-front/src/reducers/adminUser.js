@@ -8,7 +8,7 @@ export const initialState = {
     first_name:'',
     last_name:'',
 role:'',
-shop:'',
+shop:'OSHOP',
 }
 
 const reducer = (oldState = initialState, action ={}) => {

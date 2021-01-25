@@ -42,9 +42,9 @@ Votre Profil                  </h3>
     <img alt="profil" src="https://images.pexels.com/photos/3978352/pexels-photo-3978352.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" className="rounded-t-lg h-28 w-full mb-4"/>
     <div className="flex flex-col items-center justify-center p-4 -mt-16">
         <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
-        `${localStorage.getItem("username")}``        </p>
+        {localStorage.getItem("username")} </p>
         <p class="text-gray-400 text-xs">
-        `${localStorage.getItem("role")}``         
+        {localStorage.getItem("role")}       
 </p>
         
     </div>

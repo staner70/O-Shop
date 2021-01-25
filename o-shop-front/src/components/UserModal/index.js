@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import UserField from './UserField';
 import PropTypes from 'prop-types';
 
@@ -143,6 +143,8 @@ UserModal.propTypes = {
     changeUserField: PropTypes.func.isRequired,
     handleUser: PropTypes.func.isRequired,
   };
+
+  
   
 
 export default UserModal;
