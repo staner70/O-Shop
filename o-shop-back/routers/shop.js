@@ -14,13 +14,13 @@ const { catchErrors } = require('../helpers/catchError');
 const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
 
 router.get('/', catchErrors(getAllShop));
-router.get('/:id', getAccessToRoute, catchErrors(getOneShop));
+router.get('/:id(\\d+)', catchErrors(getOneShop));
 router.get('/user/:userId', getAccessToRoute, catchErrors(getAllShopByUser));
 
 router.post('/', getAccessToRoute, getAdminAccess, catchErrors(createShop));
 
-router.patch('/:id', getAccessToRoute, getAdminAccess, catchErrors(updateShop));
+router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(updateShop));
 
-router.delete('/:id', getAccessToRoute, getAdminAccess, catchErrors(deleteShop));
+router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(deleteShop));
 
 module.exports = router;

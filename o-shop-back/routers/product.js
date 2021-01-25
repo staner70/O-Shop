@@ -11,17 +11,17 @@ const {
     } = require('../controllers/productController');
 const { catchErrors } = require('../helpers/catchError');
 const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
+const { checkProductExist } = require('../middlewares/database/databaseErrorHelpers');
 
-
-router.get('/', getAccessToRoute, catchErrors(getAllProducts));
-router.get('/:id', getAccessToRoute, catchErrors(getOneProduct));
-router.get('/category/:categoryId', getAccessToRoute, catchErrors(getProductsByCategoryId));
+router.get('/', catchErrors(getAllProducts));
+router.get('/:id(\\d+)', catchErrors(checkProductExist), catchErrors(getOneProduct));
+router.get('/category/:categoryId', catchErrors(getProductsByCategoryId));
 
 router.post('/', getAccessToRoute, getAdminAccess, catchErrors(addNewProduct));
 
-router.patch('/:id', getAccessToRoute, getAdminAccess, catchErrors(updateProduct));
+router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(updateProduct));
 
-router.delete('/:id', getAccessToRoute, getAdminAccess, catchErrors(deleteProduct));
+router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(deleteProduct));
 
 // associate route
 // router.post('/:productId/category/:categoryId',  getAccessToRoute, getAdminAccess,catchErrors(associatePossess));

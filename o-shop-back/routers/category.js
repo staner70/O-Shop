@@ -11,13 +11,13 @@ const {
 const { catchErrors } = require('../helpers/catchError');
 const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
 
-router.get('/',getAccessToRoute,  catchErrors(getAllCategories));
-router.get('/:id',getAccessToRoute, catchErrors(getOneCategory));
+router.get('/', catchErrors(getAllCategories));
+router.get('/:id(\\d+)', catchErrors(getOneCategory));
 
 router.post('/',getAccessToRoute, getAdminAccess, catchErrors(createCategory));
 
-router.patch('/:id',getAccessToRoute, getAdminAccess, catchErrors(updateCategory));
+router.patch('/:id(\\d+)',getAccessToRoute, getAdminAccess, catchErrors(updateCategory));
 
-router.delete('/:id',getAccessToRoute, getAdminAccess, catchErrors(deleteCategory));
+router.delete('/:id(\\d+)',getAccessToRoute, getAdminAccess, catchErrors(deleteCategory));
 
 module.exports = router;

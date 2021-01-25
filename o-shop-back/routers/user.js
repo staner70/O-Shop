@@ -12,13 +12,14 @@ const {
     } = require('../controllers/userController');
 const { catchErrors } = require('../helpers/catchError');
 const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
+const { checkUserExist } = require('../middlewares/database/databaseErrorHelpers');
 
 router.get('/', getAccessToRoute, catchErrors(getAllUser));
-router.get('/:id', getAccessToRoute, catchErrors(getOneUser));
+router.get('/:id(\\d+)', getAccessToRoute, catchErrors(checkUserExist),  catchErrors(getOneUser));
 
 router.post('/', getAccessToRoute, getAdminAccess, catchErrors(addOneUser));
-router.patch('/:id', getAccessToRoute, getAdminAccess, catchErrors(updateOneUser));
-router.delete('/:id', getAccessToRoute, getAdminAccess, catchErrors(deleteOneUser));
+router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(updateOneUser));
+router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(deleteOneUser));
 
 router.patch('/:userId/shop/:shopId',  getAccessToRoute, getAdminAccess, catchErrors(associateWork));
 router.delete('/:userId/shop/:shopId',  getAccessToRoute, getAdminAccess, catchErrors(dissociateWork));
