@@ -64,6 +64,13 @@ const ProductModal = ({
                                             value={name}
                                         />
                                         <AdminField
+                                            name="category"
+                                            type="text"
+                                            placeholder="Categorie"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={category}
+                                        />
+                                        <AdminField
                                             name="price"
                                             type="number"
                                             placeholder="Prix"
