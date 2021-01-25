@@ -6,10 +6,11 @@ import { changeAddUserField } from '../store/actions.js'; //A mettre dans action
 // cablage des données
 const mapStateToProps = (state) => ({
   username: state.adminuser.username,
-  firstname: state.adminuser.firstname,
-  lastname: state.adminuser.lastname,
+  first_name: state.adminuser.first_name,
+  last_name: state.adminuser.last_name,
   password: state.adminuser.password,
-  role_id: state.adminuser.role,
+  role: state.adminuser.role,
+  shop: state.adminuser.shop
 });
 
 // cablage des actions

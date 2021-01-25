@@ -5,9 +5,10 @@ import {
 export const initialState = {
     username: '',
     password: '',
-    firstname:'',
-    lastname:'',
-role_id:'',
+    first_name:'',
+    last_name:'',
+role:'',
+shop:'',
 }
 
 const reducer = (oldState = initialState, action ={}) => {

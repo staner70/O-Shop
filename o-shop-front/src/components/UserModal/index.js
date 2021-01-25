@@ -7,10 +7,11 @@ const UserModal = ({
     handleUser, //handleLogin
     changeUserField, // changeField
     username,
-    firstname,
-    lastname,
+    first_name,
+    last_name,
     password,
     role,
+    shop,
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -66,19 +67,19 @@ const UserModal = ({
                                             value={username}
                                         />
                                         <UserField
-                                            name="firstname"
+                                            name="first_name"
                                             type="text"
                                             placeholder="Prenom"
                                             onChange={changeUserField} // sera appelé avec value + name
-                                            value={firstname}
+                                            value={first_name}
                                         />
 
                                         <UserField
-                                            name="lastname"
+                                            name="last_name"
                                             type="text"
                                             placeholder="Nom"
                                             onChange={changeUserField} // sera appelé avec value + name
-                                            value={lastname}
+                                            value={last_name}
                                         />
                                         <UserField
                                             name="password"
@@ -88,11 +89,18 @@ const UserModal = ({
                                             value={password}
                                         />
                                         <UserField
-                                            name="Role"
+                                            name="role"
                                             type="text"
                                             placeholder="admin ou employe"
                                             onChange={changeUserField} // sera appelé avec value + name
                                             value={role}
+                                        />
+                                        <UserField
+                                            name="shop"
+                                            type="text"
+                                            placeholder="Magasin"
+                                            onChange={changeUserField} // sera appelé avec value + name
+                                            value={shop}
                                         />
                                          <button
             type="submit"
@@ -128,9 +136,10 @@ const UserModal = ({
 UserModal.propTypes = {
     username: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
-    firstname: PropTypes.string.isRequired,
-    lastname: PropTypes.string.isRequired,
-    role_id: PropTypes.string.isRequired,
+    first_name: PropTypes.string.isRequired,
+    last_name: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    shop: PropTypes.string.isRequired,
     changeUserField: PropTypes.func.isRequired,
     handleUser: PropTypes.func.isRequired,
   };
