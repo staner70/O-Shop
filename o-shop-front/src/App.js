@@ -5,6 +5,8 @@ import  LoginForm from './containers/LoginForm';
 import Home from './components/Home';
 import Admin from './components/Admin';
 import AdminUser from './components/AdminUser';
+import AdminProducts from './components/AdminProducts';
+import AdminCategories from './components/AdminCategories';
 
 function App(props) {
   console.log(props);
@@ -22,6 +24,12 @@ function App(props) {
         </Route>
         <Route exact path= '/admin/user'>
         <AdminUser />
+        </Route>
+        <Route exact path= '/admin/products'>
+        <AdminProducts />
+        </Route>
+        <Route exact path= '/admin/categories'>
+        <AdminCategories />
         </Route>
       </Switch>
     </div>
