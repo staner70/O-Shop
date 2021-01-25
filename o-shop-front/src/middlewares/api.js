@@ -60,8 +60,8 @@ const api = (store) => (next) => (action) => {
       // Double destructuration !
       const { adminuser: { username, password, first_name, last_name, role, shop } } = store.getState();
       console.log('submit_user');
-const localtoken =  localStorage.getItem('token');
-console.log('token:', localtoken)
+      const localtoken =  localStorage.getItem('token');
+      console.log('token:', localtoken)
       const userconfig = {
         method: 'post',
         url: 'http://salih-taner.vpnuser.lan:3500/user',
@@ -93,6 +93,76 @@ console.log('token:', localtoken)
       
     }
     
+    case 'SUBMIT_CATEGORY': {
+      // ici, on va faire la requete pour le login
+      // on commence par récupérer email et password
+      // Double destructuration !
+      const { admincategory: { name, color } } = store.getState();
+      console.log('submit_category');
+      const localtoken =  localStorage.getItem('token');
+      console.log('token:', localtoken)
+      const categoryconfig = {
+        method: 'post',
+        url: 'http://salih-taner.vpnuser.lan:3500/category',
+        headers: { 
+          'Authorization': `Bearer: ${localtoken}`, 
+          'Content-Type': 'application/json'
+        },
+        data: { // body de la requete (contenu du json)
+          name,
+          color,
+        },
+        
+      };
+
+      axios(categoryconfig) // on lance la requete...
+        .then((response) => { // cas de réussite
+          // on envoie une action, pour sauvegarder les données dans le reducer
+          // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+          console.log(categoryconfig);
+          console.log(response.data);
+          console.log('Ajout de category');
+          });
+          break;
+      
+    }
+    case 'SUBMIT_PRODUCT': {
+      // ici, on va faire la requete pour le login
+      // on commence par récupérer email et password
+      // Double destructuration !
+      const { adminproduct: { name, description, price, quantity, image, shop } } = store.getState();
+      console.log('submit_product');
+      const localtoken =  localStorage.getItem('token');
+      console.log('token:', localtoken)
+      const productconfig = {
+        method: 'post',
+        url: 'http://salih-taner.vpnuser.lan:3500/product',
+        headers: { 
+          'Authorization': `Bearer: ${localtoken}`, 
+          'Content-Type': 'application/json'
+        },
+        data: { // body de la requete (contenu du json)
+          name,
+          description,
+          price,
+          quantity,
+          image,
+          shop,
+        },
+        
+      };
+
+      axios(productconfig) // on lance la requete...
+        .then((response) => { // cas de réussite
+          // on envoie une action, pour sauvegarder les données dans le reducer
+          // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+          console.log(productconfig);
+          console.log(response.data);
+          console.log('Ajout de produit');
+          });
+          break;
+      
+    }
 
     default:
       next(action);

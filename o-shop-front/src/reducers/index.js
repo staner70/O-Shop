@@ -5,7 +5,8 @@ import { combineReducers } from 'redux';
 import authReducer from './auth';
 import shopReducer from './shop';
 import adminUserReducer from './adminUser';
-
+import adminProductReducer from './adminProduct';
+import adminCategoryReducer from './adminCategory';
 
 // combineReducers : on lui donne un objet
 // en clé : le nom de la "tranche" de state
@@ -16,4 +17,6 @@ export default combineReducers({
   auth: authReducer,
   shop: shopReducer,
   adminuser: adminUserReducer,
+  admincategory: adminCategoryReducer,
+  adminproduct: adminProductReducer,
 });
