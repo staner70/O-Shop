@@ -6,8 +6,13 @@ import PropTypes from 'prop-types';
 const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
-    name, description, price, quantity,
-    image, shop
+    name, 
+    description, 
+    price, 
+    quantity,
+    image, 
+    shop, 
+    category
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -61,6 +66,13 @@ const ProductModal = ({
                                             placeholder="Nom du Produit"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={name}
+                                        />
+                                        <AdminField
+                                            name="category"
+                                            type="text"
+                                            placeholder="Categorie"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={category}
                                         />
                                         <AdminField
                                             name="price"

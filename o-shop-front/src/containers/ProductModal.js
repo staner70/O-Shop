@@ -11,6 +11,7 @@ const mapStateToProps = (state) => ({
   quantity: state.adminproduct.quantity,
   image:state.adminproduct.image,
   shop:state.adminproduct.shop,
+  category:state.adminproduct.category,
 
   
 });

@@ -130,7 +130,7 @@ const api = (store) => (next) => (action) => {
       // ici, on va faire la requete pour le login
       // on commence par récupérer email et password
       // Double destructuration !
-      const { adminproduct: { name, description, price, quantity, image, shop } } = store.getState();
+      const { adminproduct: { name, description, price, quantity, image, shop, category } } = store.getState();
       console.log('submit_product');
       const localtoken =  localStorage.getItem('token');
       console.log('token:', localtoken)
@@ -148,6 +148,7 @@ const api = (store) => (next) => (action) => {
           quantity,
           image,
           shop,
+          category,
         },
         
       };
