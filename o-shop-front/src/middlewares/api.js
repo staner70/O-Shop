@@ -62,8 +62,13 @@ const api = (store) => (next) => (action) => {
       // Double destructuration !
       const { adminuser: { username, password, first_name, last_name, role, shop } } = store.getState();
       console.log('submit_user');
+<<<<<<< HEAD
 const localtoken =  localStorage.getItem('token');
 console.log('token:', localtoken)
+=======
+      console.log(username);
+const token =  localStorage.getItem('token');
+>>>>>>> b487f5063bd4565c48e70dade82adcc7285be1f3
       const userconfig = {
         method: 'post',
         url: 'http://salih-taner.vpnuser.lan:3500/user',
