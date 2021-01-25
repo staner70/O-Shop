@@ -17,7 +17,7 @@ ALTER TABLE "product"
     ADD CONSTRAINT product_shop_id_fkey 
     FOREIGN KEY (shop_id) REFERENCES shop(id) ON DELETE CASCADE,
     ADD CONSTRAINT product_name_unique  UNIQUE(name),
-    ALTER price TYPE DECIMAL(18,2);
+    ALTER price TYPE NUMERIC(18,2);
     
 
 ALTER TABLE "user"
