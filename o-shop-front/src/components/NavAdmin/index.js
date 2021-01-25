@@ -28,10 +28,20 @@ const NavAdmin = () => (
                 <NavLink
                     activeClassName="ring-gray-600 "
                     exact
-                    to="/admin/category"
+                    to="/admin/categories"
                     className="shadow-md p-2 bg-white rounded-md"
                 >
                     Catégories
+                </NavLink>
+            </li>
+            <li className="m-4">
+                <NavLink
+                    activeClassName="ring-gray-600 "
+                    exact
+                    to="/admin/products"
+                    className="shadow-md p-2 bg-white rounded-md"
+                >
+                    Produits
                 </NavLink>
             </li>
         </ul>
