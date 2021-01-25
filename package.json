@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "dev": "nodemon app.js",
-    "import": "node dataset/import.js"
+    "import": "node dataset/import.js",
+    "start": "node app.js"
   },
   "author": "",
   "license": "ISC",
