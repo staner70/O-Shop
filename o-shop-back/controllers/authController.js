@@ -1,6 +1,6 @@
 const CustomError = require("../helpers/CustomError");
 const client = require('../dataMapper/client');
-const {validateUserInput} = require('../helpers/input/inputHelpers');
+const {validateUserInput, comparePassword} = require('../helpers/input/inputHelpers');
 const {sendJwtToClient} = require('../helpers/authorization/tokenhelper');
 
 module.exports = {
@@ -12,24 +12,22 @@ module.exports = {
             if (!validateUserInput(username, password)) {
                 return next(new CustomError("Please check your inputs", 400));
             }
-
+           console.log(password, "<<--login");
             // we look for the info of the user: the username and the role
-            const result = await client.query(`SELECT u.* , r.name AS role_name FROM "user" As u JOIN "role" AS r ON u.role_id = r.id WHERE username = $1 AND password = $2`, [username, password]);
-           
-
-            console.log(result.rows[0], password);
-            // if (!comparePassword(password, user.password)) {
-            //     return next(new CustomError("Please check your credentials",400));
-            // }
-            if (!result.rows[0]) {
-                response.json({
+            const result = await client.query(`SELECT u.* , r.name AS role_name FROM "user" As u JOIN "role" AS r ON u.role_id = r.id WHERE username = $1`, [username]);
+                if (!result.rows[0]) {
+                return response.json({
                     success: false,
                     message: "Authentication failed"
                 });
             }
-            // response.json({
-            //     success: true
-            // });
+
+            console.log(result.rows[0].password, password);
+            if (!comparePassword(password, result.rows[0].password)) {
+                return next(new CustomError("Please check your credentials",400));
+            }
+
+
             const user = result.rows[0];
            
             sendJwtToClient(user,response);  
