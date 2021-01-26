@@ -12,6 +12,7 @@ const mapStateToProps = (state) => ({
   image:state.adminproduct.image,
   shop:state.adminproduct.shop,
   isDone: state.adminproduct.done,
+  isNotDone: state.adminproduct.NotDone,
   category: state.adminproduct.category,
 
   

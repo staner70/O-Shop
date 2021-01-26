@@ -10,6 +10,7 @@ export const initialState = {
     image:'',
     shop:'OSHOP',
     done: false,
+    NotDone:false,
 }
 
 const reducer = (oldState = initialState, action ={}) => {
@@ -32,8 +33,12 @@ const reducer = (oldState = initialState, action ={}) => {
         quantity:'',
         image:'',
         shop:'OSHOP',
-        
-      
+      };
+            case 'PRODUCT_ADD_FAILED':
+      return {
+        ...oldState,
+        // on copie les données de l'action dans le reducer
+        NotDone: true,
       };
            default: 
            return {...oldState} ;

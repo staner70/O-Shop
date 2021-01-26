@@ -33,8 +33,6 @@ const api = (store) => (next) => (action) => {
           localStorage.setItem('token', access_token);
           localStorage.setItem('role', role);
           localStorage.setItem('username', name);
-
-
           store.dispatch({
             type: 'LOGIN_SUCCESS',
             ...response.data,
@@ -162,10 +160,14 @@ const api = (store) => (next) => (action) => {
           console.log(response.data);
           console.log('Ajout de produit');
           console.log(store.getState());
-          store.dispatch({ type: 'PRODUCT_ADD_SUCCESS' })
-        });
-          break;
-      
+          store.dispatch({ type: 'PRODUCT_ADD_SUCCESS' });
+
+        })
+        .catch((error) => { // cas d'erreur
+        console.log(error);
+        store.dispatch({ type: 'PRODUCT_ADD_FAILED' });
+      });
+      break;
     }
 
     default:

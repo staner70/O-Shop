@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
 import PropTypes from 'prop-types';
-import AlertModal from './AlertModal'
+import MessageAlert from './MessageAlert';
+import MessageErrorAlert from './MessageErrorAlert';
 
 
 const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
     name, description, price, quantity,
-    image, shop, isDone, category
+    image, shop, isDone, isNotDone,  category
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -92,13 +93,6 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={quantity}
                                         />
-                                         <AdminField
-                                            name="category"
-                                            type="test"
-                                            placeholder="Categorie"
-                                            onChange={changeProductField} // sera appelé avec value + name
-                                            value={category}
-                                        />
                                         <AdminField
                                             name="image"
                                             type="text"
@@ -122,7 +116,11 @@ const ProductModal = ({
             OK
           </button>            </form>
           {isDone && (
-          <AlertModal /> )}
+          <MessageAlert /> )}
+
+          {isNotDone && (
+              <MessageErrorAlert />
+          )}
 
                                     </div>
                                     {/*footer*/}

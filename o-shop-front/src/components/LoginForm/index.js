@@ -17,7 +17,7 @@ const LoginForm = ({
 
   return (
     <div className="flex flex-col justify-center sm:py-12  ">
-      <img src={Logo} className="object-none"alt="Logo" />
+      <img src={Logo} className="object-none" alt="Logo" />
         <form autoComplete="off" className="flex flex-col  items-center justify-center" onSubmit={handleSubmit}>
           <Field
             name="username"

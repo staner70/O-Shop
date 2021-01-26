@@ -9273,6 +9273,11 @@ raw-body@2.4.0:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
+react-animista@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/react-animista/-/react-animista-1.0.2.tgz#2d14487aa2501b0d5a59c5d13d56192ba42672f7"
+  integrity sha512-XOvr4/bDnTGxDkSxP05fwX5C0Qrvz7biWNo8dRQu0x7pRFvLwm7xryLOpttzHoNuS0sG9FYWpQweIZSNWYvmMQ==
+
 react-app-polyfill@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-app-polyfill/-/react-app-polyfill-2.0.0.tgz#a0bea50f078b8a082970a9d853dc34b6dcc6a3cf"

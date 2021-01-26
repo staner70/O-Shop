@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
 import PropTypes from 'prop-types';
-import AlertModal from './AlertModal'
+import MessageAlert from './MessageAlert';
 
 
 const CategoryModal = ({
@@ -82,7 +82,7 @@ const CategoryModal = ({
           </button>            
           </form>
           {isDone && (
-          <AlertModal /> )}
+          <MessageAlert /> )}
                                     </div>
                                     {/*footer*/}
                                     <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">

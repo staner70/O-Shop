@@ -24,8 +24,12 @@ const reducer = (oldState = initialState, action ={}) => {
                 done: true,
                 name: '',
                 color: '',
-                  
-                
+                };
+                case 'HIDDE_ALERT':
+                return {
+                  ...oldState,
+                  // on copie les données de l'action dans le reducer
+                done: false,
                 };
            default: 
            return {...oldState} ;
