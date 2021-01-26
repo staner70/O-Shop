@@ -1,5 +1,4 @@
 import React, {useEffect} from 'react';
-// import AdminCategories from '../AdminCategories';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 
@@ -73,7 +72,6 @@ const AdminUser = ({users, getUsers}) => {
                             </td>
                         </tr>
                     ))}
-                    {/* <!-- More items... --> */}
                     
                 </tbody>
                 </table>

@@ -2,7 +2,7 @@ import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
 
-import { GET_USERS_FROM_API, updateUsersAdmin } from '../store/actions';
+//import { GET_USERS_FROM_API, updateUsersAdmin } from '../store/actions';
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -56,63 +56,63 @@ const api = (store) => (next) => (action) => {
       break;
     }
 
-    case 'SUBMIT_USER': {
+//     case 'SUBMIT_USER': {
       
-      const { adminuser: { username, password, first_name, last_name, role, shop } } = store.getState();
-      console.log('submit_user');
-const localtoken =  localStorage.getItem('token');
-console.log('token:', localtoken)
-      const userconfig = {
-        method: 'post',
-        url: 'http://salih-taner.vpnuser.lan:3500/user',
-        headers: { 
-          'Authorization': `Bearer: ${localtoken}`, 
-          'Content-Type': 'application/json'
-        },
-        data: { // body de la requete (contenu du json)
-          username,
-          password,
-          first_name,
-          last_name,
-          role,
-          shop,
-        },
+//       const { adminuser: { username, password, first_name, last_name, role, shop } } = store.getState();
+//       console.log('submit_user');
+// const localtoken =  localStorage.getItem('token');
+// console.log('token:', localtoken)
+//       const userconfig = {
+//         method: 'post',
+//         url: 'http://salih-taner.vpnuser.lan:3500/user',
+//         headers: { 
+//           'Authorization': `Bearer: ${localtoken}`, 
+//           'Content-Type': 'application/json'
+//         },
+//         data: { // body de la requete (contenu du json)
+//           username,
+//           password,
+//           first_name,
+//           last_name,
+//           role,
+//           shop,
+//         },
         
-      };
+//       };
 
-      axios(userconfig) // on lance la requete...
-        .then((response) => { // cas de réussite
-          // on envoie une action, pour sauvegarder les données dans le reducer
-          // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-          console.log(userconfig);
-          console.log(response.data);
-          console.log('inscription user');
-          });
-          console.log(userconfig);
-          break;
+//       axios(userconfig) // on lance la requete...
+//         .then((response) => { // cas de réussite
+//           // on envoie une action, pour sauvegarder les données dans le reducer
+//           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+//           console.log(userconfig);
+//           console.log(response.data);
+//           console.log('inscription user');
+//           });
+//           console.log(userconfig);
+//           break;
       
-    }
-    case GET_USERS_FROM_API: {
-      const localtoken =  localStorage.getItem('token');
-      const userconfig = {
-        method: 'get',
-        url: 'http://salih-taner.vpnuser.lan:3500/user',
-        headers: { 
-          'Authorization': `Bearer: ${localtoken}`, 
-          'Content-Type': 'application/json'
-        }
-      };
+//     }
+    // case GET_USERS_FROM_API: {
+    //   const localtoken =  localStorage.getItem('token');
+    //   const userconfig = {
+    //     method: 'get',
+    //     url: 'http://salih-taner.vpnuser.lan:3500/user',
+    //     headers: { 
+    //       'Authorization': `Bearer: ${localtoken}`, 
+    //       'Content-Type': 'application/json'
+    //     }
+    //   };
 
-      axios(userconfig)
-        .then((response) => {
-          if(response.data.success){
-            store.dispatch(updateUsersAdmin(response.data.data));
-          }else{
-            console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/user"));
-          }
-        });
-      break
-    }
+    //   axios(userconfig)
+    //     .then((response) => {
+    //       if(response.data.success){
+    //         store.dispatch(updateUsersAdmin(response.data.data));
+    //       }else{
+    //         console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/user"));
+    //       }
+    //     });
+    //   break
+    // }
     default:
       next(action);
   }
