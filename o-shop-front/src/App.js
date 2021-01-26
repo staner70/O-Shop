@@ -6,7 +6,7 @@ import Home from './components/Home';
 import Admin from './components/Admin';
 import AdminUser from './containers/AdminUser';
 import AdminProducts from './containers/AdminProduct';
-import AdminCategories from './components/AdminCategories';
+import AdminCategories from './containers/AdminCategory';
 import AccessForbidden from './components/AccessForbidden';
 import UserModal from './containers/UserModal';
 

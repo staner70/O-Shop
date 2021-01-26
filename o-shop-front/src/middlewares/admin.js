@@ -1,6 +1,8 @@
 import axios from 'axios';
 
-import { GET_USERS_FROM_API, updateUsersAdmin, GET_PRODUCTS_FROM_API, updateProductsAdmin } from '../store/actions';
+import { GET_USERS_FROM_API, updateUsersAdmin, 
+  GET_PRODUCTS_FROM_API, updateProductsAdmin,
+  GET_CATEGORIES_FROM_API, updateCategoriesAdmin } from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
   switch (action.type) {
@@ -81,6 +83,28 @@ const admin = (store) => (next) => (action) => {
               store.dispatch(updateProductsAdmin(response.data.data));
             }else{
               console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/products"));
+            }
+          }).catch((error)=> {console.error(error);});
+        break
+      }
+
+      case GET_CATEGORIES_FROM_API: {
+        const localtoken =  localStorage.getItem('token');
+        const userconfig = {
+          method: 'get',
+          url: 'http://salih-taner.vpnuser.lan:3500/category',
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          }
+        };
+  
+        axios(userconfig)
+          .then((response) => {
+            if(response.data.success){
+              store.dispatch(updateCategoriesAdmin(response.data.data));
+            }else{
+              console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/category"));
             }
           }).catch((error)=> {console.error(error);});
         break

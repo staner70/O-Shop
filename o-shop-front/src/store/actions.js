@@ -2,11 +2,13 @@ export const CHANGE_AUTH_FIELD = 'CHANGE_AUTH_FIELD';
 export const SEARCH_CHANGE_FIELD = 'SEARCH_CHANGE_FIELD';
 export const CHANGE_ADD_USER_FIELD = 'CHANGE_ADD_USER_FIELD';
 export const UPDATE_ADMIN_USERS = 'UPDATE_ADMIN_USERS';
-export const UPDATE_ADMIN_PRODUCTS = 'UPDATE_ADMIN_USER';
+export const UPDATE_ADMIN_PRODUCTS = 'UPDATE_ADMIN_PRODUCTS';
+export const UPDATE_ADMIN_CATEGORIES = 'UPDATE_ADMIN_CATEGORIES';
 
 // ACTION POUR MIDDLEWARE : 
 export const GET_USERS_FROM_API = 'GET_USERS_FROM_API';
 export const GET_PRODUCTS_FROM_API = 'GET_PRODUCTS_FROM_API';
+export const GET_CATEGORIES_FROM_API = 'GET_CATEGORIES_FROM_API';
 
 // action creator
 // une fonction pure qui renvoie une action
@@ -43,5 +45,14 @@ export const getProductsFromApi = () => ({
 
 export const updateProductsAdmin = (list) => ({
   type: UPDATE_ADMIN_PRODUCTS,
+  payload: {list},
+})
+
+export const getCategoriesFromApi = () => ({
+  type: GET_CATEGORIES_FROM_API,
+});
+
+export const updateCategoriesAdmin = (list) => ({
+  type: UPDATE_ADMIN_CATEGORIES,
   payload: {list},
 })
