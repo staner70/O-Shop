@@ -30,6 +30,8 @@ const api = (store) => (next) => (action) => {
           const { access_token } = response.data;
           const { role } = response.data.data;
           const { name } = response.data.data;
+          const { isAdmin } = response.data.data;
+          localStorage.setItem('isAdmin', isAdmin);
           localStorage.setItem('token', access_token);
           localStorage.setItem('role', role);
           localStorage.setItem('username', name);
@@ -43,7 +45,9 @@ const api = (store) => (next) => (action) => {
           const cookies = new Cookies();
           cookies.set(`Bearer: ${response.data.access_token}`, "{ path: '/' }");
           console.log(cookies.get('access_token'));
+          console.log(cookies.get('isAdmin'));
           console.log('Je suis dans la réponse, et response.data vaut : ', response.data);
+          localStorage.setItem('role', role);
           history.push('/home');
 
 

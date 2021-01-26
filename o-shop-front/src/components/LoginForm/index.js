@@ -48,11 +48,7 @@ LoginForm.propTypes = {
   password: PropTypes.string.isRequired,
   changeField: PropTypes.func.isRequired,
   handleLogin: PropTypes.func.isRequired,
-  isLogged: PropTypes.bool,
 };
 
-LoginForm.defaultProps = {
-  isLogged: false,
-};
 
 export default LoginForm;

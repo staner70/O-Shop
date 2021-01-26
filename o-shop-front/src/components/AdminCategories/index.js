@@ -1,11 +1,15 @@
 import React, { useEffect } from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
+import AccessForbidden from '../AccessForbidden';
 
 const AdminCategories = ({categories, getCategories}) => {
     useEffect(() => {
         getCategories();
     },[]);
+    const isAdmin = localStorage.getItem('isAdmin');
+    console.log(isAdmin);
+  if(isAdmin == "true"){
     return(
     <>
         < Header />
@@ -65,6 +69,9 @@ const AdminCategories = ({categories, getCategories}) => {
         </div>
   
     </>
-)};
+)} return (<AccessForbidden />)
+                    }
 
 export default AdminCategories;
+
+
