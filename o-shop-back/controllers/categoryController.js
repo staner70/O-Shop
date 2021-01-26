@@ -24,12 +24,18 @@ module.exports = {
     },
 
     createCategory: async (request, response, next) => {
-        const categoryInfo = request.body;
-        const category = await categoryDataMapper.addOneCategory(categoryInfo);
-        response.status(200).json({
-            success: true,
-            data: category
-        });
+  
+            const categoryInfo = request.body;
+            const category = await categoryDataMapper.addOneCategory(categoryInfo);
+            if (category == null) {
+                return next(new CustomError("Category already exist", 400));
+            }
+            response.status(200).json({
+                success: true,
+                data: category
+            });
+
+
     },
 
     updateCategory: async (request, response, next) => {

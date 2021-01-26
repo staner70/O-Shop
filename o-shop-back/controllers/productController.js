@@ -14,9 +14,9 @@ module.exports = {
     getOneProduct: async (request, response, next) => {
         const {id} = request.params;
         const product = await productDataMapper.getOneProduct(id);
-        if (product == null) {
-            return next(new CustomError("Produit not exist", 400));
-        }
+        // if (product == null) {
+        //     return next(new CustomError("Produit not exist", 400));
+        // }
         response.status(200).json({
             success: true,
             data: product
@@ -53,6 +53,9 @@ module.exports = {
         const {id} = request.params;
         const productInfo = request.body;
         const product = await productDataMapper.updateOneProduct(id,productInfo);
+        if (product == null) {
+            return next(new CustomError("Product not exist", 400));
+        }
         response.status(200).json({
             success: true,
             message: `product ${id} updated`,
