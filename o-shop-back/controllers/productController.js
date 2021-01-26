@@ -38,6 +38,7 @@ module.exports = {
 
     addNewProduct: async (request, response, next) => {
         const productInfo = request.body;
+        console.log("addOneProduct");
         const product = await productDataMapper.addOneProduct(productInfo);
         if (product == null) {
             return next(new CustomError("Product already exist", 400));

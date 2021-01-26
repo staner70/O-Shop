@@ -3,4 +3,5 @@
 
 010-init 2021-01-18T14:20:22Z "Etudiant O'clock",,, <etudiant@teleporteur> # initialisation tables eshop
 020-contraint 2021-01-25T09:34:42Z "Etudiant O'clock",,, <etudiant@teleporteur> # add contraint unique and type double
-030-create-view 2021-01-25T20:24:53Z "Etudiant O'clock",,, <etudiant@teleporteur> # Create view for user and product
+030-add_domain 2021-01-26T13:25:03Z "Etudiant O'clock",,, <etudiant@teleporteur> # added domain constraint
+040-create-view 2021-01-25T20:24:53Z "Etudiant O'clock",,, <etudiant@teleporteur> # Create view for user and product

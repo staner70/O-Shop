@@ -39,6 +39,7 @@ productDataMapper = {
     // create a new product
     async addOneProduct(productInfo) {
         const {name, price, description, image, quantity, shop_id} = productInfo;
+        console.log("addOneProduct");
         // we test if the product alreayd exist 
         const existProduct = await client.query(`SELECT name FROM "product" WHERE name = $1`, [name]);
         // if it exist , return null
