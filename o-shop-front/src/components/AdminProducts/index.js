@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 
-const AdminProducts = () => (
+const AdminProducts = ({products, getProducts}) => {
+    useEffect(() => {
+        getProducts();
+    },[]);
+    return(
     <>
         < Header />
         < NavAdmin />
@@ -41,40 +45,41 @@ const AdminProducts = () => (
                     </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                    <tr className="text-left">
-                    <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm font-medium text-gray-900">
-                            Livre
-                        </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                        <div className="text-sm text-gray-900">
-                            Culture du lorem ipsum blablablablabla    
-                        </div>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        9.99
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                        <span className="text-sm text-gray-900">
-                        image
-                        </span>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        Chez momo
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        40
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
-                    </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                        <a href="#" className="text-indigo-600 hover:text-indigo-900">Delete</a>
-                    </td>
-                    </tr>
 
-                    {/* <!-- More items... --> */}
+                    {products.map((product) => (
+                        <tr className="text-left">
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm font-medium text-gray-900">
+                                    {product.name}
+                                </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <div className="text-sm text-gray-900">
+                                    {product.describe}    
+                                </div>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {product.price}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                                <span className="text-sm text-gray-900">
+                                    <img className=" " src={""} alt={product.name} />
+                                </span>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                Chez momo
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                {product.quantite}
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
+                            </td>
+                            <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <a href="#" className="text-indigo-600 hover:text-indigo-900">Delete</a>
+                            </td>
+                        </tr>
+                    ))}
                     
                 </tbody>
                 </table>
@@ -87,6 +92,6 @@ const AdminProducts = () => (
         </div>
   
     </>
-);
+)};
 
 export default AdminProducts;

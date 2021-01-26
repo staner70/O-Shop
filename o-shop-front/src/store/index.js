@@ -2,7 +2,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 import apiMiddleware from '../middlewares/api';
-
+import adminMiddleware from '../middlewares/admin';
 
 // rootReducer = résultat de combineReducers
 import rootReducer from '../reducers';
@@ -12,7 +12,7 @@ const store = createStore(
   rootReducer,
   composeWithDevTools( // devtools
     // branchement de middleware
-   applyMiddleware(apiMiddleware),
+   applyMiddleware(apiMiddleware,adminMiddleware),
 
   ),
 );

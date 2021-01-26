@@ -4,9 +4,9 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 import  LoginForm from './containers/LoginForm';
 import Home from './components/Home';
 import Admin from './components/Admin';
-import AdminUser from './components/AdminUser';
-import AdminProducts from './components/AdminProducts';
-import AdminCategories from './components/AdminCategories';
+import AdminUser from './containers/AdminUser';
+import AdminProducts from './containers/AdminProduct';
+import AdminCategories from './containers/AdminCategory';
 import AccessForbidden from './components/AccessForbidden';
 import UserModal from './containers/UserModal';
 

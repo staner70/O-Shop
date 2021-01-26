@@ -1,14 +1,15 @@
 import {
-    CHANGE_ADD_USER_FIELD
+    CHANGE_ADD_USER_FIELD, UPDATE_ADMIN_USERS
 } from '../store/actions';
 
 export const initialState = {
+    list:[],
     username: '',
     password: '',
     first_name:'',
     last_name:'',
-role:'',
-shop:'OSHOP',
+    role:'',
+    shop:'OSHOP',
 }
 
 const reducer = (oldState = initialState, action ={}) => {
@@ -19,8 +20,13 @@ const reducer = (oldState = initialState, action ={}) => {
                 // on copie les données de l'action dans le reducer
                 [action.name]: action.value,
 
-              };
-           default: 
+            };
+        case UPDATE_ADMIN_USERS:
+            return{
+                ...oldState,
+                ...action.payload,
+            }
+        default: 
            return {...oldState} ;
     }
 }

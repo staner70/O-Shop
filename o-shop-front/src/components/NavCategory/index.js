@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Category = (Categor) => (
+const Category = () => (
     <nav className="flex bg-bgred flex-row flex-wrap p-2 w-full">
         <ul className="flex justify-start h-16 w-full overflow-x-auto overflow-y-hidden overflow-hidden">
             <li>
