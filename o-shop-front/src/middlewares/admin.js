@@ -15,7 +15,7 @@ const admin = (store) => (next) => (action) => {
         console.log('token:', localtoken)
         const userconfig = {
           method: 'post',
-          url: 'http://salih-taner.vpnuser.lan:3500/user',
+          url: 'https://oshop-lyra.herokuapp.com/user',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'
@@ -48,7 +48,7 @@ const admin = (store) => (next) => (action) => {
         const localtoken =  localStorage.getItem('token');
         const userconfig = {
           method: 'get',
-          url: 'http://salih-taner.vpnuser.lan:3500/user',
+          url: 'https://oshop-lyra.herokuapp.com/user',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'
@@ -70,7 +70,7 @@ const admin = (store) => (next) => (action) => {
         const localtoken =  localStorage.getItem('token');
         const userconfig = {
           method: 'get',
-          url: 'http://salih-taner.vpnuser.lan:3500/product',
+          url: 'https://oshop-lyra.herokuapp.com/product',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ const admin = (store) => (next) => (action) => {
         const localtoken =  localStorage.getItem('token');
         const userconfig = {
           method: 'get',
-          url: 'http://salih-taner.vpnuser.lan:3500/category',
+          url: 'https://oshop-lyra.herokuapp.com/category',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'
