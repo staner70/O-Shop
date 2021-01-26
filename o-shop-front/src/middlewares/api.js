@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
+import { toast } from "react-toastify";
+
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -84,9 +86,28 @@ const api = (store) => (next) => (action) => {
           console.log(userconfig);
           console.log(response.data);
           console.log('inscription user');
-          store.dispatch({ type: 'USER_ADD_SUCCESS' })
+          toast.success('Votre Utilisateur a bien ete ajoute', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+          }).catch((error) => { // cas d'erreur
+          console.log(error);
+            toast.error('Erreur dans votre ajout de utilisateur!', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+            });
 
-          });
           break;
       
     }
@@ -120,9 +141,28 @@ const api = (store) => (next) => (action) => {
           console.log(categoryconfig);
           console.log(response.data);
           console.log('Ajout de category');
-          store.dispatch({ type: 'CATEGORY_ADD_SUCCESS' })
-
-          });
+          toast.success('Votre categorie a bien ete ajoute', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+          })
+          .catch((error) => { // cas d'erreur
+          console.log(error);
+            toast.error('Erreur dans votre ajout de category!', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+            });
           break;
       
     }
@@ -160,12 +200,28 @@ const api = (store) => (next) => (action) => {
           console.log(response.data);
           console.log('Ajout de produit');
           console.log(store.getState());
-          store.dispatch({ type: 'PRODUCT_ADD_SUCCESS' });
+          toast.success('Votre Produit a bien ete ajoute', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
 
         })
         .catch((error) => { // cas d'erreur
         console.log(error);
-        store.dispatch({ type: 'PRODUCT_ADD_FAILED' });
+        toast.error('Erreur dans votre ajout de produit!', {
+          position: "bottom-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          });
       });
       break;
     }

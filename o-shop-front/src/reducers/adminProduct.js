@@ -34,6 +34,7 @@ const reducer = (oldState = initialState, action ={}) => {
         image:'',
         shop:'OSHOP',
       };
+
             case 'PRODUCT_ADD_FAILED':
       return {
         ...oldState,
