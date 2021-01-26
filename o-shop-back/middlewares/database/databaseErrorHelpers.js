@@ -38,4 +38,17 @@ module.exports = {
         }
         next();
     },
+
+    checkCategoryName: async (request, response, next) => {
+        const {category} = request.body;
+        console.log("checkCategoryName");
+        const categoryName = await client.query(`SELECT * FROM "category" WHERE name = $1`,[category]);
+
+        if (categoryName.rowCount == 0) {
+            return next(new CustomError("There is no such category with that name", 400));
+        }
+
+        next();
+
+    },
 }

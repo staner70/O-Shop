@@ -22,12 +22,12 @@ categoryDataMapper = {
     // create a new category
     async addOneCategory(categoryInfo) {
         const {name, color} = categoryInfo;
-        // we test if the category alreayd exist 
-        const existCategory = await client.query(`SELECT name, color FROM "category" WHERE name = $1`, [categoryInfo]);
-        // if it exist , return null
-        if (existCategory.rowCount != 0){
-            return null;
-        }
+        // // we test if the category alreayd exist 
+        // const existCategory = await client.query(`SELECT name, color FROM "category" WHERE name = $1`, [categoryInfo]);
+        // // if it exist , return null
+        // if (existCategory.rowCount != 0){
+        //     return null;
+        // }
         // if not return the result
         const result = await client.query(`INSERT INTO "category"(name,color) VALUES ($1,$2) RETURNING *`,
         [name,color]);

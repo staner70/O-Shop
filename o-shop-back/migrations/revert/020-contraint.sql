@@ -25,6 +25,7 @@ ALTER TABLE "role"
 
 ALTER TABLE "category"
     DROP CONSTRAINT category_name_unique,
+    DROP CONSTRAINT not_espace_vide,
     DROP CONSTRAINT TEXT_COLOR;
 
 ALTER TABLE "shop"
