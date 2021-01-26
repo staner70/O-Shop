@@ -90,7 +90,7 @@ const AdminProducts = ({products, getProducts}) => {
             </div>
         </div>
         </div>
-  
+  g
     </>
 )};
 
