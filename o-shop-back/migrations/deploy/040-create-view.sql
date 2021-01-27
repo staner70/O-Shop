@@ -3,7 +3,7 @@
 BEGIN;
 
 CREATE VIEW userView AS
-    SELECT u.id, u.first_name, u.last_name, u.username,  r.name AS role, JSON_AGG(s.name) AS shop
+    SELECT u.id, u.first_name, u.last_name, u.username, u.created_at, u.updated_at, r.name AS role, JSON_AGG(s.name) AS shop
         FROM "user" As u 
         JOIN "role" AS r 
         ON u.role_id = r.id
@@ -15,7 +15,7 @@ CREATE VIEW userView AS
             ORDER BY u.id;
 
 CREATE VIEW productView AS
-    SELECT pr.id, pr.name, pr.price, pr.description, pr.image, pr.quantity, JSON_AGG(c.name) AS category, s.name AS shop
+    SELECT pr.id, pr.name, pr.price, pr.description, pr.image, pr.quantity, pr.created_at, pr.updated_at, JSON_AGG(c.name) AS category, s.name AS shop
         FROM "product" AS pr
         JOIN "shop" AS s
             ON s.id = pr.shop_id
