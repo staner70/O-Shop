@@ -21,6 +21,9 @@ function App(props) {
         <Route exact path= '/home'>
           <Home />
         </Route>
+        <Route exact path= '/home/category/:id'>
+          <Home />
+        </Route>
         <Route exact path= '/admin'>
         <Admin />
         </Route>

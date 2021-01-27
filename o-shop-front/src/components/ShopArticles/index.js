@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Article from './Article';
 import SearchBar from '../../containers/SearchBar';
 
 const ShopArticles = ({changeSearchField, searchInputValue, products, getProducts}) => {

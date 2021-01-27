@@ -2,7 +2,8 @@ import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
 import { toast } from "react-toastify";
-
+var FormData = require('form-data');
+var fs = require('fs');
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {

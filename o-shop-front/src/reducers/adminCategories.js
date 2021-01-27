@@ -7,6 +7,7 @@ export const initialState = {
     name: '',
     color: '',
     done:false,
+    idValue:'',
 }
 
 const reducer = (oldState = initialState, action={}) => {

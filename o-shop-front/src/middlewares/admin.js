@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 import { GET_USERS_FROM_API, updateUsersAdmin, 
   GET_PRODUCTS_FROM_API, updateProductsAdmin,
@@ -85,7 +86,7 @@ const admin = (store) => (next) => (action) => {
         const localtoken =  localStorage.getItem('token');
         const userconfig = {
           method: 'get',
-          url: 'https://oshop-lyra.herokuapp.com/product',
+          url: 'https://oshop-lyra.herokuapp.com/product/',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'

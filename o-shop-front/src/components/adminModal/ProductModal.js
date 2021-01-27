@@ -10,7 +10,7 @@ const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
     name, description, price, quantity,
-    image, shop, isDone, isNotDone,  category
+    image, shop, category
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -108,7 +108,7 @@ const ProductModal = ({
                                         />
                                         <AdminField
                                             name="image"
-                                            type="text"
+                                            type="file"
                                             placeholder="Lien de l'image"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={image}
