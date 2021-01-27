@@ -12,7 +12,7 @@ CREATE VIEW userView AS
         JOIN "shop" AS s
         ON s.id = w.shop_id
             GROUP BY u.id, r.name
-            ORDER BY u.id;
+            ORDER BY u.first_name;
 
 CREATE VIEW productView AS
     SELECT pr.id, pr.name, pr.price, pr.description, pr.image, pr.quantity, pr.created_at, pr.updated_at, JSON_AGG(c.name) AS category, s.name AS shop
@@ -24,7 +24,7 @@ CREATE VIEW productView AS
         JOIN "category" AS c
             ON c.id = pos.category_id
             GROUP BY pr.id, s.name
-            ORDER BY pr.id;
+            ORDER BY pr.name;
 
 
 COMMIT;

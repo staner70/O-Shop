@@ -77,5 +77,24 @@ module.exports = {
         });
     },
 
+    imageUpload: async(req, res, next) => {
+        
+            // we are looking for the id of product
+            const productImage = req.savedProductImage;
+            const {id} = req.params;
+            console.log(id);
+            const product = await productDataMapper.imageUpload(productImage, id);
+            
+            res.status(200)
+            .json({
+                success: true,
+                message: "Image Upload Successfull",
+                data: product
+            });
+
+
+
+    },
+
     
 }

@@ -82,8 +82,8 @@ productDataMapper = {
         const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [category]);
         // console.log(category, 'productInfo.category',categoryId.rows[0].id); //thé
 
-        const result = await client.query(`UPDATE "product" SET name = $1, price = $2, description = $3, image = $4, quantity = $5, shop_id = $6 WHERE id = $7 RETURNING *`,
-        [name, price, description, image, quantity,shopId.rows[0].id, productId]);
+        const result = await client.query(`UPDATE "product" SET name = $1, price = $2, description = $3, quantity = $4, shop_id = $5 WHERE id = $6 RETURNING *`,
+        [name, price, description, quantity,shopId.rows[0].id, productId]);
 
         // we associate the product on a (can be multiple) category
         const associate = await client.query(`UPDATE "possess" SET category_id = $1, product_id =  $2 WHERE product_id = $3 RETURNING *`, [categoryId.rows[0].id, result.rows[0].id, productId]);
@@ -101,7 +101,16 @@ productDataMapper = {
         }
         return result.rows[0];
 
-    }
+    },
+
+    async imageUpload(productImage, productId) {
+        const result = await client.query(`UPDATE "product" SET image = $1 WHERE id = $2 RETURNING *`, [productImage, productId]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+
+        return result.rows[0];
+    },
 };
 
 module.exports = productDataMapper;

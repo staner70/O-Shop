@@ -4,7 +4,7 @@ categoryDataMapper = {
 
     // get the list of all categories
     async getAllCategories() {
-        const result = await client.query('SELECT * FROM "category"');
+        const result = await client.query('SELECT * FROM "category" ORDER BY name');
         return result.rows;
     },
 
