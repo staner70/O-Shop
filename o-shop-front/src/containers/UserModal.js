@@ -10,7 +10,9 @@ const mapStateToProps = (state) => ({
   last_name: state.adminuser.last_name,
   password: state.adminuser.password,
   role: state.adminuser.role,
-  shop: state.adminuser.shop
+  shop: state.adminuser.shop,
+  isDone: state.adminuser.done,
+
 });
 
 // cablage des actions

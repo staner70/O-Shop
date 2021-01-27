@@ -8,11 +8,8 @@ const admin = (store) => (next) => (action) => {
   switch (action.type) {
 
     case 'SUBMIT_USER': {
-      
         const { adminuser: { username, password, first_name, last_name, role, shop } } = store.getState();
-        console.log('submit_user');
         const localtoken =  localStorage.getItem('token');
-        console.log('token:', localtoken)
         const userconfig = {
           method: 'post',
           url: 'https://oshop-lyra.herokuapp.com/user',
@@ -35,11 +32,29 @@ const admin = (store) => (next) => (action) => {
           .then((response) => { // cas de réussite
             // on envoie une action, pour sauvegarder les données dans le reducer
             // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-            console.log(userconfig);
-            console.log(response.data);
-            console.log('inscription user');
+            
+            toast.success('Votre Utilisateur a bien ete ajoute', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+            }).catch((error) => { // cas d'erreur
+            console.log(error);
+              toast.error('Erreur dans votre ajout de utilisateur!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
             });
-            console.log(userconfig);
+            
             break;
         
       }
@@ -88,6 +103,63 @@ const admin = (store) => (next) => (action) => {
         break
       }
 
+      case 'SUBMIT_PRODUCT': {
+        // ici, on va faire la requete pour le login
+        // on commence par récupérer email et password
+        // Double destructuration !
+        const { adminproduct: { name, description, price, quantity, image, shop, category } } = store.getState();
+        const localtoken =  localStorage.getItem('token');
+        const productconfig = {
+          method: 'post',
+          url: 'https://oshop-lyra.herokuapp.com/product',
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          },
+          data: { // body de la requete (contenu du json)
+            name,
+            description,
+            price,
+            quantity,
+            image,
+            shop,
+            category,
+          },
+          
+        };
+  
+        axios(productconfig) // on lance la requete...
+          .then((response) => { // cas de réussite
+            // on envoie une action, pour sauvegarder les données dans le reducer
+            // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+            
+            toast.success('Votre Produit a bien ete ajoute', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+  
+          })
+          .catch((error) => { // cas d'erreur
+          console.log(error);
+          toast.error('Erreur dans votre ajout de produit!', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+        });
+        break;
+      }
+
+
       case GET_CATEGORIES_FROM_API: {
         const localtoken =  localStorage.getItem('token');
         const userconfig = {
@@ -109,6 +181,59 @@ const admin = (store) => (next) => (action) => {
           }).catch((error)=> {console.error(error);});
         break
       }
+
+      case 'SUBMIT_CATEGORY': {
+        // ici, on va faire la requete pour le login
+        // on commence par récupérer email et password
+        // Double destructuration !
+        const { admincategory: { name, color } } = store.getState();
+        const localtoken =  localStorage.getItem('token');
+        
+        const categoryconfig = {
+          method: 'post',
+          url: 'https://oshop-lyra.herokuapp.com/category',
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          },
+          data: { // body de la requete (contenu du json)
+            name,
+            color,
+          },
+          
+        };
+  
+        axios(categoryconfig) // on lance la requete...
+          .then((response) => { // cas de réussite
+            // on envoie une action, pour sauvegarder les données dans le reducer
+            // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+            
+            toast.success('Votre categorie a bien ete ajoute', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          })
+            .catch((error) => { // cas d'erreur
+            console.log(error);
+              toast.error('Erreur dans votre ajout de category!', {
+                position: "bottom-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+              });
+            });
+          break;
+        
+      }
+
 
       default:
         next(action);

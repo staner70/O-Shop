@@ -1,6 +1,8 @@
 import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
+import { toast } from "react-toastify";
+
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -33,11 +35,8 @@ const api = (store) => (next) => (action) => {
           localStorage.setItem('token', access_token);
           localStorage.setItem('role', role);
           localStorage.setItem('username', name);
-
-
           store.dispatch({
             type: 'LOGIN_SUCCESS',
-            // on déverse tout le contenu de response.data dans notre action
             ...response.data,
           });
           const cookies = new Cookies();

@@ -9,6 +9,8 @@ export const UPDATE_ADMIN_CATEGORIES = 'UPDATE_ADMIN_CATEGORIES';
 export const GET_USERS_FROM_API = 'GET_USERS_FROM_API';
 export const GET_PRODUCTS_FROM_API = 'GET_PRODUCTS_FROM_API';
 export const GET_CATEGORIES_FROM_API = 'GET_CATEGORIES_FROM_API';
+export const CHANGE_ADD_CATEGORY_FIELD = 'CHANGE_ADD_CATEGORY_FIELD';
+export const CHANGE_ADD_PRODUCT_FIELD = 'CHANGE_ADD_PRODUCT_FIELD';
 
 // action creator
 // une fonction pure qui renvoie une action
@@ -47,6 +49,17 @@ export const updateProductsAdmin = (list) => ({
   type: UPDATE_ADMIN_PRODUCTS,
   payload: {list},
 })
+export const changeAddCategoryField = (value, name) => ({
+  type: CHANGE_ADD_CATEGORY_FIELD,
+  value,
+  name,
+});
+
+export const changeAddProductField = (value, name) => ({
+  type: CHANGE_ADD_PRODUCT_FIELD,
+  value,
+  name,
+});
 
 export const getCategoriesFromApi = () => ({
   type: GET_CATEGORIES_FROM_API,
