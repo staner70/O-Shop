@@ -51,8 +51,18 @@ userDataMapper = {
         const result = await client.query(`UPDATE "user" SET first_name = $1, last_name = $2, username = $3 ,  password = $4, role_id = $5 WHERE id = $6 RETURNING *`,
         [first_name, last_name, username, password ,roleId.rows[0].id, id]);
 
-        const associate = await client.query(`UPDATE work SET user_id = $1, shop_id = $2 WHERE user_id = $3 RETURNING *`, [id,shopId.rows[0].id,id]);
+        //verification associate work
+        const existAssociateWork = await client.query(`SELECT * FROM "work" WHERE shop_id = $1 AND user_id = $2`, [shopId.rows[0].id,id]);
+        if (existAssociateWork.rowCount == 0) {
+            const associate = await client.query(`INSERT INTO "work"(user_id , shop_id) VALUES ($1, $2) RETURNING *`, [id, shopId.rows[0].id]);
+        } 
+
+        console.log(existAssociateWork.rows);
+        // else {
+        //     const associate = await client.query(`UPDATE work SET user_id = $1, shop_id = $2 WHERE user_id = $3 RETURNING *`, [id, shopId.rows[0].id, id]);
+        // }
         
+            
         // if there is no user return null
         if (result.rowCount == 0) {
             return null;

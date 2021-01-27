@@ -4,27 +4,27 @@ BEGIN;
 
 CREATE TABLE "role" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" TEXT NOT NULL -- unique
+    "name" TEXT NOT NULL 
 );
 
 
 CREATE TABLE "category" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" TEXT NOT NULL, -- unique
+    "name" TEXT NOT NULL,
     "color" TEXT NOT NULL
 );
 
 CREATE TABLE "shop" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "name" TEXT NOT NULL,
-    "adress" TEXT NOT NULL, -- unique
+    "adress" TEXT NOT NULL,
     "tel" TEXT NOT NULL 
 );
 
 CREATE TABLE "product" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "name" TEXT NOT NULL, -- unique
-    "price" INT NOT NULL, -- type double
+    "name" TEXT NOT NULL,
+    "price" INT NOT NULL,
     "description" TEXT NOT NULL,
     "image" TEXT NOT NULL,
     "quantity" INT NOT NULL,
@@ -37,23 +37,22 @@ CREATE TABLE "user" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
     "first_name" TEXT NOT NULL,
     "last_name" TEXT NOT NULL,
-    "username" TEXT NOT NULL, -- unique
+    "username" TEXT NOT NULL,
     "password" TEXT NOT NULL,
-    "role_id" INT REFERENCES "role"("id"), -- ON DELETE CASCADE ON UPDATE CASCADE
-    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW() CHECK("created_at" >= NOW()),
+    "role_id" INT REFERENCES "role"("id"), 
+    "created_at" TIMESTAMPTZ NOT NULL DEFAULT NOW() CHECK("created_at" <= "updated_at"),
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
 
 CREATE TABLE "work" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "shop_id" INT REFERENCES "shop"("id"), -- ON DELETE CASCADE ON UPDATE CASCADE
-    "user_id" INT REFERENCES "user"("id") -- ON DELETE CASCADE ON UPDATE CASCADE
-);
+    "shop_id" INT REFERENCES "shop"("id"),
+    "user_id" INT REFERENCES "user"("id") );
 
 CREATE TABLE "possess" (
     "id" INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-    "product_id" INT REFERENCES "product"("id"), -- ON DELETE CASCADE ON UPDATE CASCADE
-    "category_id" INT REFERENCES "category"("id") -- ON DELETE CASCADE ON UPDATE CASCADE
+    "product_id" INT REFERENCES "product"("id"),
+    "category_id" INT REFERENCES "category"("id") 
 );
 COMMIT;

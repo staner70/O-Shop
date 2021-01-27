@@ -22,7 +22,14 @@ const tokenhelper = {
         const token = tokenhelper.generateJwtFromUser(user);
         console.log(token);
         const { JWT_COOKIE, NODE_ENV} = process.env;
-        
+        //verification isAdmin
+        let isAdmin;
+        if (user.role_name == "admin") {
+            isAdmin = true;
+        } else {
+            isAdmin = false;
+        }
+        console.log(typeof isAdmin);
         return response
         .status(200)
         .cookie("access_token",token,{
@@ -35,7 +42,8 @@ const tokenhelper = {
             access_token : token,
             data : {
                 name: user.username,
-                role: user.role_name               
+                role: user.role_name,
+                isAdmin: isAdmin               
                 
             }
         });

@@ -1,6 +1,11 @@
+const bcrypt = require('bcryptjs');
 
 const validateUserInput = (username, password) => {
     return username && password;
 };
 
-module.exports = {validateUserInput};
+const comparePassword = (password, hashedPassword) => {
+    return bcrypt.compareSync(password, hashedPassword);
+};
+
+module.exports = {validateUserInput, comparePassword};

@@ -1,5 +1,6 @@
 const userDataMapper = require('../dataMapper/userDataMapper');
 const CustomError = require('../helpers/CustomError');
+const bcrypt = require('bcryptjs');
 
 module.exports = {
 
@@ -23,6 +24,12 @@ module.exports = {
 
     addOneUser: async (request, response, next) => {
         const userInfo = request.body;
+
+        let salt = await bcrypt.genSalt(8);
+        let hash = await bcrypt.hash(userInfo.password, salt);
+        console.log(hash);
+        userInfo.password = hash;
+
         const user = await userDataMapper.addOneUser(userInfo);
         if (user == null) {
             return next(new CustomError("User already exist", 400));
@@ -37,6 +44,10 @@ module.exports = {
     updateOneUser: async (request, response, next) => {
         const {id} = request.params;
         const userInfo = request.body;
+        let salt = await bcrypt.genSalt(8);
+        let hash = await bcrypt.hash(userInfo.password, salt);
+        console.log(hash);
+        userInfo.password = hash;
         const user = await userDataMapper.updateOneUser(id, userInfo);
         if (user == null) {
             return next(new CustomError("User not exist", 400));
