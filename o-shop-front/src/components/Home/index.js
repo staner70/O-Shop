@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../Header';
-import ShopArticles from '../ShopArticles';
-import Category from '../NavCategory';
+import ShopArticles from '../../containers/ShopArticles';
+import Category from '../../containers/NavCategory';
 import ShoppingCart from '../ShoppingCart';
 
 const Home = () => (
