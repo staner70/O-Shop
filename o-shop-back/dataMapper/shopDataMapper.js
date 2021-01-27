@@ -4,7 +4,7 @@ shopDataMapper = {
 
     // get the list of all shop
     async getAllShop() {
-        const result = await client.query('SELECT * FROM "shop"');
+        const result = await client.query('SELECT * FROM "shop" ORDER BY name');
         return result.rows;
     },
 
