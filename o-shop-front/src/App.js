@@ -3,15 +3,15 @@ import "tailwindcss/tailwind.css";
 import { Route, Redirect, Switch } from 'react-router-dom';
 import  LoginForm from './containers/LoginForm';
 import Home from './components/Home';
-import Admin from './components/Admin';
+import Admin from './containers/Admin';
 import AdminUser from './containers/AdminUser';
 import AdminProducts from './containers/AdminProduct';
 import AdminCategories from './containers/AdminCategory';
 import AccessForbidden from './components/AccessForbidden';
-import UserModal from './containers/UserModal';
 
 function App(props) {
   console.log(props);
+  
   return (
     <div className="App bg-bgback">
       <Switch>

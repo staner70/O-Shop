@@ -3,9 +3,8 @@ import { CHANGE_AUTH_FIELD } from '../store/actions';
 export const initialState = {
   username: '',
   password: '',
-  logged: false,
-  nickname: null,
   token: null,
+  isAdmin: '',
 };
 
 const reducer = (oldState = initialState, action = {}) => {
@@ -21,17 +20,17 @@ const reducer = (oldState = initialState, action = {}) => {
       return {
         ...oldState,
         // on copie les données de l'action dans le reducer
-        logged: action.logged,
-      
+        token: action.token,
+        isAdmin: action.isAdmin,
       };
     case 'LOGOUT':
       return {
         ...oldState,
         username: '',
         password: '',
-        logged: false,
         nickname: null,
         token: null,
+        isAdmin: false,
       };
     default:
       return { ...oldState };

@@ -7,7 +7,7 @@ import { changeAuthField } from '../store/actions.js';
 const mapStateToProps = (state) => ({
   username: state.auth.username,
   password: state.auth.password,
-  isLogged: state.auth.logged,
+  isAdmin: state.auth.logged,
 });
 
 // cablage des actions

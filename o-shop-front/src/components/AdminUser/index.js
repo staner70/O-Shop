@@ -1,12 +1,16 @@
 import React, {useEffect} from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
+import AccessForbidden from '../AccessForbidden';
+
 
 const AdminUser = ({users, getUsers}) => {
     useEffect(()=>{
         getUsers();
     },[]);
-    return (
+    const isAdmin = localStorage.getItem('isAdmin');
+    if(isAdmin == "true"){
+        return (
     <>
         < Header />
         < NavAdmin />
@@ -84,6 +88,8 @@ const AdminUser = ({users, getUsers}) => {
         </div>
   
     </>
-)};
+)}
+return (<AccessForbidden />)
+                    };
 
 export default AdminUser;
