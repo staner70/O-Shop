@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
-const FormData = require('form-data');
 
 import { GET_USERS_FROM_API, updateUsersAdmin, 
   GET_PRODUCTS_FROM_API, updateProductsAdmin,
@@ -106,28 +105,17 @@ const admin = (store) => (next) => (action) => {
       }
 
       case 'SUBMIT_PRODUCT': {
-        const FormData = require('form-data');
-        const fs = require('fs');
-        var data = new FormData();
-
+        // ici, on va faire la requete pour le login
+        // on commence par récupérer email et password
+        // Double destructuration !
         const { adminproduct: { name, description, price, quantity, product_image, shop, category } } = store.getState();
-
-        data.append('product_image', fs.createReadStream(`${product_image}`));
-        data.append('name', `${name}`);
-        data.append('price', `${price}`);
-        data.append('description', `${description}`);
-        data.append('quantity', `${quantity}`);
-        data.append('category', `${quantity}`);
-        data.append('shop', `${shop}`);
         const localtoken =  localStorage.getItem('token');
         const productconfig = {
           method: 'post',
           url: 'https://oshop-lyra.herokuapp.com/product',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
-            'Cookie': 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtX21pY2hlbCIsImlhdCI6MTYxMTgyMTc2MiwiZXhwIjoxNjExODc1NzYyfQ.2HXyLETBhH89eb6kdi90RuNdhPHGEHmsascoXm6Cl20', 
-            ...data.getHeaders()
-
+            'Content-Type': 'multipart/form-data'
           },
           data: { // body de la requete (contenu du json)
             name,
