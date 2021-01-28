@@ -4,11 +4,14 @@ export const CHANGE_ADD_USER_FIELD = 'CHANGE_ADD_USER_FIELD';
 export const UPDATE_ADMIN_USERS = 'UPDATE_ADMIN_USERS';
 export const UPDATE_ADMIN_PRODUCTS = 'UPDATE_ADMIN_PRODUCTS';
 export const UPDATE_ADMIN_CATEGORIES = 'UPDATE_ADMIN_CATEGORIES';
+export const DELETE_PRODUCT_BY_ID_STORE = 'DELETE_PRODUCT_BY_ID_STORE;'
+
 
 // ACTION POUR MIDDLEWARE : 
 export const GET_USERS_FROM_API = 'GET_USERS_FROM_API';
 export const GET_PRODUCTS_FROM_API = 'GET_PRODUCTS_FROM_API';
 export const GET_CATEGORIES_FROM_API = 'GET_CATEGORIES_FROM_API';
+export const DELETE_PRODUCT_BY_ID = 'DELETE_PRODUCT_BY_ID';
 
 // action creator
 // une fonction pure qui renvoie une action
@@ -55,4 +58,18 @@ export const getCategoriesFromApi = () => ({
 export const updateCategoriesAdmin = (list) => ({
   type: UPDATE_ADMIN_CATEGORIES,
   payload: {list},
+
+
+ 
+  
 })
+ //deleting a project
+export const deleteProductById = (productId) => ({
+    type: DELETE_PRODUCT_BY_ID,
+    productId,
+});
+
+export const deleteProductInAdminStore = (productId) => ({
+  type: DELETE_PRODUCT_BY_ID_STORE,
+  productId,
+});

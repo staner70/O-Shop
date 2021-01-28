@@ -1,8 +1,8 @@
 import axios from 'axios';
 
 import { GET_USERS_FROM_API, updateUsersAdmin, 
-  GET_PRODUCTS_FROM_API, updateProductsAdmin,
-  GET_CATEGORIES_FROM_API, updateCategoriesAdmin } from '../store/actions';
+  GET_PRODUCTS_FROM_API, updateProductsAdmin, deleteProductInAdminStore, 
+  GET_CATEGORIES_FROM_API, updateCategoriesAdmin, DELETE_PRODUCT_BY_ID } from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
   switch (action.type) {
@@ -108,6 +108,31 @@ const admin = (store) => (next) => (action) => {
             }
           }).catch((error)=> {console.error(error);});
         break
+      }
+
+      case DELETE_PRODUCT_BY_ID: {
+        const localtoken =  localStorage.getItem('token');
+        const userconfig = {
+          method: 'delete',
+          url: `https://oshop-lyra.herokuapp.com/product/${action.productId}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          }
+        };
+        axios(userconfig)
+          .then((response) => {
+            if(response.data.success){
+              store.dispatch(deleteProductInAdminStore(action.productId));
+            }else{
+              console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/product/${action.productId}`));
+            }
+          })
+          .catch((error)=> {
+            console.error(error);
+          });          
+          // TODO LOADER ON 
+          return;
       }
 
       default:

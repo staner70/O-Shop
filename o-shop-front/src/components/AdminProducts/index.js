@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 
-const AdminProducts = ({products, getProducts}) => {
+const AdminProducts = ({products, getProducts, deleteProduct }) => {
     useEffect(() => {
         getProducts();
+        
     },[]);
     return(
     <>
@@ -36,7 +37,7 @@ const AdminProducts = ({products, getProducts}) => {
                     <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Quantité
                     </th>
-                    <th scope="col" className="relative px-6 py-3">
+                    <th  scope="col" className  ="relative px-6 py-3">
                         <span className="sr-only">Edit</span>
                     </th>
                     <th scope="col" className="relative px-6 py-3">
@@ -73,10 +74,13 @@ const AdminProducts = ({products, getProducts}) => {
                                 {product.quantite}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit{product.id}</a>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" className="text-indigo-600 hover:text-indigo-900">Delete</a>
+                                <button id={product.id}
+                                onClick={() => deleteProduct(product.id)} 
+                                className=" text-indigo-600 hover:text-indigo-900">Delete</button>
+                                
                             </td>
                         </tr>
                     ))}
@@ -90,7 +94,7 @@ const AdminProducts = ({products, getProducts}) => {
             </div>
         </div>
         </div>
-  g
+  
     </>
 )};
 
