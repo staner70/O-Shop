@@ -1,7 +1,7 @@
 const productDataMapper = require('../dataMapper/productDataMapper');
 const CustomError = require('../helpers/CustomError');
 const s3 = require('../config/s3.config.js');
-const aws = require('aws-sdk');
+// const aws = require('aws-sdk');
 const fs = require('fs');
 module.exports = {
 
@@ -41,29 +41,92 @@ module.exports = {
     addNewProduct: async (request, response, next) => {
         const productInfo = request.body;
         console.log("addOneProduct");
-        const product = await productDataMapper.addOneProduct(productInfo);
-        if (product == null) {
-            return next(new CustomError("Product already exist", 400));
-        }
-        response.status(200).json({
-            success: true,
-            message: "product added",
-            data: product
-        });
+        // console.log(request.file);
+        var params = {
+            ACL: 'public-read',
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Body: fs.createReadStream(request.file.path),
+            Key: `uploads/${request.file.originalname}`
+        };
+        
+        s3.upload(params, async (err, data) => {
+            if (err) {
+              console.log('Error occured while trying to upload to S3 bucket', err);
+            }
+            console.log(data , '<= data');
+            if (data) {
+               
+              fs.unlinkSync(request.file.path); // Empty temp folder
+              productInfo.image = data.Location;
+
+              const product = await productDataMapper.addOneProduct(productInfo);
+              if (product == null) {
+                  return next(new CustomError("Product already exist", 400));
+              }
+              response.status(200).json({
+                  success: true,
+                  message: "product added",
+                  data: product
+              });
+
+            }
+          });
+
+
+
+
     },
 
     updateProduct: async (request, response, next) => {
         const {id} = request.params;
         const productInfo = request.body;
-        const product = await productDataMapper.updateOneProduct(id,productInfo);
-        if (product == null) {
-            return next(new CustomError("Product not exist", 400));
-        }
-        response.status(200).json({
-            success: true,
-            message: `product ${id} updated`,
-            data: product
+        var params = {
+            ACL: 'public-read',
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Body: fs.createReadStream(request.file.path),
+            Key: `uploads/${request.file.originalname}`
+        };
+
+        const oldImage = await productDataMapper.getOneProduct(id);
+
+        const regex = /(?:[^/][\d\w\.]+)+$/g;
+
+        const deleteImage = regex.exec(oldImage.image)[0];
+        console.log(deleteImage);
+        s3.deleteObject({
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: `uploads/${deleteImage}`
+        }, (err, data) => {
+            console.error(err);
+            console.log(data);
         });
+
+        s3.upload(params, async (err, data) => {
+            if (err) {
+              console.log('Error occured while trying to upload to S3 bucket', err);
+            }
+            // console.log(data , '<= data');
+            if (data) {
+               
+              fs.unlinkSync(request.file.path); // Empty temp folder
+              productInfo.image = data.Location;
+            //   console.log(productInfo);
+              const product = await productDataMapper.updateOneProduct(id,productInfo);
+              if (product == null) {
+                  return next(new CustomError("Product not exist", 400));
+              }
+              
+              response.status(200).json({
+                  success: true,
+                  message: `product ${id} updated`,
+                  data: product
+              });
+
+
+            }
+          });
+
+
     },
 
     deleteProduct: async (request, response, next) => {
@@ -72,6 +135,18 @@ module.exports = {
         if (product == null) {
             return next(new CustomError("Product not exist", 400));
         }
+        const regex = /(?:[^/][\d\w\.]+)+$/g;
+
+        const deleteImage = regex.exec(product.image)[0];
+        console.log(deleteImage);
+        s3.deleteObject({
+            Bucket: process.env.AWS_BUCKET_NAME,
+            Key: `uploads/${deleteImage}`
+        }, (err, data) => {
+            console.error(err);
+            console.log(data);
+        });
+
         response.status(200).json({
             success: true,
             message: `product ${id} deleted`,
@@ -86,23 +161,15 @@ module.exports = {
             const {id} = req.params;
             console.log(req.body);
             console.log(id);
+           
 
-            
-    
-            aws.config.setPromisesDependency();
-            aws.config.update({
-                accessKeyId: process.env.AWS_ACCESS_KEY,
-                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-                region: process.env.AWS_REGION
-            });
-            const s3 = new aws.S3();
             var params = {
                 ACL: 'public-read',
                 Bucket: process.env.AWS_BUCKET_NAME,
                 Body: fs.createReadStream(req.file.path),
                 Key: `uploads/${req.file.originalname}`
             };
-
+            
             s3.upload(params, async (err, data) => {
                 if (err) {
                   console.log('Error occured while trying to upload to S3 bucket', err);

@@ -41,7 +41,8 @@ module.exports = {
 
     checkCategoryName: async (request, response, next) => {
         const {category} = request.body;
-        console.log("checkCategoryName");
+        console.log(request.body);
+        console.log(category, "checkCategoryName");
         const categoryName = await client.query(`SELECT * FROM "category" WHERE name = $1`,[category]);
 
         if (categoryName.rowCount == 0) {

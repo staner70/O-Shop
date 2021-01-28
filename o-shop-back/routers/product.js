@@ -20,9 +20,9 @@ router.get('/', catchErrors(getAllProducts));
 router.get('/:id(\\d+)', catchErrors(checkProductExist), catchErrors(getOneProduct));
 router.get('/category/:categoryId', catchErrors(getProductsByCategoryId));
 
-router.post('/', getAccessToRoute, getAdminAccess, catchErrors(checkCategoryName), catchErrors(addNewProduct));
+router.post('/', getAccessToRoute, getAdminAccess, productImageUpload.single("product_image"), catchErrors(checkCategoryName), catchErrors(addNewProduct));
 
-router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(checkCategoryName), catchErrors(updateProduct));
+router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, productImageUpload.single("product_image"), catchErrors(checkCategoryName), catchErrors(updateProduct));
 
 router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(deleteProduct));
 
