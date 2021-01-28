@@ -13,7 +13,6 @@ const mapStateToProps = (state) => ({
       
     },
     deleteProduct: (idProduct) => {
-      console.log(idProduct);
       dispatch(deleteProductById(idProduct));
       
     },

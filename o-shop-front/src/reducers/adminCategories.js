@@ -1,4 +1,5 @@
 import { 
+    DELETE_CATEGORY_BY_ID_STORE,
     UPDATE_ADMIN_CATEGORIES 
 } from '../store/actions';
 
@@ -13,6 +14,13 @@ const reducer = (oldState = initialState, action={}) => {
                 ...oldState,
                 ...action.payload,
             }
+        case DELETE_CATEGORY_BY_ID_STORE:{
+            const list = [...oldState.list];
+            return{
+                ...oldState,
+                list: list.filter((category) =>(category.id !== action.categoryId)),
+            }
+        }
         default:
             return{...oldState};   
     }
