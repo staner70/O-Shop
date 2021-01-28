@@ -8,6 +8,7 @@ const storage = multer.diskStorage({
     destination: function(req,file,callback){
         
         const rootDir = path.dirname(require.main.filename);
+        // callback(null, path.join(rootDir, "/o-shop-back/public/uploads"));
         callback(null, path.join(rootDir, "/o-shop-back/public/uploads"));
     },
     filename: function(req,file,callback) {

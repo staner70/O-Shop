@@ -1,6 +1,8 @@
 const productDataMapper = require('../dataMapper/productDataMapper');
 const CustomError = require('../helpers/CustomError');
-
+const s3 = require('../config/s3.config.js');
+const aws = require('aws-sdk');
+const fs = require('fs');
 module.exports = {
 
     getAllProducts: async (request, response, next) => {
@@ -82,19 +84,56 @@ module.exports = {
             // we are looking for the id of product
             const productImage = req.savedProductImage;
             const {id} = req.params;
+            console.log(req.body);
             console.log(id);
-            const product = await productDataMapper.imageUpload(productImage, id);
+
             
-            res.status(200)
-            .json({
-                success: true,
-                message: "Image Upload Successfull",
-                data: product
+    
+            aws.config.setPromisesDependency();
+            aws.config.update({
+                accessKeyId: process.env.AWS_ACCESS_KEY,
+                secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+                region: process.env.AWS_REGION
             });
+            const s3 = new aws.S3();
+            var params = {
+                ACL: 'public-read',
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Body: fs.createReadStream(req.file.path),
+                Key: `uploads/${req.file.originalname}`
+            };
+
+            s3.upload(params, async (err, data) => {
+                if (err) {
+                  console.log('Error occured while trying to upload to S3 bucket', err);
+                }
+                console.log(data , '<= data');
+                if (data) {
+                   
+                  fs.unlinkSync(req.file.path); // Empty temp folder
+                  const locationUrl = data.Location;
+
+                  const product = await productDataMapper.imageUpload(locationUrl, id);
+                  res.status(200)
+                  .json({
+                      success: true,
+                      message: "Image Upload Successfull",
+                      data: product
+                  });
+ 
+                }
+              });
+
+  
+            }
+            
 
 
 
-    },
+
+
+
+
 
     
 }
