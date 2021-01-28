@@ -1,8 +1,10 @@
 import axios from 'axios';
 
 import { GET_USERS_FROM_API, updateUsersAdmin, 
-  GET_PRODUCTS_FROM_API, updateProductsAdmin, deleteProductInAdminStore, 
-  GET_CATEGORIES_FROM_API, updateCategoriesAdmin, DELETE_PRODUCT_BY_ID } from '../store/actions';
+  GET_PRODUCTS_FROM_API, updateProductsAdmin,  
+  GET_CATEGORIES_FROM_API, updateCategoriesAdmin, 
+  DELETE_PRODUCT_BY_ID, deleteProductInAdminStore, 
+  DELETE_USER_BY_ID, deleteUserInAdminStore } from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
   switch (action.type) {
@@ -134,6 +136,32 @@ const admin = (store) => (next) => (action) => {
           // TODO LOADER ON 
           return;
       }
+
+      case DELETE_USER_BY_ID: {
+        const localtoken =  localStorage.getItem('token');
+        const userconfig = {
+          method: 'delete',
+          url: `https://oshop-lyra.herokuapp.com/user/${action.userId}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          }
+        };
+        axios(userconfig)
+          .then((response) => {
+            if(response.data.success){
+              store.dispatch(deleteUserInAdminStore(action.userId));
+            }else{
+              console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/user/${action.userId}`));
+            }
+          })
+          .catch((error)=> {
+            console.error(error);
+          });          
+          // TODO LOADER ON 
+          return;
+      }
+
 
       default:
         next(action);

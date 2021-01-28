@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import AdminUser from '../components/AdminUser'
 
-import { getUsersFromApi } from '../store/actions';
+import { getUsersFromApi, deleteUserById } from '../store/actions';
 
 const mapStateToProps = (state) => ({
     users: state.adminuser.list,
@@ -10,6 +10,11 @@ const mapStateToProps = (state) => ({
   const mapDispatchToProps = (dispatch) => ({
     getUsers: () => {
       dispatch(getUsersFromApi());
+    },
+    deleteUser: (idUser) => {
+      console.log(idUser);
+      dispatch(deleteUserById(idUser));
+      
     },
   });
 

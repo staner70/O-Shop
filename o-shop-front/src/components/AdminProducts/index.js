@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 
-const AdminProducts = ({products, getProducts, deleteProduct }) => {
+const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => {
     useEffect(() => {
         getProducts();
         
@@ -74,7 +74,9 @@ const AdminProducts = ({products, getProducts, deleteProduct }) => {
                                 {product.quantite}
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit{product.id}</a>
+                                <button id={product.id} 
+                                onClick={() => EditProduct(product.id)}
+                                className="text-indigo-600 hover:text-indigo-900">Edit</button>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <button id={product.id}

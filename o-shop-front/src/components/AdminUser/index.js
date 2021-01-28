@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 
-const AdminUser = ({users, getUsers}) => {
+const AdminUser = ({users, getUsers, deleteUser}) => {
     useEffect(()=>{
         getUsers();
     },[]);
@@ -68,7 +68,9 @@ const AdminUser = ({users, getUsers}) => {
                                 <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
                             </td>
                             <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <a href="#" className="text-indigo-600 hover:text-indigo-900">Delete</a>
+                                <button  id={user.id}
+                                onClick={() => deleteUser(user.id)}  
+                                className="text-indigo-600 hover:text-indigo-900">Delete</button>
                             </td>
                         </tr>
                     ))}
