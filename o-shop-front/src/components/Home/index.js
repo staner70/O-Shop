@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../Header';
 import ShopArticles from '../../containers/ShopArticles';
 import Category from '../../containers/NavCategory';
-import ShoppingCart from '../ShoppingCart';
+import ShoppingCart from '../../containers/ShoppingCart';
 
 const Home = () => (
   <>

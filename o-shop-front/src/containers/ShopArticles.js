@@ -5,8 +5,9 @@ import { getProductsById } from '../utils';
 
 import { getProductsFromApi } from '../store/actions';
 
+
 const mapStateToProps = (state, ownProps) => ({
-  products: getProductsById(state.adminproduct.list, ownProps.match.params.id ),
+  articles: getProductsById(state.adminproduct.list, ownProps.match.params.id ),
     
   });
 
@@ -14,6 +15,7 @@ const mapStateToProps = (state, ownProps) => ({
     getProducts: () => {
       dispatch(getProductsFromApi());
     },
+    
   });
 
   const container = connect(mapStateToProps, mapDispatchToProps)(ShopArticles);

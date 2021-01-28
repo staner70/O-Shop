@@ -12,6 +12,12 @@ export const GET_CATEGORIES_FROM_API = 'GET_CATEGORIES_FROM_API';
 export const GET_CATEGORY_FROM_HOME = 'GET_CATEGORY_FROM_HOME';
 export const CHANGE_ADD_CATEGORY_FIELD = 'CHANGE_ADD_CATEGORY_FIELD';
 export const CHANGE_ADD_PRODUCT_FIELD = 'CHANGE_ADD_PRODUCT_FIELD';
+export const SEND_TO_CART = 'SEND_TO_CART';
+
+//ACTION DU SHOPIING CART
+export const ADD_TO_CART = "ADD_TO_CART";
+export const ADJUST_ITEM_QTY = "ADJUST_ITEM_QTY";
+export const REMOVE_FROM_CART = "REMOVE_FROM_CART";
 
 // action creator
 // une fonction pure qui renvoie une action
@@ -71,3 +77,31 @@ export const updateCategoriesAdmin = (list) => ({
   payload: {list},
 })
 
+
+export const addToCart = (itemID) => {
+  return {
+    type: ADD_TO_CART,
+    payload: {
+      id: itemID,
+    },
+  };
+};
+
+export const removeFromCart = (itemID) => {
+  return {
+    type: REMOVE_FROM_CART,
+    payload: {
+      id: itemID,
+    },
+  };
+};
+
+export const adjustItemQty = (itemID, qty) => {
+  return {
+    type: ADJUST_ITEM_QTY,
+    payload: {
+      id: itemID,
+      qty,
+    },
+  };
+};

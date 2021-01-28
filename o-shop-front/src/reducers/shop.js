@@ -1,10 +1,9 @@
 import {
-    SEARCH_CHANGE_FIELD
+    SEARCH_CHANGE_FIELD, SEND_TO_CART
 } from '../store/actions';
 
 export const initialState = {
     searchInputValue: '',
-
 }
 
 const reducer = (oldState = initialState, action ={}) => {
@@ -14,6 +13,11 @@ const reducer = (oldState = initialState, action ={}) => {
                 ...oldState,
              [action.searchField] : action.searchText,  
             };
+        case SEND_TO_CART:
+            return {
+                ...oldState,
+                ...action.product.id,
+                };
            default: 
            return {...oldState} ;
     }
