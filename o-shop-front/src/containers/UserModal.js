@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 
-import UserModal from '../components/UserModal';
+import UserModal from '../components/adminModal/UserModal';
 import { changeAddUserField } from '../store/actions.js'; //A mettre dans actions
 
 // cablage des données

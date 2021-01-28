@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
+import ProductModal from '../../containers/ProductModal';
 
 const AdminProducts = ({products, getProducts}) => {
     useEffect(() => {
@@ -89,7 +90,7 @@ const AdminProducts = ({products, getProducts}) => {
                         </tbody>
                         </table>
                         <div>
-                            <button className="m-4 font-bold text-white shadow-md p-4 bg-bgred rounded-md">nouveau produit</button>
+                            <ProductModal />
                         </div>
                     </div>
                     </div>
