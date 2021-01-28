@@ -9,7 +9,7 @@ export const initialState = {
     description: '',
     price: '',
     quantity:'',
-    image:'',
+    product_image:'',
     shop:'OSHOP',
     done: false,
     NotDone:false,
@@ -37,7 +37,7 @@ const reducer = (oldState = initialState, action={}) => {
                 description: '',
                 price: '',
                 quantity:'',
-                image:'',
+                product_image:'',
                 shop:'OSHOP',
             };
 
