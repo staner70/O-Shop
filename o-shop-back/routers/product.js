@@ -13,16 +13,16 @@ const {
     } = require('../controllers/productController');
 const { catchErrors } = require('../helpers/catchError');
 const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
-const { checkProductExist, checkCategoryName } = require('../middlewares/database/databaseErrorHelpers');
+const { checkProductExist, checkCategoryName, checkShopName } = require('../middlewares/database/databaseErrorHelpers');
 
 
 router.get('/', catchErrors(getAllProducts));
 router.get('/:id(\\d+)', catchErrors(checkProductExist), catchErrors(getOneProduct));
 router.get('/category/:categoryId', catchErrors(getProductsByCategoryId));
 
-router.post('/', getAccessToRoute, getAdminAccess, productImageUpload.single("product_image"), catchErrors(checkCategoryName), catchErrors(addNewProduct));
+router.post('/', getAccessToRoute, getAdminAccess, productImageUpload.single("product_image"), catchErrors(checkCategoryName), catchErrors(checkShopName), catchErrors(addNewProduct));
 
-router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, productImageUpload.single("product_image"), catchErrors(checkCategoryName), catchErrors(updateProduct));
+router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, productImageUpload.single("product_image"), catchErrors(checkProductExist),catchErrors(checkCategoryName),catchErrors(checkShopName), catchErrors(updateProduct));
 
 router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(deleteProduct));
 

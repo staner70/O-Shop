@@ -1,7 +1,7 @@
 const productDataMapper = require('../dataMapper/productDataMapper');
 const CustomError = require('../helpers/CustomError');
 const s3 = require('../config/s3.config.js');
-// const aws = require('aws-sdk');
+const aws = require('aws-sdk');
 const fs = require('fs');
 module.exports = {
 
@@ -80,6 +80,7 @@ module.exports = {
     updateProduct: async (request, response, next) => {
         const {id} = request.params;
         const productInfo = request.body;
+        // console.log(request.body);
         var params = {
             ACL: 'public-read',
             Bucket: process.env.AWS_BUCKET_NAME,
@@ -88,29 +89,36 @@ module.exports = {
         };
 
         const oldImage = await productDataMapper.getOneProduct(id);
+        console.log(oldImage);
 
-        const regex = /(?:[^/][\d\w\.]+)+$/g;
+       
+        if (oldImage) {
+            
+            const regex = /(?:[^/][\d\w\.]+)+$/g;
 
-        const deleteImage = regex.exec(oldImage.image)[0];
-        console.log(deleteImage);
-        s3.deleteObject({
-            Bucket: process.env.AWS_BUCKET_NAME,
-            Key: `uploads/${deleteImage}`
-        }, (err, data) => {
-            console.error(err);
-            console.log(data);
-        });
+            const deleteImage = regex.exec(oldImage.image)[0];
+            console.log(deleteImage);
+            s3.deleteObject({
+                Bucket: process.env.AWS_BUCKET_NAME,
+                Key: `uploads/${deleteImage}`
+            }, (err, data) => {
+                console.error(err);
+                console.log(data);
+            });
+        }
+
 
         s3.upload(params, async (err, data) => {
+            console.log("s3 upload");
             if (err) {
               console.log('Error occured while trying to upload to S3 bucket', err);
             }
-            // console.log(data , '<= data');
+            console.log(data , '<= data');
             if (data) {
                
               fs.unlinkSync(request.file.path); // Empty temp folder
               productInfo.image = data.Location;
-            //   console.log(productInfo);
+              console.log(productInfo);
               const product = await productDataMapper.updateOneProduct(id,productInfo);
               if (product == null) {
                   return next(new CustomError("Product not exist", 400));

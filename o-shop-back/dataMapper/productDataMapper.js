@@ -67,28 +67,28 @@ productDataMapper = {
     //update a product
     async updateOneProduct(productId, productInfo) {
         const {name, price, description, image, quantity, shop , category} = productInfo ;
-        console.log(productInfo);
-        // we test if the product alreayd exist 
-        const existProduct = await client.query(`SELECT name FROM "product" WHERE id = $1`, [productId]);
-       
-        // if it exist , return null
-        if (existProduct.rowCount == 0){
-            return null;
-        }
+        
+
         // we search the shop id based  on one shop name
         const shopId = await client.query(`SELECT id FROM "shop" WHERE name = $1`,[shop]);
        
-        console.log(shopId.rows[0].id);
+       
         // we search for the category id based on the categorie name
         const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [category]);
-        // console.log(category, 'productInfo.category',categoryId.rows[0].id); //thé
-
+       
+        //we update the product
         const result = await client.query(`UPDATE "product" SET name = $1, price = $2, description = $3, quantity = $4, shop_id = $5, image = $6 WHERE id = $7 RETURNING *`,
         [name, price, description, quantity,shopId.rows[0].id, image, productId]);
+        
 
         // we associate the product on a (can be multiple) category
-        const associate = await client.query(`UPDATE "possess" SET category_id = $1, product_id =  $2 WHERE product_id = $3 RETURNING *`, [categoryId.rows[0].id, result.rows[0].id, productId]);
-        console.log(associate.rows[0]); // undefined
+        const possessExist = await client.query(`SELECT * FROM "possess" WHERE product_id = $1`, [productId]);
+        if (possessExist.rowCount == 0) {
+            const associate = await client.query(`INSERT INTO "possess"(category_id, product_id) VALUES ($1,$2)  RETURNING *`, [categoryId.rows[0].id, result.rows[0].id]);
+        } else {
+            const associate = await client.query(`UPDATE "possess" SET category_id = $1, product_id =  $2 WHERE product_id = $3 RETURNING *`, [categoryId.rows[0].id, result.rows[0].id, productId]);
+        }
+        
         
         return result.rows[0];
     },

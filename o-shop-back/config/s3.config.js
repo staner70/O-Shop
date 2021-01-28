@@ -1,6 +1,6 @@
 const aws = require('aws-sdk');
 require('dotenv').config();
-const fs = require('fs');
+// const fs = require('fs');
 
 aws.config.setPromisesDependency();
 aws.config.update({
