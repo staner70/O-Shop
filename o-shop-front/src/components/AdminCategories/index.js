@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
+import CategoryModal from '../../containers/CategoryModal';
 
 const AdminCategories = ({categories, getCategories}) => {
     useEffect(() => {
@@ -61,7 +62,7 @@ const AdminCategories = ({categories, getCategories}) => {
                 </tbody>
                 </table>
                 <div>
-                    <button className="m-4 font-bold text-white shadow-md p-4 bg-bgred rounded-md">nouvel utilisateur</button>
+                    <CategoryModal />
                 </div>
             </div>
             </div>

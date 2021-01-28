@@ -2,6 +2,7 @@ import React, {useEffect} from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
+import UserModal from '../../containers/UserModal';
 
 
 const AdminUser = ({users, getUsers}) => {
@@ -80,7 +81,7 @@ const AdminUser = ({users, getUsers}) => {
                 </tbody>
                 </table>
                 <div>
-                    <button className="m-4 font-bold text-white shadow-md p-4 bg-bgred rounded-md">nouvel utilisateur</button>
+                    <UserModal />
                 </div>
             </div>
             </div>

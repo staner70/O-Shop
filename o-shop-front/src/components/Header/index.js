@@ -5,10 +5,7 @@ import { NavLink } from 'react-router-dom';
 
 import Modal from '../Modal';
 import PaymentModal from '../PaymentModal';
-import UserModal from '../../containers/UserModal';
-import ProductModal from '../../containers/ProductModal';
 import CategoryModal from '../../containers/CategoryModal';
-
 
 
 const Header = () => (
@@ -29,9 +26,6 @@ const Header = () => (
         </div>
 
         <div className="flex justify-end w-6/12	 p-2">
-        <UserModal />
-        <CategoryModal />
-        <ProductModal />
             <PaymentModal />
             <Modal />        
         </div>
