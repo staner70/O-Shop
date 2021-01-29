@@ -4,9 +4,10 @@ import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
 import ProductModal from '../../containers/ProductModal';
 
-const AdminProducts = ({products, getProducts}) => {
+const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => {
     useEffect(() => {
         getProducts();
+        
     },[]);
     const isAdmin = localStorage.getItem('isAdmin');
 
@@ -79,10 +80,14 @@ const AdminProducts = ({products, getProducts}) => {
                                         {product.quantite}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" className="text-indigo-600 hover:text-indigo-900">Edit</a>
+                                        <button id={product.id} 
+                                        onClick={() => EditProduct(product.id)}
+                                        className="text-indigo-600 hover:text-indigo-900">Edit</button>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="#" className="text-indigo-600 hover:text-indigo-900">Delete</a>
+                                        <button id={product.id}
+                                        onClick={() => deleteProduct(product.id)} 
+                                        className=" text-indigo-600 hover:text-indigo-900">Delete</button>
                                     </td>
                                 </tr>
                             ))}

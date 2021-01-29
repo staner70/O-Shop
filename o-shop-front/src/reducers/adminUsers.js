@@ -1,5 +1,5 @@
 import {
-    CHANGE_ADD_USER_FIELD, UPDATE_ADMIN_USERS
+    CHANGE_ADD_USER_FIELD, DELETE_USER_BY_ID_STORE, UPDATE_ADMIN_USERS,
 } from '../store/actions';
 
 export const initialState = {
@@ -41,6 +41,13 @@ const reducer = (oldState = initialState, action ={}) => {
                 ...oldState,
                 ...action.payload,
             }
+        case DELETE_USER_BY_ID_STORE:{
+            const list = [...oldState.list];
+            return{
+                ...oldState,
+                list: list.filter((user) => (user.id !== action.userId)),
+            }
+        }
         default: 
            return {...oldState} ;
     }

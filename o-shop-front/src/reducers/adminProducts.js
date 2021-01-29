@@ -1,5 +1,6 @@
 import { 
     UPDATE_ADMIN_PRODUCTS, CHANGE_ADD_PRODUCT_FIELD
+    DELETE_PRODUCT_BY_ID_STORE,
 } from '../store/actions';
 
 export const initialState = {
@@ -46,6 +47,13 @@ const reducer = (oldState = initialState, action={}) => {
             NotDone: true,
             };
 
+        case DELETE_PRODUCT_BY_ID_STORE:{
+            const list = [...oldState.list];
+            return{
+                ...oldState,
+                list: list.filter((product) =>(product.id !== action.productId)),
+            } 
+        }
         default:
             return{...oldState};   
     }
