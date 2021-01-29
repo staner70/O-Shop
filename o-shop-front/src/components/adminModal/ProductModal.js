@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import AdminField from './AdminField';
 import PropTypes from 'prop-types';
 
@@ -13,15 +13,15 @@ const ProductModal = ({
     product_image, shop, category
 
 }) => {
-    const fileInput = useRef(null);
-console.log(fileInput);
     const [showModal, setShowModal] = useState();
+    
     const handleProductFormSubmit = (evt) => {
         evt.preventDefault();
+        console.log('file:', evt.target.files);
         handleProduct();
-        console.log('evt:',evt.target);
         console.log(handleProduct);
     };
+    
 
     return (
         <>
@@ -109,13 +109,14 @@ console.log(fileInput);
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={quantity}
                                         />
-                                        <input
+                                        <AdminField
                                             name="product_image"
                                             type="file"
                                             accept="image/png, image/jpeg"
                                             placeholder="Image"
-                                            ref={fileInput}
-                                            />
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={product_image}
+                                        />
 
                                         <AdminField
                                             name="shop"
