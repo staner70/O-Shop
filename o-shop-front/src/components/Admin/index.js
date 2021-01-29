@@ -23,7 +23,7 @@ if(isAdmin == "true"){
               <MonthlySales />
             </div>
               <LastSales />
-            </div>)
+            </div>
     </>
   );
 }
