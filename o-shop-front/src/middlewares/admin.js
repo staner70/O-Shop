@@ -147,7 +147,7 @@ const admin = (store) => (next) => (action) => {
           })
           .catch((error) => { // cas d'erreur
           console.log(error);
-          toast.error('Erreur dans votre ajout de produit!', {
+          toast.error(`${error}`, {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -221,7 +221,7 @@ const admin = (store) => (next) => (action) => {
           })
             .catch((error) => { // cas d'erreur
             console.log(error);
-              toast.error('Erreur dans votre ajout de category!', {
+              toast.error(`${error}`, {
                 position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,

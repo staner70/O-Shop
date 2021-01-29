@@ -1,10 +1,21 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
 import PropTypes from 'prop-types';
+import * as yup from "yup";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const ProductSchema = yup.object().shape({
+    name: yup.string().required(),
+    price: yup
+      .number()
+      .required()
+      .positive()
+      .integer(),
+    description: yup.string().required(),
+    quantity: yup.number().required().positive(),
+  });
 
 const ProductModal = ({
     handleProduct, //handleLogin
@@ -14,12 +25,14 @@ const ProductModal = ({
 
 }) => {
     const [showModal, setShowModal] = useState();
+
     
+      const onSubmit = data => {
+        alert(JSON.stringify(data));
+      };
+
     const handleProductFormSubmit = (evt) => {
-        let formData = new FormData();
-        formData.append('product_image', evt.product_image[0])
         evt.preventDefault();
-        console.log('file:', evt.target.files);
         handleProduct();
         console.log(handleProduct);
     };
@@ -88,13 +101,16 @@ const ProductModal = ({
                                             placeholder="Categorie"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={category}
+
                                         />
                                         <AdminField
                                             name="price"
                                             type="number"
+                                            min="1"
                                             placeholder="Prix"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={price}
+
                                         />
 
                                         <AdminField
@@ -103,6 +119,7 @@ const ProductModal = ({
                                             placeholder="Description"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={description}
+
                                         />
                                         <AdminField
                                             name="quantity"
@@ -110,6 +127,7 @@ const ProductModal = ({
                                             placeholder="Quantite en stock"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={quantity}
+
                                         />
                                         <AdminField
                                             name="product_image"
