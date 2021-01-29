@@ -10,12 +10,14 @@ const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
     name, description, price, quantity,
-    product_image, shop, category
+    product_image, shop, category,
 
 }) => {
     const [showModal, setShowModal] = useState();
     
     const handleProductFormSubmit = (evt) => {
+        let formData = new FormData();
+        formData.append('product_image', evt.product_image[0])
         evt.preventDefault();
         console.log('file:', evt.target.files);
         handleProduct();
