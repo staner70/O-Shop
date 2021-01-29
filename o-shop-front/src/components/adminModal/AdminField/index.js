@@ -42,7 +42,6 @@ AdminField.propTypes = {
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  onAdminChange: PropTypes.func.isRequired,
 };
 
 // Valeurs par défaut pour les props

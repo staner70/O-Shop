@@ -5,6 +5,7 @@ import ShoppingCart from '../components/ShoppingCart';
 const mapStateToProps = (state) => {
   return {
     cart: state.adminproduct.cart,
+    total: state.adminproduct.cart.total,
   };
 };
 

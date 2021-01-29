@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
+import MyUploader from './AdminField/s3Field';
+
 import PropTypes from 'prop-types';
 import * as yup from "yup";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const ProductSchema = yup.object().shape({
-    name: yup.string().required(),
-    price: yup
-      .number()
-      .required()
-      .positive()
-      .integer(),
-    description: yup.string().required(),
-    quantity: yup.number().required().positive(),
-  });
 
 const ProductModal = ({
     handleProduct, //handleLogin
@@ -26,15 +18,12 @@ const ProductModal = ({
 }) => {
     const [showModal, setShowModal] = useState();
 
-    
-      const onSubmit = data => {
-        alert(JSON.stringify(data));
-      };
 
     const handleProductFormSubmit = (evt) => {
         evt.preventDefault();
         handleProduct();
         console.log(handleProduct);
+        console.log('1:',product_image);
     };
     
 
@@ -129,14 +118,8 @@ const ProductModal = ({
                                             value={quantity}
 
                                         />
-                                        <AdminField
-                                            name="product_image"
-                                            type="file"
-                                            accept="image/png, image/jpeg"
-                                            placeholder="Image"
-                                            onChange={changeProductField} // sera appelé avec value + name
-                                            value={product_image}
-                                        />
+
+                                        <MyUploader />
 
                                         <AdminField
                                             name="shop"

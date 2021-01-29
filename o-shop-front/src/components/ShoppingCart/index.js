@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ShoppingCartItem from '../../containers/ShoppingCartItem';
+import ShoppingCartTotal from '../ShoppingCart/ShoppingCartTotal';
+
 import PaymentModal from '../PaymentModal';
 
 const ShoppingCart = ({cart}) => {
@@ -9,14 +11,13 @@ const ShoppingCart = ({cart}) => {
   useEffect(() => {
     let items = 0;
     let price = 0;
-
+    console.log(items);
+    console.log(price);
     cart.forEach((item) => {
       items += item.qty;
       price += item.qty * item.price;
     })
     
-
-
     setTotalItems(items);
     setTotalPrice(price);
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
@@ -38,9 +39,14 @@ const ShoppingCart = ({cart}) => {
           item={item}
         />
       ))}
-
-
-      <div className="bg-bgred rounded-lg m4 content-end h-28">
+ {cart.forEach((item) => {
+      console.log((item.price)*(item.qty));
+      <ShoppingCartTotal
+          item={item} />
+    })}
+        
+     
+        
         TOTAL: {totalPrice} € TTC / ({totalItems} Articles)
         <div className="flex items-center">
           <PaymentModal />
@@ -48,7 +54,7 @@ const ShoppingCart = ({cart}) => {
         
 
       </div>
-  </div>
+  
 
   )
   
