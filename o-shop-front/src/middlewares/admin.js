@@ -115,7 +115,6 @@ const admin = (store) => (next) => (action) => {
           url: 'https://oshop-lyra.herokuapp.com/product',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
-            'Content-Type': 'multipart/form-data'
           },
           data: { // body de la requete (contenu du json)
             name,

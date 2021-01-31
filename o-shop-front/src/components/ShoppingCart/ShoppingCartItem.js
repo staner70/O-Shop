@@ -12,8 +12,9 @@ const ShoppingCartItem = ({ item, adjustQty, removeFromCart }) => {
 
   return (
     <div className=" flex inline-block flex m-4 " >
-          <div className=" w-1/4 ">{item.name}</div>
-          <div className="w-1/4">{item.price}</div>
+          <div className=" w-2/6 ">{item.name}</div>
+          <div className="w-1/6">{item.price}€</div>
+
           <div className="w-1/4">
                 <input 
                     className="text-center w-10 b-3 rounded-lg"
@@ -25,7 +26,10 @@ const ShoppingCartItem = ({ item, adjustQty, removeFromCart }) => {
                     onChange={onChangeHandler}
                 />
             </div>
-          <div className="w-1/4"> 
+            <div className="w-1/6">{item.price*item.qty} €</div>
+
+            
+          <div className="w-1/6"> 
             <FontAwesomeIcon 
                 icon={faTrashAlt} 
                 onClick={() => removeFromCart(item.id)}

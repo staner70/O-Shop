@@ -17,20 +17,21 @@ const ShoppingCart = ({cart}) => {
       items += item.qty;
       price += item.qty * item.price;
     })
-    
     setTotalItems(items);
     setTotalPrice(price);
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
   return (
 
-    <div className="w-full tracking-wider">
+    <div className="w-2/5	 tracking-wider ">
       
       <div className="flex align-justify bg-bgred rounded-lg m-4">
-        <div className="w-1/4 ">Produit</div>
-        <div className="w-1/4">Prix</div>
+        <div className="w-2/6 ">Produit</div>
+        <div className="w-1/6">Prix</div>
         <div className="w-1/4">Quantité</div>
-        <div className="w-1/4"></div>
+        <div className="w-1/6">Sous-total</div>
+        <div className="w-1/6"></div>
+
       </div>
       
       {cart.map((item) => (
@@ -38,22 +39,29 @@ const ShoppingCart = ({cart}) => {
           key={item.id}
           item={item}
         />
-      ))}
- {cart.forEach((item) => {
-      console.log((item.price)*(item.qty));
-      <ShoppingCartTotal
-          item={item} />
-    })}
-        
-     
+      ))}  
+            <div className="flex flex-col bg-bgred rounded-lg m4 h-28 m-auto items-center">
+
+      <div className="flex bg-bgred rounded-lg m4 h-28 m-auto items-center">
         
         TOTAL: {totalPrice} € TTC / ({totalItems} Articles)
-        <div className="flex items-center">
-          <PaymentModal />
         </div>
-        
-
+        <div className="flex justify-items-center">
+          <div className="w-1/3 flex m-auto justify-center">
+          <PaymentModal />
+          </div>
+          <div className="w-1/3 flex m-auto justify-center">
+          <PaymentModal />
+          </div>
+          <div className="w-1/3 flex m-auto justify-center">
+          <PaymentModal />
+          </div>
+        </div>
       </div>
+      </div>
+      
+
+
   
 
   )

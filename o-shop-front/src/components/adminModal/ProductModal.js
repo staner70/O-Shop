@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
-import MyUploader from './AdminField/s3Field';
 
 import PropTypes from 'prop-types';
-import * as yup from "yup";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -119,7 +117,6 @@ const ProductModal = ({
 
                                         />
 
-                                        <MyUploader />
 
                                         <AdminField
                                             name="shop"
