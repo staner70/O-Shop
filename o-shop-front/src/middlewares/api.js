@@ -2,8 +2,7 @@ import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
 import { toast } from "react-toastify";
-var FormData = require('form-data');
-var fs = require('fs');
+
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
@@ -42,10 +41,44 @@ const api = (store) => (next) => (action) => {
             type: 'LOGIN_SUCCESS',
             ...response.data,
           });
+          // Gestion de l'affichage du message de succes
           const cookies = new Cookies();
           cookies.set(`Bearer: ${response.data.access_token}`, "{ path: '/' }");
           localStorage.setItem('role', role);
           history.push('/home');
+
+
+        })
+        .catch((error) => { // cas d'erreur
+          console.log(error);
+        });
+      break;
+    }
+    case 'LOGOUT': {
+      // ici, on va faire la requete pour le login
+      // on commence par récupérer email et password
+      // Double destructuration !
+      const { auth: { username, password } } = store.getState();
+      const config = {
+        method: 'post',
+        url: 'https://oshop-lyra.herokuapp.com/auth/logout', // TODO VERIFIER ROUTE AVEC LE BACK
+        headers: {
+          'Content-Type': 'application/json',
+          'Cookie': 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtX21pY2hlbCIsImlhdCI6MTYxMTIxNjQ2NSwiZXhwIjoxNjExMjE3MDY1fQ.LltbTuINRJdgYLGHzwxVR3GeV4g-i7IAeLOxp3jKl3E'
+        },
+        data: { // body de la requete (contenu du json)
+          username,
+          password,
+        },
+      };
+
+      axios(config) // on lance la requete...
+        .then((response) => { // cas de réussite
+          //On vient recuperer les valeurs qui nous interessent pour le logout et on les enleve du storage et du state
+          const admin =localStorage.getItem('isAdmin');
+          console.log(admin);
+          localStorage.removeItem(admin);
+          history.push('/');
 
 
         })

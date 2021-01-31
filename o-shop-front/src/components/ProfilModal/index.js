@@ -1,8 +1,11 @@
 import React from "react";
-import redux from 'react-redux';
 
-export default function Modal() {
+const ProfilModal = ({onLogoutClick}) => {
   const [showModal, setShowModal] = React.useState(false);
+  const handleClick = (event) => {
+    setShowModal(false)
+    onLogoutClick();
+  }
   return (
     <>
       <button
@@ -11,7 +14,7 @@ export default function Modal() {
         style={{ transition: "all .15s ease" }}
         onClick={() => setShowModal(true)}
       >
-       Profil
+        Profil
       </button>
       {showModal ? (
         <>
@@ -25,7 +28,7 @@ export default function Modal() {
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
                   <h3 className="text-3xl font-semibold">
-Votre Profil                  </h3>
+                    Votre Profil                  </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
                     onClick={() => setShowModal(false)}
@@ -37,18 +40,18 @@ Votre Profil                  </h3>
                 </div>
                 {/*body*/}
                 <div className="relative p-6 flex-auto">
-                 
-<div className="shadow-lg rounded-2xl w-64 bg-white dark:bg-gray-800">
-    <img alt="profil" src="https://images.pexels.com/photos/3978352/pexels-photo-3978352.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" className="rounded-t-lg h-28 w-full mb-4"/>
-    <div className="flex flex-col items-center justify-center p-4 -mt-16">
-        <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
-        {localStorage.getItem("username")} </p>
-        <p class="text-gray-400 text-xs">
-        {localStorage.getItem("role")}       
-</p>
-        
-    </div>
-</div>
+
+                  <div className="shadow-lg rounded-2xl w-64 bg-white dark:bg-gray-800">
+                    <img alt="profil" src="https://images.pexels.com/photos/3978352/pexels-photo-3978352.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" className="rounded-t-lg h-28 w-full mb-4" />
+                    <div className="flex flex-col items-center justify-center p-4 -mt-16">
+                      <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
+                        {localStorage.getItem("username")} </p>
+                      <p class="text-gray-400 text-xs">
+                        {localStorage.getItem("role")}
+                      </p>
+
+                    </div>
+                  </div>
 
                 </div>
                 <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
@@ -58,9 +61,17 @@ Votre Profil                  </h3>
                     style={{ transition: "all .15s ease" }}
                     onClick={() => setShowModal(false)}
                   >
-                    Close
+                    Fermer
                   </button>
-                  
+                  <button
+                    className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                    type="button"
+                    style={{ transition: "all .15s ease" }}
+                    onClick={handleClick}
+                                      >
+                    Se Deconnecter
+                  </button>
+
                 </div>
               </div>
             </div>
@@ -70,4 +81,6 @@ Votre Profil                  </h3>
       ) : null}
     </>
   );
-}
+};
+
+export default ProfilModal;

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom';
 
-import Modal from '../Modal';
+import ProfilModal from '../../containers/ProfilModal';
 import PaymentModal from '../PaymentModal';
 import UserModal from '../../containers/UserModal';
 import ProductModal from '../../containers/ProductModal';
@@ -33,7 +33,7 @@ const Header = () => (
         <CategoryModal />
         <ProductModal />
             <PaymentModal />
-            <Modal />        
+            <ProfilModal />        
         </div>
     </div>
 );

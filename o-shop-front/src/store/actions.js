@@ -1,4 +1,5 @@
 export const CHANGE_AUTH_FIELD = 'CHANGE_AUTH_FIELD';
+export const LOGOUT = 'LOGOUT';
 export const SEARCH_CHANGE_FIELD = 'SEARCH_CHANGE_FIELD';
 export const CHANGE_ADD_USER_FIELD = 'CHANGE_ADD_USER_FIELD';
 export const UPDATE_ADMIN_USERS = 'UPDATE_ADMIN_USERS';
@@ -37,6 +38,10 @@ export const changeAddUserField = (value, name) => ({
   type: CHANGE_ADD_USER_FIELD,
   value,
   name,
+});
+
+export const logout = () => ({
+  type: LOGOUT,
 });
 
 export const getUsersFromApi = () => ({
