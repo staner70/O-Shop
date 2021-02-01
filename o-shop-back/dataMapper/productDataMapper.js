@@ -7,8 +7,8 @@ productDataMapper = {
         let result;
 
         if (name) {
-            result = await client.query(`SELECT * FROM productView WHERE name ~* $1`,[name]);
-            
+            result = await client.query(`SELECT * FROM productView WHERE (name || description) ~* $1`,[name]);
+                        
             // result = await client.query(`SELECT * FROM productView WHERE to_tsvector(name) @@ to_tsquery($1)`,[name]);
             // result = await client.query(`SELECT * FROM ftsView WHERE  tsv @@ to_tsquery($1) ORDER BY name DESC`,[name]);
             // console.log(result.rows);
