@@ -3,9 +3,20 @@ const client = require('./client');
 productDataMapper = {
 
     // get the list of all products
-    async getAllProduct() {
+    async getAllProduct(name) {
+        let result;
+
+        if (name) {
+            result = await client.query(`SELECT * FROM productView WHERE name ~* $1`,[name]);
+            
+            // result = await client.query(`SELECT * FROM productView WHERE to_tsvector(name) @@ to_tsquery($1)`,[name]);
+            // result = await client.query(`SELECT * FROM ftsView WHERE  tsv @@ to_tsquery($1) ORDER BY name DESC`,[name]);
+            // console.log(result.rows);
+        } else {
+            result = await client.query(`SELECT * FROM productView`);  
+        }
         
-        const result = await client.query(`SELECT * FROM productView`);                                            
+                                                  
         return result.rows;
     },
 
@@ -31,8 +42,7 @@ productDataMapper = {
                                             JOIN category  ON category.id = possess.category_id
                                             WHERE category.id = $1`, [categoryId]);
 
-        // console.log(categoryId);
-        // console.log(result.rows);
+
         return result.rows;
     },
 
