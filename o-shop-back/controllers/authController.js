@@ -40,12 +40,13 @@ module.exports = {
     },
 
     logOut: async (request, response, next) => {
+       const date = new Date(Date.now() - 600000);
        
         const { NODE_ENV } = process.env;
-
+        console.log(date.toGMTString());
         return response.status(200).cookie({
             httpOnly: true,
-            expires: new Date(Date.now()),
+            expires:date.toUTCString(),
             secure: NODE_ENV === "development" ? false : true
         }).json({
             success: true,
