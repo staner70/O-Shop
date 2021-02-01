@@ -1,27 +1,23 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
+import FileField from './AdminField/FileField';
 
 import PropTypes from 'prop-types';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
-    name, description, price, quantity,
-    product_image, shop, category,
+    name, description, price, quantity, shop, category,
 
 }) => {
     const [showModal, setShowModal] = useState();
-
-
     const handleProductFormSubmit = (evt) => {
         evt.preventDefault();
         handleProduct();
         console.log(handleProduct);
-        console.log('1:',product_image);
     };
     
 
@@ -66,10 +62,9 @@ const ProductModal = ({
                                         >
                                             <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
                                                 ×
-                    </span>
+                                            </span>
                                         </button>
                                     </div>
-                                    {/*body*/}
 
                                     <div className="relative p-6 flex-auto">
 
@@ -82,14 +77,19 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={name}
                                         />
+
                                         <AdminField
                                             name="category"
                                             type="text"
                                             placeholder="Categorie"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={category}
-
                                         />
+
+                                        <FileField 
+                                        
+                                        />
+                                        
                                         <AdminField
                                             name="price"
                                             type="number"
@@ -97,7 +97,6 @@ const ProductModal = ({
                                             placeholder="Prix"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={price}
-
                                         />
 
                                         <AdminField
@@ -106,17 +105,15 @@ const ProductModal = ({
                                             placeholder="Description"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={description}
-
                                         />
+
                                         <AdminField
                                             name="quantity"
                                             type="number"
                                             placeholder="Quantite en stock"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={quantity}
-
                                         />
-
 
                                         <AdminField
                                             name="shop"
@@ -127,18 +124,12 @@ const ProductModal = ({
                                         />
 
                                          <button
-            type="submit"
-            className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
-          >
-            OK
-          </button>            </form>
+                                            type="submit"
+                                            className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
+                                        > OK
+                                         </button> 
+                                    </form>
 
-          {/* {isDone && (
-          <MessageAlert /> )}
-
-          {isNotDone && (
-              <MessageErrorAlert />
-          )} */}
 
                                     </div>
                                     {/*footer*/}
@@ -172,8 +163,5 @@ ProductModal.propTypes = {
     changeProductField: PropTypes.func.isRequired,
     handleProduct: PropTypes.func.isRequired,
   };
-
-  
-  
 
 export default ProductModal;

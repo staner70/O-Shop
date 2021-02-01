@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import ProfilModal from '../../containers/ProfilModal';
+import ProductModal from '../../containers/ProductModal';
 
 
 
@@ -24,7 +25,7 @@ const Header = () => (
         </div>
 
         <div className="flex justify-end w-6/12	 p-2">
-      
+      <ProductModal />
             <ProfilModal />        
         </div>
     </div>

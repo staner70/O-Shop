@@ -121,7 +121,6 @@ const admin = (store) => (next) => (action) => {
             description,
             price,
             quantity,
-            product_image,
             shop,
             category,
           },
