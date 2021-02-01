@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
-import { toast } from "react-toastify";
 
 
 const api = (store) => (next) => (action) => {
@@ -58,32 +57,30 @@ const api = (store) => (next) => (action) => {
       // ici, on va faire la requete pour le login
       // on commence par récupérer email et password
       // Double destructuration !
-      const { auth: { username, password } } = store.getState();
+      const localtoken =  localStorage.getItem('token');
       const config = {
-        method: 'post',
+        method: 'get',
         url: 'https://oshop-lyra.herokuapp.com/auth/logout', // TODO VERIFIER ROUTE AVEC LE BACK
         headers: {
-          'Content-Type': 'application/json',
+          'Authorization': `Bearer: ${localtoken}`, 
           'Cookie': 'access_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJtX21pY2hlbCIsImlhdCI6MTYxMTIxNjQ2NSwiZXhwIjoxNjExMjE3MDY1fQ.LltbTuINRJdgYLGHzwxVR3GeV4g-i7IAeLOxp3jKl3E'
-        },
-        data: { // body de la requete (contenu du json)
-          username,
-          password,
-        },
+        }
       };
 
       axios(config) // on lance la requete...
         .then((response) => { // cas de réussite
-          //On vient recuperer les valeurs qui nous interessent pour le logout et on les enleve du storage et du state
+          
+        //On vient recuperer les valeurs qui nous interessent pour le logout et on les enleve du storage et du state
+          localStorage.clear();
+          window.localStorage.clear(); //try this to clear all local storage
           const admin =localStorage.getItem('isAdmin');
-          console.log(admin);
           localStorage.removeItem(admin);
           history.push('/');
 
 
         })
         .catch((error) => { // cas d'erreur
-          console.log(error);
+         
         });
       break;
     }

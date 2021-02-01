@@ -1,4 +1,3 @@
-import slugify from 'slugify';
 
 
 export const getProductsById = (products, id) => (

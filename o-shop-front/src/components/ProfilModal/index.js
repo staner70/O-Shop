@@ -46,7 +46,7 @@ const ProfilModal = ({onLogoutClick}) => {
                     <div className="flex flex-col items-center justify-center p-4 -mt-16">
                       <p className="text-gray-800 dark:text-white text-xl font-medium mt-2">
                         {localStorage.getItem("username")} </p>
-                      <p class="text-gray-400 text-xs">
+                      <p className="text-gray-400 text-xs">
                         {localStorage.getItem("role")}
                       </p>
 

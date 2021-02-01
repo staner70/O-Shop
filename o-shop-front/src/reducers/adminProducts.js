@@ -1,3 +1,4 @@
+import store from '../store';
 import { 
     UPDATE_ADMIN_PRODUCTS, CHANGE_ADD_PRODUCT_FIELD,ADD_TO_CART,REMOVE_FROM_CART, ADJUST_ITEM_QTY
 } from '../store/actions';
@@ -52,9 +53,10 @@ const reducer = (oldState = initialState, action={}) => {
               );
               // Check if Item is in cart already
               const inCart = oldState.cart.find((item) =>
-                item.id === action.payload.id ? true : false
+                item.id === action.payload.id ? true : false,
               );
-
+              console.log('incart:',inCart);
+              console.log('item:',item);
               return {
                 ...oldState,
                 cart: inCart
@@ -64,6 +66,7 @@ const reducer = (oldState = initialState, action={}) => {
                         : item
                     )
                   : [...oldState.cart, { ...item, qty: 1 }],
+                  
               };
           case REMOVE_FROM_CART:
             return {
