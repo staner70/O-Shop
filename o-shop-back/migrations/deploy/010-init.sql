@@ -28,7 +28,7 @@ CREATE TABLE "product" (
     "description" TEXT NOT NULL,
     "image" TEXT NOT NULL,
     "quantity" INT NOT NULL,
-    "shop_id" INT REFERENCES "shop"("id"), -- ON DELETE CASCADE ON UPDATE CASCADE
+    "shop_id" INT REFERENCES "shop"("id"),
     "created_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_at" TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
