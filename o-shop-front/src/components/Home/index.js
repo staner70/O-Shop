@@ -1,5 +1,5 @@
 import React from 'react';
-import AccessForbidden from '../AccessForbidden';
+import HomeForbidden from '../HomeForbidden';
 import Header from '../Header';
 import ShopArticles from '../../containers/ShopArticles';
 import Category from '../../containers/NavCategory';
@@ -24,7 +24,7 @@ const Home = () => {
             
           </div>
         </>)}
- return (<AccessForbidden />);
+ return (<HomeForbidden />);
 
 }
 
