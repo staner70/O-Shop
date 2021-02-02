@@ -6,7 +6,8 @@ import { GET_USERS_FROM_API, updateUsersAdmin,
   GET_CATEGORIES_FROM_API, updateCategoriesAdmin, 
   DELETE_PRODUCT_BY_ID, deleteProductInAdminStore, 
   DELETE_USER_BY_ID, deleteUserInAdminStore,
-  DELETE_CATEGORY_BY_ID, deleteCategoryInAdminStore, } from '../store/actions';
+  DELETE_CATEGORY_BY_ID, deleteCategoryInAdminStore, 
+  SEARCH_CHANGE_FIELD} from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
   switch (action.type) {
@@ -89,7 +90,7 @@ const admin = (store) => (next) => (action) => {
         const localtoken =  localStorage.getItem('token');
         const userconfig = {
           method: 'get',
-          url: 'https://oshop-lyra.herokuapp.com/product',
+          url: 'https://oshop-lyra.herokuapp.com/product/',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'
@@ -107,25 +108,44 @@ const admin = (store) => (next) => (action) => {
         break
       }
 
+      case SEARCH_CHANGE_FIELD: {
+        const {adminproduct: {search} } = store.getState();
+        console.log('search:',search);
+        const localtoken =  localStorage.getItem('token');
+        const searchconfig = {
+          method: 'get',
+          url: `https://oshop-lyra.herokuapp.com/product?search=${search}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json',
+          }, data:search
+        };
+  
+        axios(searchconfig)
+          .then((response) => {
+              console.log(response.data)
+            
+          }).catch((error)=> {console.error(error);});
+        break
+      }
+
       case 'SUBMIT_PRODUCT': {
         // ici, on va faire la requete pour le login
         // on commence par récupérer email et password
         // Double destructuration !
-        const { adminproduct: { name, description, price, quantity, image, shop, category } } = store.getState();
+        const { adminproduct: { name, description, price, quantity, product_image, shop, category } } = store.getState();
         const localtoken =  localStorage.getItem('token');
         const productconfig = {
           method: 'post',
           url: 'https://oshop-lyra.herokuapp.com/product',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
-            'Content-Type': 'application/json'
           },
           data: { // body de la requete (contenu du json)
             name,
             description,
             price,
             quantity,
-            image,
             shop,
             category,
           },
@@ -150,7 +170,7 @@ const admin = (store) => (next) => (action) => {
           })
           .catch((error) => { // cas d'erreur
           console.log(error);
-          toast.error('Erreur dans votre ajout de produit!', {
+          toast.error(`${error}`, {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -224,7 +244,7 @@ const admin = (store) => (next) => (action) => {
           })
             .catch((error) => { // cas d'erreur
             console.log(error);
-              toast.error('Erreur dans votre ajout de category!', {
+              toast.error(`${error}`, {
                 position: "bottom-right",
                 autoClose: 5000,
                 hideProgressBar: false,

@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
+import FileField from './AdminField/FileField';
+
 import PropTypes from 'prop-types';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
-    name, description, price, quantity,
-    image, shop, isDone, isNotDone,  category
+    name, description, price, quantity, shop, category,
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -19,6 +19,7 @@ const ProductModal = ({
         handleProduct();
         console.log(handleProduct);
     };
+    
 
     return (
         <>
@@ -75,6 +76,7 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={name}
                                         />
+
                                         <AdminField
                                             name="category"
                                             type="text"
@@ -82,9 +84,14 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={category}
                                         />
+
+                                        <FileField 
+                                        />
+                                        
                                         <AdminField
                                             name="price"
                                             type="number"
+                                            min="1"
                                             placeholder="Prix"
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={price}
@@ -96,6 +103,7 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={description}
                                         />
+
                                         <AdminField
                                             name="quantity"
                                             type="number"
@@ -117,7 +125,8 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={shop}
                                         />
-                                            <button type="submit"
+                                            <button 
+                                                type="submit"
                                                 className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
                                             >
                                                 OK
@@ -153,8 +162,5 @@ ProductModal.propTypes = {
     changeProductField: PropTypes.func.isRequired,
     handleProduct: PropTypes.func.isRequired,
 };
-
-  
-  
 
 export default ProductModal;

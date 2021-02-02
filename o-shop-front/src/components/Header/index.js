@@ -1,11 +1,9 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faUserCircle } from '@fortawesome/free-solid-svg-icons'
 import { NavLink } from 'react-router-dom';
 
-import Modal from '../Modal';
-import PaymentModal from '../PaymentModal';
-import CategoryModal from '../../containers/CategoryModal';
+import ProfilModal from '../../containers/ProfilModal';
+import ProductModal from '../../containers/ProductModal';
+
 
 
 const Header = () => (
@@ -26,8 +24,8 @@ const Header = () => (
         </div>
 
         <div className="flex justify-end w-6/12	 p-2">
-            <PaymentModal />
-            <Modal />        
+      <ProductModal />
+            <ProfilModal />        
         </div>
     </div>
 );
