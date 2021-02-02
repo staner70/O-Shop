@@ -41,12 +41,13 @@ module.exports = {
 
     logOut: async (request, response, next) => {
        const date = new Date(Date.now() - 600000);
-       
+        console.log(request);
+        const token = request.headers.cookie.split('=')[1];
         const { NODE_ENV } = process.env;
         console.log(date.toGMTString());
-        return response.status(200).cookie({
+        return response.status(200).cookie("access_token",token,{
             httpOnly: true,
-            expires:date.toUTCString(),
+            expires: new Date(Date.now() -  1000 * 60),
             secure: NODE_ENV === "development" ? false : true
         }).json({
             success: true,
