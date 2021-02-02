@@ -4,9 +4,10 @@ import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
 import ProductModal from '../../containers/ProductModal';
 
-const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => {
+const AdminProducts = ({products, getProducts, deleteProduct, EditProduct, categories, getCategories }) => {
     useEffect(() => {
         getProducts();
+        getCategories();
         
     },[]);
     const isAdmin = localStorage.getItem('isAdmin');
@@ -52,7 +53,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-        
+
                             {products.map((product) => (
                                 <tr className="text-left">
                                     <td className="px-6 py-4 whitespace-nowrap">
@@ -62,7 +63,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-gray-900">
-                                            {product.describe}    
+                                            {product.description}    
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -77,7 +78,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                                         Chez momo
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {product.quantite}
+                                        {product.quantity}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <button id={product.id} 
@@ -95,7 +96,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                         </tbody>
                         </table>
                         <div>
-                            <ProductModal />
+                            <ProductModal categories={categories}/>
                         </div>
                     </div>
                     </div>
@@ -105,7 +106,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
             </>
         )}
         return (<AccessForbidden />)
-                            };
+};
 
     
 

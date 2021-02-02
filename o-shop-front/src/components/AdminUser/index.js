@@ -5,9 +5,10 @@ import AccessForbidden from '../AccessForbidden';
 import UserModal from '../../containers/UserModal';
 
 
-const AdminUser = ({users, getUsers, deleteUser}) => {
+const AdminUser = ({users, getUsers, deleteUser,roles, getRoles}) => {
     useEffect(()=>{
         getUsers();
+        getRoles();
     },[]);
     const isAdmin = localStorage.getItem('isAdmin');
     if(isAdmin == "true"){
@@ -83,7 +84,7 @@ const AdminUser = ({users, getUsers, deleteUser}) => {
                 </tbody>
                 </table>
                 <div>
-                    <UserModal />
+                    <UserModal roles={roles} />
                 </div>
             </div>
             </div>
