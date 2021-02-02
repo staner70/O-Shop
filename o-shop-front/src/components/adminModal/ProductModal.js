@@ -111,13 +111,7 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={quantity}
                                         />
-                                        <AdminField
-                                            name="image"
-                                            type="text"
-                                            placeholder="Lien de l'image"
-                                            onChange={changeProductField} // sera appelé avec value + name
-                                            value={image}
-                                        />
+                                        
                                         <AdminField
                                             name="shop"
                                             type="text"
