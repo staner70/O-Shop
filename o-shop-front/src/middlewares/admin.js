@@ -319,8 +319,8 @@ const admin = (store) => (next) => (action) => {
         const localtoken =  localStorage.getItem('token');
         const userconfig = {
           method: 'get',
-          url: 'http://salih-taner.vpnuser.lan:3500/role',
-          // url: 'https://oshop-lyra.herokuapp.com/role',
+          //url: 'http://salih-taner.vpnuser.lan:3500/role',
+          url: 'https://oshop-lyra.herokuapp.com/role',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'
