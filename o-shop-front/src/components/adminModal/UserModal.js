@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import AdminField from './AdminField';
 import PropTypes from 'prop-types';
+
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -14,7 +15,8 @@ const UserModal = ({
     password,
     role,
     shop,
-    isDone
+    isDone,
+    roles
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -96,13 +98,20 @@ const UserModal = ({
                                             onChange={changeUserField} // sera appelé avec value + name
                                             value={password}
                                         />
-                                        <AdminField
+                                        <select  value={role} onChange={(event)=>{changeUserField(event.target.value, "role");}} >
+                                            
+                                            <option value="" >---- choisissez une rôle----</option>
+                                            {roles.map((role)=>(
+                                                <option value={role.name} >{role.name}</option>
+                                            ))}
+                                        </select>
+                                        {/* <AdminField
                                             name="role"
                                             type="text"
                                             placeholder="admin ou employe"
                                             onChange={changeUserField} // sera appelé avec value + name
                                             value={role}
-                                        />
+                                        /> */}
                                         <AdminField
                                             name="shop"
                                             type="text"

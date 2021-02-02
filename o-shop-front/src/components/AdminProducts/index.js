@@ -53,7 +53,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct, categ
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
-        
+
                             {products.map((product) => (
                                 <tr className="text-left">
                                     <td className="px-6 py-4 whitespace-nowrap">
@@ -63,7 +63,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct, categ
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap">
                                         <div className="text-sm text-gray-900">
-                                            {product.describe}    
+                                            {product.description}    
                                         </div>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -78,7 +78,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct, categ
                                         Chez momo
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                        {product.quantite}
+                                        {product.quantity}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <button id={product.id} 
@@ -96,7 +96,6 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct, categ
                         </tbody>
                         </table>
                         <div>
-                            {console.log(categories)}
                             <ProductModal categories={categories}/>
                         </div>
                     </div>
@@ -107,7 +106,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct, categ
             </>
         )}
         return (<AccessForbidden />)
-                            };
+};
 
     
 

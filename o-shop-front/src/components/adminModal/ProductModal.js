@@ -19,6 +19,7 @@ const ProductModal = ({
         handleProduct();
     };
     
+    
     return (
         <>
 
@@ -74,9 +75,11 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={name}
                                         />
-                                        <select value={category} onChange={changeProductField} >
+                                        <select  value={category} onChange={(event)=>{changeProductField(event.target.value, "category");}} >
+                                            
+                                            <option value="" >---- choisissez une categorie----</option>
                                             {categories.map((category)=>(
-                                                <option value={category.name} name="category">{category.name}</option>
+                                                <option value={category.name} >{category.name}</option>
                                             ))}
                                         </select>
                                         {/* <AdminField
