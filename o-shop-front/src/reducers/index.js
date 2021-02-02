@@ -3,7 +3,7 @@
 import { combineReducers } from 'redux';
 
 import authReducer from './auth';
-import shoppingReducer from './shopping-reducer';
+import shoppingReducer from './shop';
 import adminUserReducer from './adminUsers';
 import adminProductReducer from './adminProducts';
 import adminCategoryReducer from './adminCategories';

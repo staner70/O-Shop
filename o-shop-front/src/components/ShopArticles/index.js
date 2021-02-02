@@ -1,20 +1,14 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SearchBar from '../../containers/SearchBar';
 import Article from '../../containers/Article';
 
-const ShopArticles = ({changeSearchField, searchInputValue, articles, getProducts}) => {
-    
-    useEffect(() => {
-        getProducts();
-    },[]);
-      
-
+const ShopArticles = ({changeSearchField, searchInputValue, articles}) => {
+  
     return  (
     
     <div className="bg-white flex flex-wrap h-screen">
-    <SearchBar 
-    onChange={changeSearchField} // sera appelé avec value + name
-    searchInputValue={searchInputValue}/>
+    <SearchBar />
+    
     <div className="flex p-1 flex-wrap overflow-auto h-full">
 
     {articles.map((article) => (

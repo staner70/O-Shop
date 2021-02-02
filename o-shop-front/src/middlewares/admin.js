@@ -3,7 +3,8 @@ import { toast } from 'react-toastify';
 
 import { GET_USERS_FROM_API, updateUsersAdmin, 
   GET_PRODUCTS_FROM_API, updateProductsAdmin,
-  GET_CATEGORIES_FROM_API, updateCategoriesAdmin } from '../store/actions';
+  GET_CATEGORIES_FROM_API, updateCategoriesAdmin,
+SEARCH_CHANGE_FIELD } from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
   switch (action.type) {
@@ -100,6 +101,27 @@ const admin = (store) => (next) => (action) => {
             }else{
               console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/products"));
             }
+          }).catch((error)=> {console.error(error);});
+        break
+      }
+
+      case SEARCH_CHANGE_FIELD: {
+        const {adminproduct: {search} } = store.getState();
+        console.log('search:',search);
+        const localtoken =  localStorage.getItem('token');
+        const searchconfig = {
+          method: 'get',
+          url: `https://oshop-lyra.herokuapp.com/product?search=${search}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json',
+          }, data:search
+        };
+  
+        axios(searchconfig)
+          .then((response) => {
+              console.log(response.data)
+            
           }).catch((error)=> {console.error(error);});
         break
       }

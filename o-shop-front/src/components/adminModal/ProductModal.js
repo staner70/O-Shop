@@ -87,7 +87,6 @@ const ProductModal = ({
                                         />
 
                                         <FileField 
-                                        
                                         />
                                         
                                         <AdminField

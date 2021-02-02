@@ -8,7 +8,6 @@ import { getProductsFromApi } from '../store/actions';
 
 const mapStateToProps = (state, ownProps) => ({
   articles: getProductsById(state.adminproduct.list, ownProps.match.params.id ),
-    
   });
 
   const mapDispatchToProps = (dispatch) => ({

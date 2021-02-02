@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 
-const Category = ({ categories, getCategories}) => {
+const Category = ({ categories, getCategories, getProducts}) => {
     useEffect(() => {
         getCategories();
     }, []);
@@ -18,6 +18,7 @@ const Category = ({ categories, getCategories}) => {
                         <NavLink
                             activeClassName="focus:ring-gray-600 ring ring-transparent"
                             exact
+                            onClick = {getProducts()}
                             to={`/home/category/${ category.name }`}
                             className="mx-2 px-6 h-10 hover:bg-gray-100 bg-white focus:ring-gray-200 text-gray-900 ring ring-transparent text-xl shadow-md rounded-md uppercase font-semibold focus:outline-none"
                         >

@@ -28,10 +28,10 @@ export const changeAuthField = (value, name) => ({
   value,
 });
 
-export const searchChangeField = (searchField, searchText) => ({
+export const searchChangeField = (field, text) => ({
   type: SEARCH_CHANGE_FIELD,
-  searchField: searchField,
-  searchText: searchText,
+  field,
+  text,
 });
 
 export const changeAddUserField = (value, name) => ({

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import ShoppingCartItem from '../../containers/ShoppingCartItem';
-import ShoppingCartTotal from '../ShoppingCart/ShoppingCartTotal';
 
 import PaymentModal from '../PaymentModal';
 
@@ -11,8 +10,7 @@ const ShoppingCart = ({cart}) => {
   useEffect(() => {
     let items = 0;
     let price = 0;
-    console.log(items);
-    console.log(price);
+
     cart.forEach((item) => {
       items += item.qty;
       price += item.qty * item.price;
