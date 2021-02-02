@@ -3,7 +3,7 @@
 import { combineReducers } from 'redux';
 
 import authReducer from './auth';
-import shopReducer from './shop';
+import shoppingReducer from './shop';
 import adminUserReducer from './adminUsers';
 import adminProductReducer from './adminProducts';
 import adminCategoryReducer from './adminCategories';
@@ -15,7 +15,7 @@ import adminCategoryReducer from './adminCategories';
 // shorthand : si clé = valeur, on écrit juste une fois
 export default combineReducers({
   auth: authReducer,
-  shop: shopReducer,
+  shop: shoppingReducer,
   adminuser: adminUserReducer,
   adminproduct: adminProductReducer,
   admincategory:adminCategoryReducer,

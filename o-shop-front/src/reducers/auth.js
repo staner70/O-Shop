@@ -1,4 +1,4 @@
-import { CHANGE_AUTH_FIELD } from '../store/actions';
+import { CHANGE_AUTH_FIELD, LOGOUT } from '../store/actions';
 
 export const initialState = {
   username: '',
@@ -23,12 +23,13 @@ const reducer = (oldState = initialState, action = {}) => {
         token: action.token,
         isAdmin: action.isAdmin,
       };
-    case 'LOGOUT':
+    case LOGOUT:
       return {
         ...oldState,
         username: '',
+        first_name:'', // Si ajout du nom et prenom dans le state au moment de la connexion
+        last_name:'', // Si ajout du nom et prenom dans le state au moment de la connexion
         password: '',
-        nickname: null,
         token: null,
         isAdmin: false,
       };

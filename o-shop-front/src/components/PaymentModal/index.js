@@ -5,7 +5,7 @@ export default function PaymentModal() {
   return (
     <>
       <button
-        className="bg-bgred text-white active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        className="bg-white text-red active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
         type="button"
         style={{ transition: "all .15s ease" }}
         onClick={() => setShowModal(true)}
@@ -22,7 +22,7 @@ export default function PaymentModal() {
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
-                  <h3 className="text-3xl font-semibold">
+                  <h3 className="text-3xl font-semibold text-red-800">
 Paiement multiple                </h3>
                   <button
                     className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"

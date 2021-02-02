@@ -14,8 +14,6 @@ const mapStateToProps = (state) => ({
   isDone: state.adminproduct.done,
   isNotDone: state.adminproduct.NotDone,
   category: state.adminproduct.category,
-
-  
 });
 
 // cablage des actions

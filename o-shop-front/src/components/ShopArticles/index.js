@@ -1,29 +1,24 @@
 import React from 'react';
-import Article from './Article';
 import SearchBar from '../../containers/SearchBar';
+import Article from '../../containers/Article';
 
-const ShopArticles = ({changeSearchField, searchInputValue}) => (
+const ShopArticles = ({changeSearchField, searchInputValue, articles}) => {
+  
+    return  (
     
     <div className="bg-white flex flex-wrap h-screen">
-        <SearchBar 
-        onChange={changeSearchField} // sera appelé avec value + name
-        searchInputValue={searchInputValue}/>
-        <div className="flex p-1 flex-wrap overflow-auto h-full">
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-            <Article />
-        </div>
+    <SearchBar />
+    
+    <div className="flex p-1 flex-wrap overflow-auto h-full">
+
+    {articles.map((article) => (
+      <Article key={article.id} article={article} />  
+    ))}
     </div>
-    );
+</div>
+
+)
+    }
 
 
 export default ShopArticles;
