@@ -50,6 +50,7 @@ productDataMapper = {
     async addOneProduct(productInfo) {
         const {name, price, description, image, quantity, shop_id} = productInfo;
         console.log("addOneProduct");
+
         // we test if the product alreayd exist 
         const existProduct = await client.query(`SELECT name FROM "product" WHERE name = $1`, [name]);
         // if it exist , return null
@@ -59,9 +60,10 @@ productDataMapper = {
         // we search the shop id based  on one shop name
         const shopId = await client.query(`SELECT id FROM "shop" WHERE name = $1`,[productInfo.shop]);
         console.log(shopId.rows[0].id); // 1
+
         // we search for the category id based on the categorie name
         const categoryId = await client.query(`SELECT id FROM "category" WHERE name = $1`, [productInfo.category]);
-        console.log(productInfo.category, 'productInfo.category',categoryId); //thé
+        console.log(productInfo.category, 'productInfo.category',categoryId.rows[0]); //thé
         
         const result = await client.query(`INSERT INTO "product"(name, price, description, image, quantity, shop_id) VALUES ($1,$2,$3, $4, $5, $6) RETURNING *`,
         [name, price, description, image, quantity, shopId.rows[0].id]);
