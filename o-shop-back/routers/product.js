@@ -11,7 +11,8 @@ const {
     addNewProduct,
     updateProduct,
     deleteProduct,
-    imageUpload
+    imageUpload,
+    updateQuantityById
     } = require('../controllers/productController');
 const { catchErrors } = require('../helpers/catchError');
 const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
@@ -30,7 +31,7 @@ router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(delete
 
 router.post('/:id/upload', [getAccessToRoute, productImageUpload.single("product_image")] , catchErrors(imageUpload));
 
-
+router.patch('/cart', getAccessToRoute, catchErrors(updateQuantityById));
 // associate route
 // router.post('/:productId/category/:categoryId',  getAccessToRoute, getAdminAccess,catchErrors(associatePossess));
 // router.delete('/:productId/category/categoryId',  getAccessToRoute, getAdminAccess,catchErrors(dissociatePoses));
