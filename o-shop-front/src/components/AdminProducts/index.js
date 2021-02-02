@@ -4,9 +4,10 @@ import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
 import ProductModal from '../../containers/ProductModal';
 
-const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => {
+const AdminProducts = ({products, getProducts, deleteProduct, EditProduct, categories, getCategories }) => {
     useEffect(() => {
         getProducts();
+        getCategories();
         
     },[]);
     const isAdmin = localStorage.getItem('isAdmin');
@@ -95,7 +96,8 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                         </tbody>
                         </table>
                         <div>
-                            <ProductModal />
+                            {console.log(categories)}
+                            <ProductModal categories={categories}/>
                         </div>
                     </div>
                     </div>
