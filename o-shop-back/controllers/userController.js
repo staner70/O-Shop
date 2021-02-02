@@ -24,7 +24,7 @@ module.exports = {
 
     addOneUser: async (request, response, next) => {
         const userInfo = request.body;
-
+        
         let salt = await bcrypt.genSalt(8);
         let hash = await bcrypt.hash(userInfo.password, salt);
         console.log(hash);

@@ -4,7 +4,17 @@ const CustomError = require('../helpers/CustomError');
 module.exports = {
 
     getAllProducts: async (request, response, next) => {
-        const products = await productDataMapper.getAllProduct();
+        let products;
+        
+        console.log(request.query.search, "<<-- Search query");
+        if (request.query.search) {
+            let searchObject = request.query.search.split(' ');
+            searchObject = searchObject.join(' | ');
+            console.log(searchObject, "<<join");
+            products = await productDataMapper.getAllProduct(searchObject);
+        } else {
+            products = await productDataMapper.getAllProduct();
+        }
         response.status(200).json({
             success: true,
             data: products

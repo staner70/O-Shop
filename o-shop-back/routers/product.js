@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const {productImageUpload} = require('../middlewares/libraries/productImageUpload');
+const { validateBody } = require('../helpers/validation/validationMiddleware');
+const { productSchema } = require('../helpers/validation/schema');
 
 const { 
     getAllProducts, 
@@ -20,9 +22,9 @@ router.get('/', catchErrors(getAllProducts));
 router.get('/:id(\\d+)', catchErrors(checkProductExist), catchErrors(getOneProduct));
 router.get('/category/:categoryId', catchErrors(getProductsByCategoryId));
 
-router.post('/', getAccessToRoute, getAdminAccess, catchErrors(checkCategoryName), catchErrors(addNewProduct));
+router.post('/', getAccessToRoute, getAdminAccess, validateBody(productSchema), catchErrors(addNewProduct));
 
-router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(checkCategoryName), catchErrors(updateProduct));
+router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, validateBody(productSchema), catchErrors(updateProduct));
 
 router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(deleteProduct));
 
