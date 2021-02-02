@@ -10,7 +10,6 @@ import AdminCategories from './containers/AdminCategory';
 import AccessForbidden from './components/AccessForbidden';
 
 function App(props) {
-  console.log(props);
   
   return (
     <div className="App bg-bgback">

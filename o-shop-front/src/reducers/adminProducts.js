@@ -8,6 +8,8 @@ import {
   ADJUST_ITEM_QTY, 
   SEARCH_CHANGE_FIELD,
   EDIT_PRODUCT_BY_ID_STORE,
+  SEND_PAYMENT_TO_API,
+  PAYMENT_SUCCESS
 } from '../store/actions';
 
 export const initialState = {
@@ -34,12 +36,16 @@ export const initialState = {
 const reducer = (oldState = initialState, action={}) => {
   switch (action.type) {
     case UPDATE_ADMIN_PRODUCTS:
+      console.log('update admin product');
+
         return{
             ...oldState,
             ...action.payload,
         }
     
     case CHANGE_ADD_PRODUCT_FIELD:
+      console.log('change add product field');
+
         return {
             ...oldState,
             [action.name]: action.value,
@@ -63,6 +69,12 @@ const reducer = (oldState = initialState, action={}) => {
             image:'',
             shop:'OSHOP',
         };
+
+    case PAYMENT_SUCCESS:
+        return {
+          ...oldState,
+          cart:[],
+          };
 
     case 'PRODUCT_ADD_FAILED':
         return {
@@ -88,10 +100,8 @@ const reducer = (oldState = initialState, action={}) => {
           editPrice: action.payload.price,
           editQuantity: action.payload.quantity,
           editShop: action.payload.shop,
-          editCategory: action.payload.category,
+          editCategory: action.payload.category[0],
           editImage: action.payload.image,
-
-
         } 
       }
   
@@ -101,6 +111,12 @@ const reducer = (oldState = initialState, action={}) => {
       return {
         ...oldState,
         [action.name]: action.value,
+      }
+
+    case SEND_PAYMENT_TO_API:
+      return {
+        ...oldState,
+        value: action.value
       }
 
     case ADD_TO_CART:

@@ -3,7 +3,7 @@ import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
 import ProductModal from '../../containers/ProductModal';
-import AdminField from '../../components/adminModal/AdminField/index'
+import Field from './Field';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -13,8 +13,8 @@ const AdminProducts = ({products,
     deleteProduct, 
     editProduct,
     handleProductEdit, //handleLogin
-    changeProductField, // changeField
-    editName, 
+    changeAdminProductField, // changeField
+    fieldName, 
     editDescription, 
     editPrice, 
     editQuantity, 
@@ -170,59 +170,59 @@ const AdminProducts = ({products,
                                 {/*body*/}
                                 <div className="relative p-6 flex-auto">
                                     <form onSubmit={handleProductEditFormSubmit}>
-                                        <AdminField
+                                        <Field
                                             name="name"
                                             type="text"
                                             placeholder="Nom du Produit"
-                                            onChange={changeProductField} // sera appelé avec value + name
-                                            value={editName}
+                                            onChange={changeAdminProductField} // sera appelé avec value + name
+                                            value={fieldName}
                                         />
 
-                                        <AdminField
+                                        <Field
                                             name="image"
                                             type="text"
                                             placeholder="Image"
-                                            onChange={changeProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} // sera appelé avec value + name
                                             value={editImage}
                                         />      
 
-                                        <AdminField
+                                        <Field
                                             name="category"
                                             type="text"
                                             placeholder="Categorie"
-                                            onChange={changeProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} // sera appelé avec value + name
                                             value={editCategory}
                                         />
                                         
-                                        <AdminField
+                                        <Field
                                             name="price"
                                             type="number"
                                             min="1"
                                             placeholder="Prix"
-                                            onChange={changeProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} // sera appelé avec value + name
                                             value={editPrice}
                                         />
-                                        <AdminField
+                                        <Field
                                             name="description"
                                             type="text"
                                             placeholder="Description"
-                                            onChange={changeProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} // sera appelé avec value + name
                                             value={editDescription}
                                         />
 
-                                        <AdminField
+                                        <Field
                                             name="quantity"
                                             type="number"
                                             placeholder="Quantite en stock"
-                                            onChange={changeProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} // sera appelé avec value + name
                                             value={editQuantity}
                                         />
                                         
-                                        <AdminField
+                                        <Field
                                             name="shop"
                                             type="text"
                                             placeholder="Magasin"
-                                            onChange={changeProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} // sera appelé avec value + name
                                             value={editShop}
                                         />
                                             <button 

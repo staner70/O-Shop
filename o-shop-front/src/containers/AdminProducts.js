@@ -5,14 +5,13 @@ import { getProductsFromApi, deleteProductById ,changeEditProductField, editProd
 
 const mapStateToProps = (state) => ({
     products: state.adminproduct.list,
-    editName: state.adminproduct.editName,
+    fieldName: state.adminproduct.editName,
     editCategory: state.adminproduct.editCategory,
     editPrice: state.adminproduct.editPrice,
     editDescription: state.adminproduct.editDescription,
     editShop: state.adminproduct.editShop,
     editQuantity:state.adminproduct.editQuantity,
     editImage:state.adminproduct.editImage,
-
   });
 
   const mapDispatchToProps = (dispatch) => ({
@@ -21,20 +20,14 @@ const mapStateToProps = (state) => ({
     },
     deleteProduct: (idProduct) => {
       dispatch(deleteProductById(idProduct));
-      
     },
     editProduct: (idProduct) => {
       dispatch(editProductById(idProduct));
     },
-    changeProductField: (value, name) => {
-      // action creator : on appele une fonction qui fabrique l'action
-      // le retour de cette fonction, est donné a dispatch
+    changeAdminProductField: (value, name) => {
       dispatch(changeEditProductField(value, name));
     },
     handleProductEdit: () => {
-      // ici, on va envoyer une action pour faire la requete LOGIN
-      // cette action va être attrapée par le middleware
-      // qui fera la requete
       dispatch({ type: 'SUBMIT_EDIT_PRODUCT' });
     },
   });

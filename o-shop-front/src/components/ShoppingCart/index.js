@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ShoppingCartItem from '../../containers/ShoppingCartItem';
-
+import { useDispatch } from 'react-redux';
 import PaymentModal from '../PaymentModal';
 
 const ShoppingCart = ({cart}) => {
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
+  const dispatch= useDispatch();
 
   useEffect(() => {
     let items = 0;
@@ -45,15 +46,21 @@ const ShoppingCart = ({cart}) => {
         TOTAL: {totalPrice} € TTC / ({totalItems} Articles)
         </div>
         <div className="flex justify-items-center">
-          <div className="w-1/3 flex m-auto justify-center">
+          <div className="w-1/2 flex m-auto justify-center">
           <PaymentModal />
           </div>
-          <div className="w-1/3 flex m-auto justify-center">
-          <PaymentModal />
-          </div>
-          <div className="w-1/3 flex m-auto justify-center">
-          <PaymentModal />
-          </div>
+          <div className="w-1/2 flex m-auto justify-center">
+          <button
+        className="bg-white text-red active:bg-pink-600 font-bold uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
+        type="button"
+        onClick={() => dispatch({ type: 'SEND_PAYMENT_TO_API' })}
+
+      >
+       Valider Paiement
+      </button>
+           
+           </div>
+          
         </div>
       </div>
       </div>
