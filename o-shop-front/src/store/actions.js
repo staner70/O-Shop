@@ -8,6 +8,10 @@ export const UPDATE_ADMIN_CATEGORIES = 'UPDATE_ADMIN_CATEGORIES';
 export const DELETE_PRODUCT_BY_ID_STORE = 'DELETE_PRODUCT_BY_ID_STORE;';
 export const DELETE_USER_BY_ID_STORE = 'DELETE_USER_BY_ID_STORE;';
 export const DELETE_CATEGORY_BY_ID_STORE = 'DELETE_CATEGORY_BY_ID_STORE;';
+export const EDIT_PRODUCT_BY_ID ='EDIT_PRODUCT_BY_ID';
+export const EDIT_PRODUCT_BY_ID_STORE ='EDIT_PRODUCT_BY_ID_STORE';
+export const SUBMIT_EDIT_PRODUCT ='SUBMIT_EDIT_PRODUCT';
+
 
 // ACTION POUR MIDDLEWARE : 
 export const GET_USERS_FROM_API = 'GET_USERS_FROM_API';
@@ -16,6 +20,8 @@ export const GET_CATEGORIES_FROM_API = 'GET_CATEGORIES_FROM_API';
 export const GET_CATEGORY_FROM_HOME = 'GET_CATEGORY_FROM_HOME';
 export const CHANGE_ADD_CATEGORY_FIELD = 'CHANGE_ADD_CATEGORY_FIELD';
 export const CHANGE_ADD_PRODUCT_FIELD = 'CHANGE_ADD_PRODUCT_FIELD';
+export const CHANGE_EDIT_PRODUCT_FIELD = 'CHANGE_EDIT_PRODUCT_FIELD';
+
 export const DELETE_PRODUCT_BY_ID = 'DELETE_PRODUCT_BY_ID';
 export const DELETE_USER_BY_ID = 'DELETE_USER_BY_ID';
 export const DELETE_CATEGORY_BY_ID = 'DELETE_CATEGORY_BY_ID';
@@ -45,6 +51,7 @@ export const changeAddUserField = (value, name) => ({
   value,
   name,
 });
+
 
 export const logout = () => ({
   type: LOGOUT,
@@ -79,6 +86,12 @@ export const changeAddProductField = (value, name) => ({
   name,
 });
 
+export const changeEditProductField = (value, name) => ({
+  type: CHANGE_EDIT_PRODUCT_FIELD,
+  value,
+  name,
+});
+
 export const getCategoriesFromApi = () => ({
   type: GET_CATEGORIES_FROM_API,
 });
@@ -94,9 +107,18 @@ export const deleteProductById = (productId) => ({
     productId,
 });
 
-export const deleteProductInAdminStore = (productId) => ({
-  type: DELETE_PRODUCT_BY_ID_STORE,
+export const editProductById = (productId) => ({
+  type: EDIT_PRODUCT_BY_ID,
   productId,
+});
+export const editProductInAdminStore = (productId) => ({
+  type: EDIT_PRODUCT_BY_ID_STORE,
+  productId,
+});
+
+export const deleteProductInAdminStore = (payload) => ({
+  type: DELETE_PRODUCT_BY_ID_STORE,
+  payload,
 });
 
 //deleting a user

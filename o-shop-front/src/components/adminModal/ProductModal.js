@@ -10,7 +10,12 @@ import "react-toastify/dist/ReactToastify.css";
 const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
-    name, description, price, quantity, shop, category,
+    name, 
+    description, 
+    price, 
+    quantity, 
+    shop, 
+    category,
 
 }) => {
     const [showModal, setShowModal] = useState();

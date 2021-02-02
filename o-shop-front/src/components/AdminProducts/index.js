@@ -1,15 +1,40 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
 import ProductModal from '../../containers/ProductModal';
+import AdminField from '../../components/adminModal/AdminField/index'
 
-const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => {
-    useEffect(() => {
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+const AdminProducts = ({products, 
+    getProducts, 
+    deleteProduct, 
+    editProduct,
+    handleProductEdit, //handleLogin
+    changeProductField, // changeField
+    editName, 
+    editDescription, 
+    editPrice, 
+    editQuantity, 
+    editShop, 
+    editCategory, 
+    editImage
+}) => {
+    
+        useEffect(() => {
         getProducts();
         
     },[]);
+
+    const handleProductEditFormSubmit = (evt) => {
+        evt.preventDefault();
+        handleProductEdit();
+        console.log(handleProductEdit);
+    };
     const isAdmin = localStorage.getItem('isAdmin');
+    const [showModal, setShowModal] = useState();
 
 
     if(isAdmin == "true"){
@@ -81,7 +106,9 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <button id={product.id} 
-                                        onClick={() => EditProduct(product.id)}
+                                        onClick={() => {editProduct(product.id);
+                                            setShowModal(true) }}
+                                        
                                         className="text-indigo-600 hover:text-indigo-900">Edit</button>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -96,6 +123,135 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                         </table>
                         <div>
                             <ProductModal />
+                            <>
+
+            <button
+                className="bg-bgred invisible text-white active:bg-pink-600 font-bold uppercase text-sm p-6 rounded shadow hover:shadow-lg outline-none focus:outline-none m-4"
+                type="button"
+                style={{ transition: "all .15s ease" }}
+                onClick={() => setShowModal(true)}
+            >
+                Modifier Produit
+            </button>
+            {showModal ? (
+                <>
+                    <div
+                        className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none"
+                    >
+                        <ToastContainer
+                            position="bottom-right"
+                            autoClose={5000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss
+                            draggable
+                            pauseOnHover
+                        />
+                            
+                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
+                            
+                            {/*content*/}
+                            <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
+                                
+                                {/*header*/}
+                                <div className="flex items-start justify-between p-5 border-b border-solid border-gray-300 rounded-t">
+                                    <h3 className="text-3xl font-semibold">
+                                        Modifier le Produit               </h3>
+                                    <button
+                                        className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
+                                        onClick={() => setShowModal(false)}
+                                    >
+                                        <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
+                                    </button>
+                                </div>
+
+                                {/*body*/}
+                                <div className="relative p-6 flex-auto">
+                                    <form onSubmit={handleProductEditFormSubmit}>
+                                        <AdminField
+                                            name="name"
+                                            type="text"
+                                            placeholder="Nom du Produit"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={editName}
+                                        />
+
+                                        <AdminField
+                                            name="image"
+                                            type="text"
+                                            placeholder="Image"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={editImage}
+                                        />      
+
+                                        <AdminField
+                                            name="category"
+                                            type="text"
+                                            placeholder="Categorie"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={editCategory}
+                                        />
+                                        
+                                        <AdminField
+                                            name="price"
+                                            type="number"
+                                            min="1"
+                                            placeholder="Prix"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={editPrice}
+                                        />
+                                        <AdminField
+                                            name="description"
+                                            type="text"
+                                            placeholder="Description"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={editDescription}
+                                        />
+
+                                        <AdminField
+                                            name="quantity"
+                                            type="number"
+                                            placeholder="Quantite en stock"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={editQuantity}
+                                        />
+                                        
+                                        <AdminField
+                                            name="shop"
+                                            type="text"
+                                            placeholder="Magasin"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={editShop}
+                                        />
+                                            <button 
+                                                type="submit"
+                                                className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
+                                            >
+                                                OK
+                                            </button>
+                                    </form>
+                                </div>
+                                
+                                {/*footer*/}
+                                <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+                                    <button
+                                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                                        type="button"
+                                        style={{ transition: "all .15s ease" }}
+                                        onClick={() => setShowModal(false)}
+                                    >
+                                        Close
+                                    </button>   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="opacity-75 fixed inset-0 z-40 bg-black"></div>
+                </>
+            ) : null}
+        </>
                         </div>
                     </div>
                     </div>
