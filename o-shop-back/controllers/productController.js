@@ -106,5 +106,26 @@ module.exports = {
 
     },
 
+    updateQuantityById: async (request, response, next) => {
+        const newProduct = [];
+        const cart = request.body;
+        // console.log(cart);
+        for (const product of cart) {
+            const {id, qty} = product;
+
+            const newStock = await productDataMapper.updateQuantityById(id, qty);
+            newProduct.push(newStock);
+           
+            
+        }
+        console.log(newProduct);
+        response.status(200)
+        .json({
+            success: true,
+            message: "Quantity updated",
+            data: newProduct
+        });
+    },
+
     
 }

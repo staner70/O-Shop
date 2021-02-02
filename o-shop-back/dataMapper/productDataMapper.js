@@ -121,6 +121,16 @@ productDataMapper = {
 
         return result.rows[0];
     },
+
+    async updateQuantityById(id, newQuantity) {
+        // console.log(id, newQuantity, "<<<--DataMapper");
+        const result = await client.query(`UPDATE "product" SET quantity = quantity - $1 WHERE id = $2 RETURNING id,quantity`, [newQuantity, id]);
+        if (result.rowCount == 0) {
+            return null;
+        }
+        // console.log(result.rows[0], "<<<--- result requete");
+        return result.rows[0];
+    }
 };
 
 module.exports = productDataMapper;
