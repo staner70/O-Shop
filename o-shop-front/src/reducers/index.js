@@ -7,6 +7,7 @@ import shoppingReducer from './shop';
 import adminUserReducer from './adminUsers';
 import adminProductReducer from './adminProducts';
 import adminCategoryReducer from './adminCategories';
+import adminRole from './adminRole';
 
 // combineReducers : on lui donne un objet
 // en clé : le nom de la "tranche" de state
@@ -18,5 +19,6 @@ export default combineReducers({
   shop: shoppingReducer,
   adminuser: adminUserReducer,
   adminproduct: adminProductReducer,
-  admincategory:adminCategoryReducer,
+  admincategory: adminCategoryReducer,
+  adminrole: adminRole,
 });

@@ -10,17 +10,17 @@ import "react-toastify/dist/ReactToastify.css";
 const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
-    name, description, price, quantity, shop, category,
-
+    name, description, price, quantity,
+    // image, 
+    shop, category, categories,
+    
 }) => {
     const [showModal, setShowModal] = useState();
     const handleProductFormSubmit = (evt) => {
         evt.preventDefault();
         handleProduct();
-        console.log(handleProduct);
     };
     
-
     return (
         <>
 
@@ -60,7 +60,7 @@ const ProductModal = ({
                                         Ajouter un Produit               </h3>
                                     <button
                                         className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                                        onClick={() => setShowModal(false)}
+                                        onClick={() =>setShowModal(false)}
                                     >
                                         <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">×</span>
                                     </button>
@@ -77,16 +77,13 @@ const ProductModal = ({
                                             value={name}
                                         />
 
-                                        <AdminField
-                                            name="category"
-                                            type="text"
-                                            placeholder="Categorie"
-                                            onChange={changeProductField} // sera appelé avec value + name
-                                            value={category}
-                                        />
-
-                                        <FileField 
-                                        />
+                                        <select  value={category} onChange={(event)=>{changeProductField(event.target.value, "category");}} >
+                                            
+                                            <option value="" >---- choisissez une categorie----</option>
+                                            {categories.map((category)=>(
+                                                <option value={category.name} >{category.name}</option>
+                                            ))}
+                                        </select>
                                         
                                         <AdminField
                                             name="price"
@@ -96,6 +93,7 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={price}
                                         />
+                                        
                                         <AdminField
                                             name="description"
                                             type="text"

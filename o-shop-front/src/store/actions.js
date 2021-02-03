@@ -2,18 +2,22 @@ export const CHANGE_AUTH_FIELD = 'CHANGE_AUTH_FIELD';
 export const LOGOUT = 'LOGOUT';
 export const SEARCH_CHANGE_FIELD = 'SEARCH_CHANGE_FIELD';
 export const CHANGE_ADD_USER_FIELD = 'CHANGE_ADD_USER_FIELD';
+
 export const UPDATE_ADMIN_USERS = 'UPDATE_ADMIN_USERS';
 export const UPDATE_ADMIN_PRODUCTS = 'UPDATE_ADMIN_PRODUCTS';
 export const UPDATE_ADMIN_CATEGORIES = 'UPDATE_ADMIN_CATEGORIES';
+export const UPDATE_ADMIN_ROLES = 'UPDATE_ADMIN_ROLES';
+
 export const DELETE_PRODUCT_BY_ID_STORE = 'DELETE_PRODUCT_BY_ID_STORE;';
 export const DELETE_USER_BY_ID_STORE = 'DELETE_USER_BY_ID_STORE;';
 export const DELETE_CATEGORY_BY_ID_STORE = 'DELETE_CATEGORY_BY_ID_STORE;';
+
 
 // ACTION POUR MIDDLEWARE : 
 export const GET_USERS_FROM_API = 'GET_USERS_FROM_API';
 export const GET_PRODUCTS_FROM_API = 'GET_PRODUCTS_FROM_API';
 export const GET_CATEGORIES_FROM_API = 'GET_CATEGORIES_FROM_API';
-export const GET_CATEGORY_FROM_HOME = 'GET_CATEGORY_FROM_HOME';
+export const GET_ROLES_FROM_API = 'GET_ROLES_FROM_API';
 export const CHANGE_ADD_CATEGORY_FIELD = 'CHANGE_ADD_CATEGORY_FIELD';
 export const CHANGE_ADD_PRODUCT_FIELD = 'CHANGE_ADD_PRODUCT_FIELD';
 export const DELETE_PRODUCT_BY_ID = 'DELETE_PRODUCT_BY_ID';
@@ -86,8 +90,18 @@ export const getCategoriesFromApi = () => ({
 export const updateCategoriesAdmin = (list) => ({
   type: UPDATE_ADMIN_CATEGORIES,
   payload: {list},
-  
 })
+
+export const getRolesFromApi = () => ({
+  type: GET_ROLES_FROM_API,
+});
+
+export const updateRolesAdmin = (list) => ({
+  type: UPDATE_ADMIN_ROLES,
+  payload: {list},
+});
+
+
  //deleting a product
 export const deleteProductById = (productId) => ({
     type: DELETE_PRODUCT_BY_ID,

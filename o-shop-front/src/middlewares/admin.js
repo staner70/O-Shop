@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import { GET_USERS_FROM_API, updateUsersAdmin, 
   GET_PRODUCTS_FROM_API, updateProductsAdmin,  
   GET_CATEGORIES_FROM_API, updateCategoriesAdmin, 
+  GET_ROLES_FROM_API, updateRolesAdmin,
   DELETE_PRODUCT_BY_ID, deleteProductInAdminStore, 
   DELETE_USER_BY_ID, deleteUserInAdminStore,
   DELETE_CATEGORY_BY_ID, deleteCategoryInAdminStore, 
@@ -137,6 +138,7 @@ const admin = (store) => (next) => (action) => {
         const localtoken =  localStorage.getItem('token');
         const productconfig = {
           method: 'post',
+          // url: 'http://salih-taner.vpnuser.lan:3500/product',
           url: 'https://oshop-lyra.herokuapp.com/product',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
@@ -331,6 +333,29 @@ const admin = (store) => (next) => (action) => {
           });          
           // TODO LOADER ON 
           return;
+      }
+
+      case GET_ROLES_FROM_API: {
+        const localtoken =  localStorage.getItem('token');
+        const userconfig = {
+          method: 'get',
+          //url: 'http://salih-taner.vpnuser.lan:3500/role',
+          url: 'https://oshop-lyra.herokuapp.com/role',
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          }
+        };
+  
+        axios(userconfig)
+          .then((response) => {
+            if(response.data.success){
+              store.dispatch(updateRolesAdmin(response.data.data));
+            }else{
+              console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/role"));
+            }
+          }).catch((error)=> {console.error(error);});
+        break
       }
 
       default:
