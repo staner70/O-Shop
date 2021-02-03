@@ -134,7 +134,7 @@ const admin = (store) => (next) => (action) => {
         // ici, on va faire la requete pour le login
         // on commence par récupérer email et password
         // Double destructuration !
-        const { adminproduct: { name, description, price, quantity, product_image, shop, category } } = store.getState();
+        const { adminproduct: { name, description, price, quantity, image, shop, category } } = store.getState();
         const localtoken =  localStorage.getItem('token');
         const productconfig = {
           method: 'post',
@@ -150,6 +150,7 @@ const admin = (store) => (next) => (action) => {
             quantity,
             shop,
             category,
+            image,
           },
           
         };

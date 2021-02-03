@@ -11,8 +11,7 @@ const ProductModal = ({
     handleProduct, //handleLogin
     changeProductField, // changeField
     name, description, price, quantity,
-    // image, 
-    shop, category, categories,
+    image, shop, category, categories,
     
 }) => {
     const [showModal, setShowModal] = useState();
@@ -93,7 +92,7 @@ const ProductModal = ({
                                             onChange={changeProductField} // sera appelé avec value + name
                                             value={price}
                                         />
-                                        
+
                                         <AdminField
                                             name="description"
                                             type="text"
@@ -110,6 +109,14 @@ const ProductModal = ({
                                             value={quantity}
                                         />
                                         
+                                        <AdminField
+                                            name="image"
+                                            type="text"
+                                            placeholder="Lien de l'image"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={image}
+                                        />
+
                                         <AdminField
                                             name="shop"
                                             type="text"
