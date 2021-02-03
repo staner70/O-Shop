@@ -41,7 +41,7 @@ module.exports = {
 
     logOut: async (request, response, next) => {
        const date = new Date(Date.now() - 600000);
-        console.log(request);
+        
         const token = request.headers.cookie.split('=')[1];
         const { NODE_ENV } = process.env;
         console.log(date.toGMTString());
