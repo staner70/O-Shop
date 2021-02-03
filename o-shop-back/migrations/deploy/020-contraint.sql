@@ -15,7 +15,7 @@ ALTER TABLE "shop"
 ALTER TABLE "product"
     DROP CONSTRAINT product_shop_id_fkey,
     ADD CONSTRAINT product_shop_id_fkey 
-    FOREIGN KEY (shop_id) REFERENCES shop(id) ON DELETE CASCADE,
+    FOREIGN KEY (shop_id) REFERENCES shop(id),
     ADD CONSTRAINT product_name_unique  UNIQUE(name),
     ALTER price TYPE NUMERIC(18,2);
     
@@ -26,7 +26,7 @@ ALTER TABLE "user"
 ALTER TABLE "work"
    DROP CONSTRAINT work_shop_id_fkey
  , ADD  CONSTRAINT work_shop_id_fkey
-   FOREIGN KEY (shop_id) REFERENCES shop(id) ON DELETE CASCADE;
+   FOREIGN KEY (shop_id) REFERENCES shop(id) ;
 ALTER TABLE "work"
    DROP CONSTRAINT work_user_id_fkey
  , ADD  CONSTRAINT work_user_id_fkey
@@ -35,7 +35,7 @@ ALTER TABLE "work"
 ALTER TABLE "possess"
    DROP CONSTRAINT possess_category_id_fkey
  , ADD  CONSTRAINT possess_category_id_fkey
-   FOREIGN KEY (category_id) REFERENCES category(id) ON DELETE CASCADE;
+   FOREIGN KEY (category_id) REFERENCES category(id) ;
 ALTER TABLE "possess"
    DROP CONSTRAINT possess_product_id_fkey
  , ADD  CONSTRAINT possess_product_id_fkey

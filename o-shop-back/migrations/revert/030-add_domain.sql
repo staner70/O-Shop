@@ -10,7 +10,7 @@ ALTER TABLE "product"
     ALTER COLUMN "name" TYPE TEXT;
 
 ALTER TABLE "shop" 
-    ALTER COLUMN "name" TYPE TEXT
+    ALTER COLUMN "name" TYPE TEXT,
     ALTER COLUMN "adress" TYPE TEXT;
 
 ALTER TABLE "user" 

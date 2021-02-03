@@ -6,5 +6,4 @@
 030-add_domain 2021-01-26T13:25:03Z "Etudiant O'clock",,, <etudiant@teleporteur> # added domain constraint
 040-create-view 2021-01-25T20:24:53Z "Etudiant O'clock",,, <etudiant@teleporteur> # Create view for user and product
 050-trigger-function 2021-01-27T09:50:53Z "Etudiant O'clock",,, <etudiant@teleporteur> # add function with trigger for updated_at
-060-fts 2021-01-31T20:46:13Z "Etudiant O'clock",,, <etudiant@teleporteur> # Full Text Search
-065-view_fts 2021-02-01T09:10:42Z "Etudiant O'clock",,, <etudiant@teleporteur> # the view for Full Text Search
+
