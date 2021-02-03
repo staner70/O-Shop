@@ -1,7 +1,14 @@
+const { faLaptop } = require("@fortawesome/free-solid-svg-icons");
+
 module.exports = {
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
+    screems:{
+      'tablet': '640px',
+      
+    },
+
     extend: {
       height: {
         '80' : '80%',
