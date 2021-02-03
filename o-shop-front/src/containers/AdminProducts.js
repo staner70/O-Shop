@@ -10,7 +10,6 @@ const mapStateToProps = (state) => ({
     editPrice: state.adminproduct.editPrice,
     editDescription: state.adminproduct.editDescription,
     description: state.adminproduct.editDescription,
-
     editShop: state.adminproduct.editShop,
     editQuantity:state.adminproduct.editQuantity,
     editImage:state.adminproduct.editImage,

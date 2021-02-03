@@ -16,6 +16,7 @@ const ProductModal = ({
     quantity, 
     shop, 
     category,
+    image,
 
 }) => {
     const [showModal, setShowModal] = useState();
@@ -90,9 +91,14 @@ const ProductModal = ({
                                             value={category}
                                         />
 
-                                        <FileField 
+                                        <AdminField
+                                            name="image"
+                                            type="text"
+                                            placeholder="URL de l'image"
+                                            onChange={changeProductField} // sera appelé avec value + name
+                                            value={image}
                                         />
-                                        
+                                    
                                         <AdminField
                                             name="price"
                                             type="number"

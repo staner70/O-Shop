@@ -16,7 +16,6 @@ const AdminProducts = ({products,
     changeAdminProductField, // changeField
     fieldName, 
     editDescription, 
-    description,
     editPrice, 
     editQuantity, 
     editShop, 
@@ -172,50 +171,51 @@ const AdminProducts = ({products,
                                 <div className="relative p-6 flex-auto">
                                     <form onSubmit={handleProductEditFormSubmit}>
                                         <Field
-                                            name="name"
+                                            name="editName"
                                             type="text"
                                             placeholder="Nom du Produit"
-                                            onChange={changeAdminProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} 
                                             value={fieldName}
                                         />
 
                                         <Field
-                                            name="image"
+                                            name="editImage"
                                             type="text"
                                             placeholder="Image"
-                                            onChange={changeAdminProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField}
                                             value={editImage}
                                         />      
 
                                         <Field
-                                            name="category"
+                                            name="editCategory"
                                             type="text"
                                             placeholder="Categorie"
-                                            onChange={changeAdminProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} 
                                             value={editCategory}
                                         />
                                         
                                         <Field
-                                            name="price"
+                                            name="editPrice"
                                             type="number"
                                             min="1"
                                             placeholder="Prix"
-                                            onChange={changeAdminProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField}
                                             value={editPrice}
                                         />
+
                                         <Field
-                                            name="description"
+                                            name="editDescription"
                                             type="text"
                                             placeholder="Description"
-                                            onChange={changeAdminProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField} 
                                             value={editDescription}
                                         />
 
                                         <Field
-                                            name="quantity"
+                                            name="editQuantity"
                                             type="number"
                                             placeholder="Quantite en stock"
-                                            onChange={changeAdminProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField}
                                             value={editQuantity}
                                         />
                                         
@@ -223,7 +223,7 @@ const AdminProducts = ({products,
                                             name="shop"
                                             type="text"
                                             placeholder="Magasin"
-                                            onChange={changeAdminProductField} // sera appelé avec value + name
+                                            onChange={changeAdminProductField}
                                             value={editShop}
                                         />
                                             <button 

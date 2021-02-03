@@ -139,7 +139,7 @@ const admin = (store) => (next) => (action) => {
       }
 
       case 'SUBMIT_PRODUCT': {
-        const { adminproduct: { name, description, price, quantity, shop, category } } = store.getState();
+        const { adminproduct: { name, image, description, price, quantity, shop, category } } = store.getState();
         const localtoken =  localStorage.getItem('token');
         const productconfig = {
           method: 'post',
@@ -155,6 +155,7 @@ const admin = (store) => (next) => (action) => {
             quantity,
             shop,
             category,
+            image,
           },
           
         };
@@ -196,7 +197,7 @@ const admin = (store) => (next) => (action) => {
         const idItem = localStorage.getItem('id');
         const productconfig = {
           method: 'patch',
-          url: `http://salih-taner.vpnuser.lan:3500/product/${idItem}`,
+          url: `https://oshop-lyra.herokuapp.com/product/${idItem}`,
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
           },
@@ -249,7 +250,7 @@ const admin = (store) => (next) => (action) => {
         console.log(cart);
         const paymentconfig = {
           method: 'patch',
-          url: 'http://salih-taner.vpnuser.lan:3500/product/cart',
+          url: 'https://oshop-lyra.herokuapp.com/product/cart',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'
