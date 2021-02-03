@@ -3,6 +3,9 @@ import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
 import ProductModal from '../../containers/ProductModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => {
     useEffect(() => {
@@ -20,7 +23,7 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                
                 
                     <div className="w-full ">
-                        <div2 className=" w-full">
+                        <div className=" w-full">
                                 <div className=" flex   align-justify 	 bg-gray-50 rounded-lg ">
                                     
                                     <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
@@ -49,10 +52,10 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                                     </div>
                                     
                                 </div>
-                        <div1 className="bg-white divide-y divide-gray-200">
+                        <div className="bg-white divide-y divide-gray-200">
         
                                 {products.map((product) => (
-                                    <div className="w-full flex alig-justify	2">
+                                    <div className="w-full flex alig-justify	">
                                        
                                             <div className="w-2/12">
                                                 {product.name}
@@ -75,23 +78,23 @@ const AdminProducts = ({products, getProducts, deleteProduct, EditProduct }) => 
                                             Chez momo
                                         </div>
                                         <div className="w-2/12">
-                                            {product.quantite}
+                                            {product.quantity}
                                         </div>
                                         <div className="w-2/12">
                                             <button id={product.id} 
                                             onClick={() => EditProduct(product.id)}
-                                            className="text-indigo-600 hover:text-indigo-900">Edit</button>
+                                            className="text-indigo-600 hover:text-indigo-900"><FontAwesomeIcon icon={faEdit} /></button>
                                         </div>
                                         <div className="w-2/12">
                                             <button id={product.id}
                                             onClick={() => deleteProduct(product.id)} 
-                                            className=" ">Delete</button>
+                                            className=" "><FontAwesomeIcon icon={faTrashAlt} /></button>
                                         </div>
                                     </div>
                                 ))}
                             
-                        </div1>
-              </div2>
+                        </div>
+              </div>
                         <div>
                             <ProductModal />
                         </div>

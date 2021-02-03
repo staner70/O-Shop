@@ -3,6 +3,9 @@ import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
 import CategoryModal from '../../containers/CategoryModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 const AdminCategories = ({categories, getCategories, deleteCategory}) => {
     useEffect(() => {
@@ -20,23 +23,23 @@ const AdminCategories = ({categories, getCategories, deleteCategory}) => {
             <div className="w-full	">
                     <div className="w-4/5">
                    
-                        <div className=" w-full flex align-justify bg-gray-50 rounded-lg ">
-                            
-                            <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Nom
-                            </div>
-                            <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Couleur
-                            </div>
-                            
-                            <div className="w-1/4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Edit
-                            </div>
-                            <div className="w-1/4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                Delete
-                            </div>
-                            
-                        </div>
+                                <div className=" w-full flex align-justify bg-gray-50 rounded-lg ">
+                                    
+                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Nom
+                                    </div>
+                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Couleur
+                                    </div>
+                                    
+                                    <div className="w-1/4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Edit
+                                    </div>
+                                    <div className="w-1/4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Delete
+                                    </div>
+                                    
+                                </div>
 
 
                       
@@ -56,12 +59,12 @@ const AdminCategories = ({categories, getCategories, deleteCategory}) => {
                                     </div>
                                     <div className="w-1/4 px-6 py-4   text-sm font-medium">
                                         <button 
-                                        className="w-1/4 text-indigo-600 hover:text-indigo-900">Edit</button>
+                                        className="w-1/4 text-indigo-600 hover:text-indigo-900"><FontAwesomeIcon icon={faEdit} /></button>
                                     </div>
                                     <div className="w-1/4 px-6 py-4   text-sm font-medium">
                                         <button id={category.id}
                                         onClick={() => deleteCategory(category.id)} 
-                                        className="text-indigo-600 hover:text-indigo-900">Delete</button>
+                                        className="text-indigo-600 hover:text-indigo-900"><FontAwesomeIcon icon={faTrashAlt} /></button>
                                     </div>
                                 </div>
                             ))}
