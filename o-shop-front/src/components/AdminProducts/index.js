@@ -8,12 +8,17 @@ import Field from './Field';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const AdminProducts = ({products, 
+const AdminProducts = ({
+    products, 
     getProducts, 
+
     deleteProduct, 
+
     editProduct,
+
     handleProductEdit, //handleLogin
     changeAdminProductField, // changeField
+    
     fieldName, 
     editDescription, 
     editPrice, 
@@ -107,8 +112,7 @@ const AdminProducts = ({products,
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                         <button id={product.id} 
                                         onClick={() => {editProduct(product.id);
-                                            setShowModal(true) }}
-                                        
+                                                        setShowModal(true) }}
                                         className="text-indigo-600 hover:text-indigo-900">Edit</button>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -124,7 +128,7 @@ const AdminProducts = ({products,
                         <div>
                             <ProductModal />
                             <>
-
+                {/* Modale pour edition du produit */}
             <button
                 className="bg-bgred invisible text-white active:bg-pink-600 font-bold uppercase text-sm p-6 rounded shadow hover:shadow-lg outline-none focus:outline-none m-4"
                 type="button"
@@ -253,6 +257,7 @@ const AdminProducts = ({products,
                 </>
             ) : null}
         </>
+        {/* Fin de la modale Edit */}
                         </div>
                     </div>
                     </div>

@@ -18,7 +18,10 @@ import {
   SEARCH_CHANGE_FIELD, 
   EDIT_PRODUCT_BY_ID, 
   SUBMIT_EDIT_PRODUCT,
+  SUBMIT_EDIT_CATEGORY,
   SEND_PAYMENT_TO_API,
+  EDIT_CATEGORY_BY_ID,
+  EDIT_CATEGORY_BY_ID_STORE,
 } from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
@@ -243,6 +246,56 @@ const admin = (store) => (next) => (action) => {
         });
         break;
       }
+      case SUBMIT_EDIT_CATEGORY: {
+        const { admincategory: { editCategoryName, editCategoryColor, } } = store.getState();
+        const localtoken =  localStorage.getItem('token');
+        console.log('API SUBMIT EDIT CATEGORY');
+        console.log(editCategoryName);
+        console.log(editCategoryColor);
+        const idCategoryItem = localStorage.getItem('CategoryId');
+        const productconfig = {
+          method: 'patch',
+          url: `https://oshop-lyra.herokuapp.com/category/${idCategoryItem}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+          },
+          data: { // body de la requete (contenu du json)
+            name:editCategoryName,
+            color:editCategoryColor
+          },
+          
+        };
+  
+        axios(productconfig) // on lance la requete...
+          .then((response) => { // cas de réussite
+            // on envoie une action, pour sauvegarder les données dans le reducer
+            // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+            
+            toast.success('Votre Categorie a bien ete modifiee', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+  
+          })
+          .catch((error) => { // cas d'erreur
+          console.log(error);
+          toast.error(`${error}`, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+        });
+        break;
+      }
 
       case SEND_PAYMENT_TO_API: {
         const { adminproduct: { cart } } = store.getState();
@@ -398,6 +451,38 @@ const admin = (store) => (next) => (action) => {
                 payload : response.data.data});
             }else{
               console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/product/${action.productId}`));
+            }
+          })
+          .catch((error)=> {
+            console.error(error);
+          });          
+          // TODO LOADER ON 
+          return;
+      }
+
+      case EDIT_CATEGORY_BY_ID: {
+        const localtoken =  localStorage.getItem('token');
+        console.log('API ADMIN EDIT CATEGORY BY ID');
+
+        const editconfig = {
+          method: 'get',
+          url: `https://oshop-lyra.herokuapp.com/category/${action.categoryId}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          }
+        };
+        axios(editconfig)
+          .then((response) => {
+            if(response.data.success){
+              console.log('je suis dans mon MW edit category');
+              console.log(response.data);
+              localStorage.setItem('CategoryId', response.data.data.id)
+              store.dispatch({
+                type: EDIT_CATEGORY_BY_ID_STORE,
+                payload : response.data.data});
+            }else{
+              console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/category/${action.categoryId}`));
             }
           })
           .catch((error)=> {

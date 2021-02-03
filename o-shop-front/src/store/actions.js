@@ -13,6 +13,10 @@ export const EDIT_PRODUCT_BY_ID_STORE ='EDIT_PRODUCT_BY_ID_STORE';
 export const SUBMIT_EDIT_PRODUCT ='SUBMIT_EDIT_PRODUCT';
 export const SEND_PAYMENT_TO_API='SEND_PAYMENT_TO_API';
 export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
+export const CHANGE_EDIT_CATEGORY_FIELD = 'CHANGE_EDIT_CATEGORY_FIELD';
+export const EDIT_CATEGORY_BY_ID_STORE = 'EDIT_CATEGORY_BY_ID_STORE';
+export const EDIT_CATEGORY_BY_ID = 'EDIT_CATEGORY_BY_ID';
+export const SUBMIT_EDIT_CATEGORY= 'SUBMIT_EDIT_CATEGORY';
 
 
 // ACTION POUR MIDDLEWARE : 
@@ -58,8 +62,6 @@ export const sendPaymentToAPI = (value) => ({
   payload:value
 })
 
-
-
 export const logout = () => ({
   type: LOGOUT,
 });
@@ -99,6 +101,12 @@ export const changeEditProductField = (value, name) => ({
   name,
 });
 
+export const changeEditCategoryField = (value, name) => ({
+  type: CHANGE_EDIT_CATEGORY_FIELD,
+  value,
+  name,
+});
+
 export const getCategoriesFromApi = () => ({
   type: GET_CATEGORIES_FROM_API,
 });
@@ -119,7 +127,10 @@ export const editProductById = (productId) => ({
   productId,
 });
 
-
+export const editCategoryById = (categoryId) => ({
+  type: EDIT_CATEGORY_BY_ID,
+  categoryId,
+});
 export const deleteProductInAdminStore = (payload) => ({
   type: DELETE_PRODUCT_BY_ID_STORE,
   payload,

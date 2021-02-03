@@ -4,14 +4,14 @@ import PropTypes from 'prop-types';
 
 
 // == Composant
-const UserField = ({
+const Field = ({
   value,
   type,
   name,
   placeholder,
   onChange,
 }) => {
-  const handleUserChange = (evt) => {
+  const handleAdminChange = (evt) => {
     onChange(evt.target.value, name);
   };
 
@@ -22,30 +22,32 @@ const UserField = ({
       <input
         // React - state
         value={value}
-        onChange={handleUserChange}
+        onChange={handleAdminChange}
         // infos de base
         id={inputId}
         type={type}
         className="outline-none"
         placeholder={placeholder}
         name={name}
+        min="1"
+        maxLength="40"
+        required
       />
     </div>
   );
 };
 
-UserField.propTypes = {
+Field.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
   placeholder: PropTypes.string.isRequired,
-  onUserChange: PropTypes.func.isRequired,
 };
 
 // Valeurs par défaut pour les props
-UserField.defaultProps = {
+Field.defaultProps = {
   value: '',
 };
 
 // == Export
-export default UserField;
+export default Field;
