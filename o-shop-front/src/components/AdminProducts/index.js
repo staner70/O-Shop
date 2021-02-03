@@ -16,6 +16,7 @@ const AdminProducts = ({products,
     changeAdminProductField, // changeField
     fieldName, 
     editDescription, 
+    description,
     editPrice, 
     editQuantity, 
     editShop, 

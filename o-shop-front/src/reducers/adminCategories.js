@@ -27,19 +27,13 @@ const reducer = (oldState = initialState, action={}) => {
 
             };
 
-        case 'CATEGORY_ADD_SUCCESS':
+        case CATEGORY_ADD_SUCCESS:
             return {
                 ...oldState,
                 done: true,
                 name: '',
                 color: '',
             };
-
-        case 'HIDDE_ALERT':
-        return {
-            ...oldState,
-            done: false,
-        };
 
         case DELETE_CATEGORY_BY_ID_STORE:{
             const list = [...oldState.list];
