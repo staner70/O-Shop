@@ -93,10 +93,10 @@ export const changeAddProductField = (value, name) => ({
   name,
 });
 
-export const changeEditProductField = (field, text) => ({
+export const changeEditProductField = (value, name) => ({
   type: CHANGE_EDIT_PRODUCT_FIELD,
-  field,
-  text,
+  value,
+  name,
 });
 
 export const getCategoriesFromApi = () => ({

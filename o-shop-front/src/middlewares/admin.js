@@ -19,7 +19,6 @@ import {
   EDIT_PRODUCT_BY_ID, 
   SUBMIT_EDIT_PRODUCT,
   SEND_PAYMENT_TO_API,
-  PAYMENT_SUCCESS
 } from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
@@ -147,6 +146,7 @@ const admin = (store) => (next) => (action) => {
           url: 'https://oshop-lyra.herokuapp.com/product',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
+            'content-type': 'application/json'
           },
           data: { 
             name,
