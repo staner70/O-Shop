@@ -27,7 +27,7 @@ const reducer = (oldState = initialState, action={}) => {
 
             };
 
-        case CATEGORY_ADD_SUCCESS:
+        case 'CATEGORY_ADD_SUCCESS':
             return {
                 ...oldState,
                 done: true,
