@@ -37,7 +37,7 @@
                     });
 
                     socket.on('updateProduct', function(msg) {
-                    console.log(msg.quantity, "<<<Client");
+                    // console.log(msg.quantity, "<<<Client");
                     // messages.textContent = "";
                     for (const key in msg) {
                         var item = document.createElement('li');
