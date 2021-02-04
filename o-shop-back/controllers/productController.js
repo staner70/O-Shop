@@ -39,9 +39,9 @@ const productController = {
            product.stock = `Attention rupture de stock : ${product.quantity}`;
         }
         io.on('connection', (socket) => {
-            socket.on('updateProduct', (msg) => {
+            // socket.on('updateProduct', (msg) => {
                 io.emit('updateProduct', product);
-            });
+            // });
         });
         response.status(200).json({
             success: true,
@@ -100,9 +100,9 @@ const productController = {
         }
        
         io.on('connection', (socket) => {
-            socket.on('updateProduct', (msg) => {
+            // socket.on('updateProduct', (msg) => {
                 io.emit('updateProduct', product);
-            });
+            // });
         });
         response.status(200).json({
             success: true,
