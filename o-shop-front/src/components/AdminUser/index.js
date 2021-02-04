@@ -6,7 +6,7 @@ import UserModal from '../../containers/UserModal';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
-
+import SizeForbidden from '../SizeForbidden';
 
 const AdminUser = ({users, getUsers, deleteUser,roles, getRoles}) => {
     useEffect(()=>{
@@ -17,6 +17,8 @@ const AdminUser = ({users, getUsers, deleteUser,roles, getRoles}) => {
     if(isAdmin == "true"){
         return (
             <>
+                      <SizeForbidden />
+
                 < Header />
                 < NavAdmin />
             
@@ -75,7 +77,7 @@ const AdminUser = ({users, getUsers, deleteUser,roles, getRoles}) => {
                                         <div className="w-1/6 px-6 py-4 whitespace-nowrap  text-sm font-medium">
                                             <button  id={user.id}
                                             onClick={() => deleteUser(user.id)}  
-                                            className="text-indigo-600 hover:text-indigo-900"><FontAwesomeIcon icon={faTrashAlt} /></button>
+                                            className="text-gray-400 hover:text-indigo-900"><FontAwesomeIcon icon={faTrashAlt} /></button>
                                         </div>
                                     </div>
                                 ))}

@@ -4,6 +4,7 @@ import { CookiesProvider } from "react-cookie";
 import { Provider } from 'react-redux';
 import store from './store';
 import { Router } from 'react-router'
+import { ConfirmationDialogProvider } from 'material-ui-confirmation';
 
 import createBrowserHistory from 'history/createBrowserHistory'
 
@@ -18,10 +19,13 @@ ReactDOM.render(
   <Router history={history}>
       <Provider store={store}>
       <CookiesProvider>
+      <ConfirmationDialogProvider>
         <App />
-        </CookiesProvider>,
+        </ConfirmationDialogProvider>
+        </CookiesProvider>
       </Provider>
   </Router>,
+
 
   document.getElementById('root')
 );

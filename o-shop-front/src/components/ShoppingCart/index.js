@@ -8,10 +8,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
 import { faPrint } from '@fortawesome/free-solid-svg-icons';
 
-const socket = io('https://oshop-lyra.herokuapp.com');
+// const socket = io('https://oshop-lyra.herokuapp.com', {secure : true});
 
 const ShoppingCart = ({cart}) => {
-  const [isConnected, setIsConnected] = useState(socket.connected);
   const [totalPrice, setTotalPrice] = useState(0);
   const [totalItems, setTotalItems] = useState(0);
   const dispatch= useDispatch();
@@ -19,18 +18,12 @@ const ShoppingCart = ({cart}) => {
   const handleClick = (event) => {
     window.print()
   };
-  
+
   useEffect(() => {
-    socket.on('connect', () => {
-      setIsConnected(true);
-    });
-    socket.on('disconnect', () => {
-      setIsConnected(false);
-    });
-    socket.on('updateProduct', payload => {
-            // update messages
-            dispatch({ type: GET_PRODUCTS_FROM_API }, payload)
-        });
+
+    // socket.on('updateProduct',  payload => {
+    //         dispatch({ type: GET_PRODUCTS_FROM_API }, payload)
+    //     });
 
     let items = 0;
     let price = 0;
@@ -48,22 +41,25 @@ const ShoppingCart = ({cart}) => {
 <Print single name="foo">
 
 
-          <div className="tracking-wider h-4/5">
+          <div className="tracking-wider h-4/5 bg-gray-100 h-screen">
             <div className="bg-white p-2 flex align-justify bg-cart rounded-b-xl mx-4 text-gray-500">
               <div className="w-2/6 lg:w-1/2 ">Produit</div>
               <div className="w-1/6 lg:w-1/5">Prix</div>
               <div className="w-1/4 lg:w-1/5">Quantité</div>
-              <div className="lg:invisible lg:w-0 w-1/6">Sous-total</div>
+              <div className="lg:invisible sm:invisible md:invisible xl:visible lg:w-0 xl:w-1/6">Sous-total</div>
               <div className="w-1/6 lg:w-1/12"></div>
 
             </div>
-            <div className="h-4/5">
+            <div className="h-full bg-gray-100">
+
+            <div className="h-5/6 bg-gray-100 overscroll-contain ">
             {cart.map((item) => (
               <ShoppingCartItem
                 key={item.id}
                 item={item}
               />
             ))}
+            </div>
             </div>
             <div className="bg-white flex flex-col bg-cart rounded-lg h-64 mx-4 pt-2 items-center sticky bottom-0 right-0 w-full">
 

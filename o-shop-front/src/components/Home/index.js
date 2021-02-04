@@ -4,6 +4,7 @@ import Header from '../Header';
 import ShopArticles from '../../containers/ShopArticles';
 import Category from '../../containers/NavCategory';
 import ShoppingCart from '../../containers/ShoppingCart';
+import SizeForbidden from '../SizeForbidden';
 
 
 const Home = () => {
@@ -22,7 +23,7 @@ const Home = () => {
                 <Category />
 
               </div>
-
+                <SizeForbidden/>
                 <ShopArticles />
 
             </div>
