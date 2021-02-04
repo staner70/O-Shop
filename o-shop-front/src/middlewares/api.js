@@ -44,7 +44,7 @@ const api = (store) => (next) => (action) => {
           const cookies = new Cookies();
           cookies.set(`Bearer: ${response.data.access_token}`, "{ path: '/' }");
           localStorage.setItem('role', role);
-          history.push('/home');
+          history.push('/home/category/Accessoires');
 
 
         })

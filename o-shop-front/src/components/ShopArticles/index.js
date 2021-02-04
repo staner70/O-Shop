@@ -1,15 +1,13 @@
 import React from 'react';
-import SearchBar from '../../containers/SearchBar';
 import Article from '../../containers/Article';
 
-const ShopArticles = ({changeSearchField, searchInputValue, articles}) => {
+const ShopArticles = ({articles}) => {
   
     return  (
     
-    <div className="bg-white flex flex-wrap h-screen">
-    <SearchBar />
+    <div className="bg-primary flex ">
     
-    <div className="flex p-1 flex-wrap overflow-auto h-full">
+    <div className="flex p-1 flex-wrap overflow-auto h-screen justify-center">
 
     {articles.map((article) => (
       <Article key={article.id} article={article} />  

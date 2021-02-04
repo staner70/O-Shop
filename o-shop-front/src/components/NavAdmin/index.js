@@ -8,16 +8,6 @@ const NavAdmin = () => (
                 <NavLink
                     activeClassName="focus:ring-gray-600 ring ring-transparent"
                     exact
-                    to="/admin"
-                    className="shadow-md p-2 bg-white rounded-md"
-                >
-                    Accueil
-                </NavLink>
-            </li>
-            <li className="m-4">
-                <NavLink
-                    activeClassName="focus:ring-gray-600 ring ring-transparent"
-                    exact
                     to="/admin/user"
                     className="shadow-md p-2 bg-white rounded-md"
                 >

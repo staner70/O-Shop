@@ -17,7 +17,11 @@ module.exports = {
       backgroundColor: theme => ({
         ...theme('colors'),
         'bgred': '#cc3e37',
-        'bgback': '#ebe8de'
+        'bgback': '#ebe8de',
+        'primary':'#e7eafc',
+        'secondary': '#fbfbfe',
+        'bgcart': '#f3f4fe',
+        'profil': '#1dc9b7',
        })
     }
   },

@@ -11,11 +11,11 @@ const ShoppingCartItem = ({ item, adjustQty, removeFromCart }) => {
   };
 
   return (
-    <div className=" flex inline-block flex m-4 " >
-          <div className=" w-2/6 ">{item.name}</div>
-          <div className="w-1/6">{item.price}€</div>
+    <div className=" flex inline-block flex m-4" >
+          <div className=" w-2/6 lg:w-1/2">{item.name}</div>
+          <div className="w-1/6 lg:w-1/5">{item.price}€</div>
 
-          <div className="w-1/4">
+          <div className="w-1/4 lg:w-1/5">
                 <input 
                     className="text-center w-10 b-3 rounded-lg"
                     min="1"
@@ -26,10 +26,10 @@ const ShoppingCartItem = ({ item, adjustQty, removeFromCart }) => {
                     onChange={onChangeHandler}
                 />
             </div>
-            <div className="w-1/6">{item.price*item.qty} €</div>
+            <div className="w-1/6 lg:invisible lg:w-0">{item.price*item.qty} €</div>
 
             
-          <div className="w-1/6"> 
+          <div className="w-1/6 lg:w-1/12"> 
             <FontAwesomeIcon 
                 icon={faTrashAlt} 
                 onClick={() => removeFromCart(item.id)}

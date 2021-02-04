@@ -76,19 +76,19 @@ const AdminProducts = ({
                             <div className="bg-white divide-y divide-gray-200">
                                 {products.map((product) => (
                                     <div className="w-full flex alig-justify	">
-                                        <div className="w-2/12">
+                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {product.name}
                                         </div>
-                                        <div className="w-2/12">
+                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {product.price}
                                         </div>
-                                        <div className="w-2/12">
+                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             O'Shop
                                         </div>
-                                        <div className="w-2/12">
+                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {product.quantity}
                                         </div>
-                                        <div className="w-2/12">
+                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             <button
                                                 id={product.id}
                                                 onClick={() => {

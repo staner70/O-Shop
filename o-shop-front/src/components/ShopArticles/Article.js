@@ -3,9 +3,9 @@ import React from "react";
 const Article = ({ article, addToCart }) => {
   return (
     <>
-         <div className="mx-auto flex justify-evenly">
+         <div className="flex justify-center">
          <div
-           className="rounded-lg shadow-lg p-2 flex flex-col items-center h-72 m-2	"
+           className="bg-white rounded-lg shadow-lg p-1 flex flex-col justify-center items-center h-72 w-60 m-2	"
          >        
 
            <img
@@ -29,7 +29,7 @@ const Article = ({ article, addToCart }) => {
              </div>
            </div>
            <span
-             className="uppercase hover:text-white focus:ring-blue-300 hover:bg-blue-500 undefined bg-blue-300 ring-2 focus:ring-offset-2 ring-transparent transform duration-300 ease-in-out focus:outline-none text-white p-2 w-full rounded-lg font-semibold"
+             className="select-none	 uppercase hover:text-white focus:ring-blue-300 undefined bg-profil ring-2 focus:ring-offset-2 ring-transparent transform duration-300 ease-in-out focus:outline-none text-white p-2 w-full rounded-lg font-normal"
              id={article.id}
              onClick={() => addToCart(article.id)}
             

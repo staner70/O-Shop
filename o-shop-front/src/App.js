@@ -12,7 +12,7 @@ import AccessForbidden from './components/AccessForbidden';
 function App(props) {
   
   return (
-    <div className="App bg-bgback">
+    <div className="App bg-white">
       <Switch>
         <Route exact path= '/'>
           <LoginForm />
@@ -23,7 +23,7 @@ function App(props) {
         <Route exact path= '/home/category/:id'>
           <Home />
         </Route>
-        <Route exact path= '/admin'>
+        <Route exact path= '/admin/'>
         <Admin />
         </Route>
         <Route exact path= '/admin/user'>
