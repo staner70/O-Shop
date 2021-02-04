@@ -16,9 +16,10 @@ const productController = {
         } else {
             products = await productDataMapper.getAllProduct();
         }
-        io.on('connection', (socket) => {
         
-                io.emit('updateProduct', products);
+        io.on('connection', (socket) => {
+            console.log("<<<socket on connection getAllproducts");
+            io.emit('updateProduct', products);
         });
 
         response.status(200).json({
@@ -60,7 +61,7 @@ const productController = {
             socket.on('updateProduct', (msg) => {
                 io.emit('updateProduct', productsByCategory);
             });
-          });
+        });
         
         response.status(200).json({
             
@@ -155,9 +156,9 @@ const productController = {
             // io.emit('updateProduct', newStock);
         }
         io.on('connection', (socket) => {
-            socket.on('updateProduct', (msg) => {
+          
                 io.emit('updateProduct', newProduct);
-            });
+          
         });
         console.log(newProduct);
         response.status(200)

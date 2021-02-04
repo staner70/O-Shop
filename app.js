@@ -18,14 +18,20 @@ app.use(express.urlencoded({ extended: true }));
 app.use(router);
 
 // create pipeline socket.io
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+const server = require('http').createServer(app);
+const options = {};
+const io = require('socket.io')(server,options);
+
+
+
 io.on('connection', (socket) => {
    console.log('Client connected');
-   app.set('socketio', io);
+   
    socket.on('disconnect', () => console.log('Client disconnected'));
  });
 
-http.listen(process.env.PORT || 3500, () => {
+ app.set('socketio', io);
+
+ server.listen(process.env.PORT || 3500, () => {
    console.log('Server running on :', process.env.PORT);
 });
