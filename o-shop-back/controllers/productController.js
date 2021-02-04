@@ -17,10 +17,9 @@ const productController = {
             products = await productDataMapper.getAllProduct();
         }
         io.on('connection', (socket) => {
-            socket.on('updateProduct', (msg) => {
+        
                 io.emit('updateProduct', products);
-            });
-          });
+        });
 
         response.status(200).json({
             success: true,
