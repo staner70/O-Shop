@@ -18,7 +18,7 @@ app.use(express.static(path.join(__dirname, 'o-shop-back/public')));
 app.use(express.urlencoded({ extended: true }))
 app.use(router);
 
-app.set('socketio', io);
+// app.set('socketio', io);
 
 
 http.listen(process.env.PORT || 3500, () => {
