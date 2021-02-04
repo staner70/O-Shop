@@ -4,7 +4,7 @@ const CustomError = require('../helpers/CustomError');
 const productController = {
     
     getAllProducts: async (request, response, next) => {
-        let io = request.app.get('socketio');
+        // let io = request.app.get('socketio');
         let products;
         
         console.log(request.query.search, "<<-- Search query");
@@ -16,7 +16,7 @@ const productController = {
         } else {
             products = await productDataMapper.getAllProduct();
         }
-        io.emit('updateProduct', products);
+        // io.emit('updateProduct', products);
         
         response.status(200).json({
             success: true,
