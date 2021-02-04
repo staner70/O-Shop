@@ -1,11 +1,15 @@
 import { 
   UPDATE_ADMIN_PRODUCTS, 
   CHANGE_ADD_PRODUCT_FIELD,
+  CHANGE_EDIT_PRODUCT_FIELD,
   DELETE_PRODUCT_BY_ID_STORE,
   ADD_TO_CART, 
   REMOVE_FROM_CART, 
   ADJUST_ITEM_QTY, 
-  SEARCH_CHANGE_FIELD
+  SEARCH_CHANGE_FIELD,
+  EDIT_PRODUCT_BY_ID_STORE,
+  SEND_PAYMENT_TO_API,
+  PAYMENT_SUCCESS
 } from '../store/actions';
 
 export const initialState = {
@@ -20,22 +24,39 @@ export const initialState = {
   done: false,
   NotDone: false,
   search: '',
+  editName:'',
+  editPrice:'',
+  editQuantity:'',
+  editDescription:'',
+  editShop:'',
+  editImage:'',
 
 }
 
 const reducer = (oldState = initialState, action={}) => {
   switch (action.type) {
     case UPDATE_ADMIN_PRODUCTS:
+      console.log('update admin product');
+
         return{
             ...oldState,
             ...action.payload,
         }
     
     case CHANGE_ADD_PRODUCT_FIELD:
+      console.log('change add product field');
+
         return {
             ...oldState,
             [action.name]: action.value,
         };
+
+    case CHANGE_EDIT_PRODUCT_FIELD:
+      console.log('change edit product field');
+        return {
+            ...oldState,
+            [action.name]: action.value,
+          };
 
     case 'PRODUCT_ADD_SUCCESS':
         return {
@@ -48,6 +69,12 @@ const reducer = (oldState = initialState, action={}) => {
             image:'',
             shop:'OSHOP',
         };
+
+    case PAYMENT_SUCCESS:
+        return {
+          ...oldState,
+          cart:[],
+          };
 
     case 'PRODUCT_ADD_FAILED':
         return {
@@ -62,11 +89,34 @@ const reducer = (oldState = initialState, action={}) => {
             list: list.filter((product) =>(product.id !== action.productId)),
         } 
     }
+
+    case EDIT_PRODUCT_BY_ID_STORE:{
+      console.log('dans mon edit product id store');
+
+      return{
+          ...oldState,
+          editName: action.payload.name,
+          editDescription: action.payload.description,
+          editPrice: action.payload.price,
+          editQuantity: action.payload.quantity,
+          editShop: action.payload.shop,
+          editCategory: action.payload.category[0],
+          editImage: action.payload.image,
+        } 
+      }
+  
+
   
     case SEARCH_CHANGE_FIELD:
       return {
         ...oldState,
         [action.name]: action.value,
+      }
+
+    case SEND_PAYMENT_TO_API:
+      return {
+        ...oldState,
+        value: action.value
       }
 
     case ADD_TO_CART:

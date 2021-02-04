@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 
 // == Composant
-const AdminField = ({
+const Field = ({
   value,
   type,
   name,
@@ -30,13 +30,14 @@ const AdminField = ({
         placeholder={placeholder}
         name={name}
         min="1"
+        maxLength="40"
         required
       />
     </div>
   );
 };
 
-AdminField.propTypes = {
+Field.propTypes = {
   value: PropTypes.string,
   type: PropTypes.string,
   name: PropTypes.string.isRequired,
@@ -44,9 +45,9 @@ AdminField.propTypes = {
 };
 
 // Valeurs par défaut pour les props
-AdminField.defaultProps = {
+Field.defaultProps = {
   value: '',
 };
 
 // == Export
-export default AdminField;
+export default Field;

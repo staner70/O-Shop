@@ -11,6 +11,16 @@ export const UPDATE_ADMIN_ROLES = 'UPDATE_ADMIN_ROLES';
 export const DELETE_PRODUCT_BY_ID_STORE = 'DELETE_PRODUCT_BY_ID_STORE;';
 export const DELETE_USER_BY_ID_STORE = 'DELETE_USER_BY_ID_STORE;';
 export const DELETE_CATEGORY_BY_ID_STORE = 'DELETE_CATEGORY_BY_ID_STORE;';
+export const EDIT_PRODUCT_BY_ID ='EDIT_PRODUCT_BY_ID';
+export const EDIT_PRODUCT_BY_ID_STORE ='EDIT_PRODUCT_BY_ID_STORE';
+export const SUBMIT_EDIT_PRODUCT ='SUBMIT_EDIT_PRODUCT';
+export const SEND_PAYMENT_TO_API='SEND_PAYMENT_TO_API';
+export const PAYMENT_SUCCESS = 'PAYMENT_SUCCESS';
+export const CHANGE_EDIT_CATEGORY_FIELD = 'CHANGE_EDIT_CATEGORY_FIELD';
+export const EDIT_CATEGORY_BY_ID_STORE = 'EDIT_CATEGORY_BY_ID_STORE';
+export const EDIT_CATEGORY_BY_ID = 'EDIT_CATEGORY_BY_ID';
+export const SUBMIT_EDIT_CATEGORY= 'SUBMIT_EDIT_CATEGORY';
+
 
 
 // ACTION POUR MIDDLEWARE : 
@@ -20,6 +30,7 @@ export const GET_CATEGORIES_FROM_API = 'GET_CATEGORIES_FROM_API';
 export const GET_ROLES_FROM_API = 'GET_ROLES_FROM_API';
 export const CHANGE_ADD_CATEGORY_FIELD = 'CHANGE_ADD_CATEGORY_FIELD';
 export const CHANGE_ADD_PRODUCT_FIELD = 'CHANGE_ADD_PRODUCT_FIELD';
+export const CHANGE_EDIT_PRODUCT_FIELD = 'CHANGE_EDIT_PRODUCT_FIELD';
 export const DELETE_PRODUCT_BY_ID = 'DELETE_PRODUCT_BY_ID';
 export const DELETE_USER_BY_ID = 'DELETE_USER_BY_ID';
 export const DELETE_CATEGORY_BY_ID = 'DELETE_CATEGORY_BY_ID';
@@ -38,10 +49,10 @@ export const changeAuthField = (value, name) => ({
   value,
 });
 
-export const searchChangeField = (field, text) => ({
+export const searchChangeField = (value, name) => ({
   type: SEARCH_CHANGE_FIELD,
-  field,
-  text,
+  value,
+  name,
 });
 
 export const changeAddUserField = (value, name) => ({
@@ -49,6 +60,11 @@ export const changeAddUserField = (value, name) => ({
   value,
   name,
 });
+
+export const sendPaymentToAPI = (value) => ({
+  type: SEND_PAYMENT_TO_API,
+  payload:value
+})
 
 export const logout = () => ({
   type: LOGOUT,
@@ -83,6 +99,18 @@ export const changeAddProductField = (value, name) => ({
   name,
 });
 
+export const changeEditProductField = (value, name) => ({
+  type: CHANGE_EDIT_PRODUCT_FIELD,
+  value,
+  name,
+});
+
+export const changeEditCategoryField = (value, name) => ({
+  type: CHANGE_EDIT_CATEGORY_FIELD,
+  value,
+  name,
+});
+
 export const getCategoriesFromApi = () => ({
   type: GET_CATEGORIES_FROM_API,
 });
@@ -108,9 +136,18 @@ export const deleteProductById = (productId) => ({
     productId,
 });
 
-export const deleteProductInAdminStore = (productId) => ({
-  type: DELETE_PRODUCT_BY_ID_STORE,
+export const editProductById = (productId) => ({
+  type: EDIT_PRODUCT_BY_ID,
   productId,
+});
+
+export const editCategoryById = (categoryId) => ({
+  type: EDIT_CATEGORY_BY_ID,
+  categoryId,
+});
+export const deleteProductInAdminStore = (payload) => ({
+  type: DELETE_PRODUCT_BY_ID_STORE,
+  payload,
 });
 
 //deleting a user
@@ -161,3 +198,4 @@ export const adjustItemQty = (itemID, qty) => {
     },
   };
 };
+

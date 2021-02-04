@@ -10,7 +10,6 @@ const CategoryModal = ({
     changeCategoryField, // changeField
     name,
     color,
-    isDone
 
 }) => {
     const [showModal, setShowModal] = useState();

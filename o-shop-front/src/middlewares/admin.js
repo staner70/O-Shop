@@ -1,14 +1,22 @@
 import axios from 'axios';
 import { toast } from "react-toastify";
 
-import { GET_USERS_FROM_API, updateUsersAdmin, 
+import { 
+  GET_USERS_FROM_API,updateUsersAdmin, 
   GET_PRODUCTS_FROM_API, updateProductsAdmin,  
   GET_CATEGORIES_FROM_API, updateCategoriesAdmin, 
-  GET_ROLES_FROM_API, updateRolesAdmin,
-  DELETE_PRODUCT_BY_ID, deleteProductInAdminStore, 
+  DELETE_PRODUCT_BY_ID, deleteProductInAdminStore,
+  EDIT_PRODUCT_BY_ID_STORE,
   DELETE_USER_BY_ID, deleteUserInAdminStore,
   DELETE_CATEGORY_BY_ID, deleteCategoryInAdminStore, 
-  SEARCH_CHANGE_FIELD} from '../store/actions';
+  SEARCH_CHANGE_FIELD, 
+  EDIT_PRODUCT_BY_ID, 
+  SUBMIT_EDIT_PRODUCT,
+  SUBMIT_EDIT_CATEGORY,
+  SEND_PAYMENT_TO_API,
+  EDIT_CATEGORY_BY_ID,
+  EDIT_CATEGORY_BY_ID_STORE,
+} from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
   switch (action.type) {
@@ -23,7 +31,7 @@ const admin = (store) => (next) => (action) => {
             'Authorization': `Bearer: ${localtoken}`, 
             'Content-Type': 'application/json'
           },
-          data: { // body de la requete (contenu du json)
+          data: {
             username,
             password,
             first_name,
@@ -34,11 +42,8 @@ const admin = (store) => (next) => (action) => {
           
         };
   
-        axios(userconfig) // on lance la requete...
-          .then((response) => { // cas de réussite
-            // on envoie une action, pour sauvegarder les données dans le reducer
-            // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-            
+        axios(userconfig) 
+          .then((response) => { 
             toast.success('Votre Utilisateur a bien ete ajoute', {
               position: "bottom-right",
               autoClose: 5000,
@@ -48,7 +53,7 @@ const admin = (store) => (next) => (action) => {
               draggable: true,
               progress: undefined,
               });
-            }).catch((error) => { // cas d'erreur
+            }).catch((error) => { 
             console.log(error);
               toast.error('Erreur dans votre ajout de utilisateur!', {
                 position: "bottom-right",
@@ -131,10 +136,7 @@ const admin = (store) => (next) => (action) => {
       }
 
       case 'SUBMIT_PRODUCT': {
-        // ici, on va faire la requete pour le login
-        // on commence par récupérer email et password
-        // Double destructuration !
-        const { adminproduct: { name, description, price, quantity, image, shop, category } } = store.getState();
+        const { adminproduct: { name, image, description, price, quantity, shop, category } } = store.getState();
         const localtoken =  localStorage.getItem('token');
         const productconfig = {
           method: 'post',
@@ -142,8 +144,9 @@ const admin = (store) => (next) => (action) => {
           url: 'https://oshop-lyra.herokuapp.com/product',
           headers: { 
             'Authorization': `Bearer: ${localtoken}`, 
+            'content-type': 'application/json'
           },
-          data: { // body de la requete (contenu du json)
+          data: { 
             name,
             description,
             price,
@@ -151,6 +154,59 @@ const admin = (store) => (next) => (action) => {
             shop,
             category,
             image,
+          },
+          
+        };
+  
+        axios(productconfig)
+          .then((response) => { 
+            
+            toast.success('Votre Produit a bien ete ajoute', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+  
+          })
+          .catch((error) => { // cas d'erreur
+          console.log(error);
+          toast.error(`${error}`, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+        });
+        break;
+      }
+      case SUBMIT_EDIT_PRODUCT: {
+        const { adminproduct: { editName, editDescription, editPrice, editImage, editQuantity, editShop, editCategory } } = store.getState();
+        const localtoken =  localStorage.getItem('token');
+        console.log('API SUBMIT EDIT PRODUCT');
+        console.log(editName);
+        console.log(editCategory);
+        const idItem = localStorage.getItem('id');
+        const productconfig = {
+          method: 'patch',
+          url: `https://oshop-lyra.herokuapp.com/product/${idItem}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+          },
+          data: { // body de la requete (contenu du json)
+            name:editName,
+            description:editDescription,
+            price: editPrice,
+            quantity:editQuantity,
+            shop: editShop,
+            category: editCategory,
+            image : editImage
           },
           
         };
@@ -185,7 +241,87 @@ const admin = (store) => (next) => (action) => {
         });
         break;
       }
+      case SUBMIT_EDIT_CATEGORY: {
+        const { admincategory: { editCategoryName, editCategoryColor, } } = store.getState();
+        const localtoken =  localStorage.getItem('token');
+        console.log('API SUBMIT EDIT CATEGORY');
+        console.log(editCategoryName);
+        console.log(editCategoryColor);
+        const idCategoryItem = localStorage.getItem('CategoryId');
+        const productconfig = {
+          method: 'patch',
+          url: `https://oshop-lyra.herokuapp.com/category/${idCategoryItem}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+          },
+          data: { // body de la requete (contenu du json)
+            name:editCategoryName,
+            color:editCategoryColor
+          },
+          
+        };
+  
+        axios(productconfig) // on lance la requete...
+          .then((response) => { // cas de réussite
+            // on envoie une action, pour sauvegarder les données dans le reducer
+            // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
+            
+            toast.success('Votre Categorie a bien ete modifiee', {
+              position: "bottom-right",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              });
+  
+          })
+          .catch((error) => { // cas d'erreur
+          console.log(error);
+          toast.error(`${error}`, {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            });
+        });
+        break;
+      }
 
+      case SEND_PAYMENT_TO_API: {
+        const { adminproduct: { cart } } = store.getState();
+        const localtoken =  localStorage.getItem('token');
+        console.log(cart);
+        const paymentconfig = {
+          method: 'patch',
+          url: 'https://oshop-lyra.herokuapp.com/product/cart',
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          },data:cart
+        };
+  
+        axios(paymentconfig)
+          .then((response) => {
+            console.log(response);
+            store.dispatch({type: 'PAYMENT_SUCCESS'})
+            toast.success('Votre categorie a bien ete ajoute', {
+            position: "bottom-right",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+          });
+            
+          }).catch((error)=> {console.error(error);});
+        break
+      }
 
       case GET_CATEGORIES_FROM_API: {
         const localtoken =  localStorage.getItem('token');
@@ -277,6 +413,71 @@ const admin = (store) => (next) => (action) => {
               store.dispatch(deleteProductInAdminStore(action.productId));
             }else{
               console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/product/${action.productId}`));
+            }
+          })
+          .catch((error)=> {
+            console.error(error);
+          });          
+          // TODO LOADER ON 
+          return;
+      }
+
+
+      case EDIT_PRODUCT_BY_ID: {
+        const localtoken =  localStorage.getItem('token');
+        console.log('API ADMIN EDIT PRODUCT BY ID');
+
+        const userconfig = {
+          method: 'get',
+          url: `https://oshop-lyra.herokuapp.com/product/${action.productId}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          }
+        };
+        axios(userconfig)
+          .then((response) => {
+            if(response.data.success){
+              console.log('je suis dans mon MW edit product');
+              console.log(response.data);
+              localStorage.setItem('id', response.data.data.id)
+              store.dispatch({
+                type: EDIT_PRODUCT_BY_ID_STORE,
+                payload : response.data.data});
+            }else{
+              console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/product/${action.productId}`));
+            }
+          })
+          .catch((error)=> {
+            console.error(error);
+          });          
+          // TODO LOADER ON 
+          return;
+      }
+
+      case EDIT_CATEGORY_BY_ID: {
+        const localtoken =  localStorage.getItem('token');
+        console.log('API ADMIN EDIT CATEGORY BY ID');
+
+        const editconfig = {
+          method: 'get',
+          url: `https://oshop-lyra.herokuapp.com/category/${action.categoryId}`,
+          headers: { 
+            'Authorization': `Bearer: ${localtoken}`, 
+            'Content-Type': 'application/json'
+          }
+        };
+        axios(editconfig)
+          .then((response) => {
+            if(response.data.success){
+              console.log('je suis dans mon MW edit category');
+              console.log(response.data);
+              localStorage.setItem('CategoryId', response.data.data.id)
+              store.dispatch({
+                type: EDIT_CATEGORY_BY_ID_STORE,
+                payload : response.data.data});
+            }else{
+              console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/category/${action.categoryId}`));
             }
           })
           .catch((error)=> {
