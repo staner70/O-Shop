@@ -18,15 +18,13 @@ const io = require('socket.io')(http,{
    cookie: false
  });
 
-app.set('socketio', io);
-
-
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'o-shop-back/public')));
 app.use(express.urlencoded({ extended: true }))
 app.use(router);
 
+app.set('socketio', io);
 
 
 http.listen(process.env.PORT || 3500, () => {
