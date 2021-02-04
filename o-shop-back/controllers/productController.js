@@ -35,7 +35,9 @@ const productController = {
         } if (product.quantity <= 0) {
            product.stock = `Attention rupture de stock : ${product.quantity}`;
         }
-        io.emit('updateProduct', product);
+        io.on("connection", (socket) => {
+            io.emit('updateProduct', products);
+        });
         response.status(200).json({
             success: true,
             data: product
@@ -49,7 +51,10 @@ const productController = {
         if (productsByCategory == null) {
             return next(new CustomError("Category not exist", 400));
         }
-        io.emit('updateProduct', productsByCategory);
+        io.on("connection", (socket) => {
+            io.emit('updateProduct', productsByCategory);
+        });
+        
         response.status(200).json({
             
             success: true,
@@ -86,7 +91,9 @@ const productController = {
            product.stock = `Attention rupture de stock : ${product.quantity}`;
         }
        
-        io.emit('updateProduct', product);
+        io.on("connection", (socket) => {
+            io.emit('updateProduct', products);
+        });
         response.status(200).json({
             success: true,
             message: stock || `product ${id} updated`,
