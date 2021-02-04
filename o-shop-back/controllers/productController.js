@@ -1,9 +1,10 @@
 const productDataMapper = require('../dataMapper/productDataMapper');
 const CustomError = require('../helpers/CustomError');
 
-module.exports = {
-
+const productController = {
+    
     getAllProducts: async (request, response, next) => {
+        let io = request.app.get('socketio');
         let products;
         
         console.log(request.query.search, "<<-- Search query");
@@ -15,6 +16,8 @@ module.exports = {
         } else {
             products = await productDataMapper.getAllProduct();
         }
+        io.emit('updateProduct', products);
+        
         response.status(200).json({
             success: true,
             data: products
@@ -32,7 +35,7 @@ module.exports = {
         } if (product.quantity <= 0) {
            product.messages = `Attention rupture de stock : ${product.quantity}`;
         }
-        io.emit('Server to Client', product);
+        io.emit('updateProduct', product);
         response.status(200).json({
             success: true,
             data: product
@@ -40,11 +43,13 @@ module.exports = {
     },
 
     getProductsByCategoryId: async (request, response, next) => {
+        let io = request.app.get('socketio');
         const {categoryId} = request.params;
         const productsByCategory = await productDataMapper.getProductsByCategory(categoryId);
         if (productsByCategory == null) {
             return next(new CustomError("Category not exist", 400));
         }
+        io.emit('updateProduct', productsByCategory);
         response.status(200).json({
             
             success: true,
@@ -80,7 +85,8 @@ module.exports = {
         } if (product.quantity <= 0) {
            product.stock = `Attention rupture de stock : ${product.quantity}`;
         }
-        io.emit('Server to Client', product);
+       
+        io.emit('updateProduct', product);
         response.status(200).json({
             success: true,
             message: stock || `product ${id} updated`,
@@ -130,9 +136,9 @@ module.exports = {
 
             const newStock = await productDataMapper.updateQuantityById(id, qty);
             newProduct.push(newStock);
-            io.emit('Server to Client', product);
+            // io.emit('updateProduct', newStock);
         }
-        
+        io.emit('updateProduct', newProduct);
         console.log(newProduct);
         response.status(200)
         .json({
@@ -144,3 +150,5 @@ module.exports = {
 
     
 }
+
+module.exports = productController;
