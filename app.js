@@ -22,6 +22,12 @@ app.use(router);
 
 
 
+io.on('connection', (socket) => {
+   console.log(`Client connected', ${socket.id}`);
+   socket.on('disconnect', () => console.log('Client disconnected'));
+ });
+
+
 http.listen(process.env.PORT || 3500, () => {
    console.log('Server running on :', process.env.PORT);
 });

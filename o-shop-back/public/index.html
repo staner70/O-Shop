@@ -37,17 +37,17 @@
                     });
 
                     socket.on('updateProduct', function(msg) {
-                    console.log(msg.quantity, "<<<Client");
+                    // console.log(msg.quantity, "<<<Client");
                     // messages.textContent = "";
-                    for (const key in msg) {
-                        var item = document.createElement('li');
-                        item.textContent = key + ' : ' +  msg[key];
-                        messages.appendChild(item);
-                        console.log(msg);
-                    }
-                    // var item = document.createElement('li');
-                    // item.textContent = JSON.parse(msg);
-                    // messages.appendChild(item);
+                    // for (const key in msg) {
+                    //     var item = document.createElement('li');
+                    //     item.textContent = key + ' : ' +  msg[key];
+                    //     messages.appendChild(item);
+                    //     // console.log(msg);
+                    // }
+                    var item = document.createElement('li');
+                    item.textContent = JSON.stringify(msg, null, 2);
+                    messages.appendChild(item);
                     window.scrollTo(0, document.body.scrollHeight);
                     });
 
