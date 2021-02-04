@@ -24,7 +24,6 @@ const Header = () => (
         </div>
 
         <div className="flex justify-end w-6/12	 p-2">
-      <ProductModal />
             <ProfilModal />        
         </div>
     </div>

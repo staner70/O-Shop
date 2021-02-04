@@ -5,7 +5,7 @@ import  LoginForm from './containers/LoginForm';
 import Home from './components/Home';
 import Admin from './containers/Admin';
 import AdminUser from './containers/AdminUser';
-import AdminProducts from './containers/AdminProducts';
+import AdminProducts from './containers/AdminProduct';
 import AdminCategories from './containers/AdminCategory';
 import AccessForbidden from './components/AccessForbidden';
 
