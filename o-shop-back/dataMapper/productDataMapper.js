@@ -126,7 +126,7 @@ productDataMapper = {
 
     async updateQuantityById(id, newQuantity) {
         // console.log(id, newQuantity, "<<<--DataMapper");
-        const result = await client.query(`UPDATE "product" SET quantity = quantity - $1 WHERE id = $2 RETURNING id,quantity`, [newQuantity, id]);
+        const result = await client.query(`UPDATE "product" SET quantity = quantity - $1 WHERE id = $2 RETURNING *`, [newQuantity, id]);
         if (result.rowCount == 0) {
             return null;
         }

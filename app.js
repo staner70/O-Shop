@@ -7,6 +7,12 @@ const router = require('./o-shop-back/routers');
 
 const app = express();
 
+// create pipeline socket.io
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+
+app.set('socketio', io);
+
 
 app.use(cors("*"));
 app.use(express.json());
@@ -16,6 +22,6 @@ app.use(router);
 
 
 
-app.listen(process.env.PORT || 3500, () => {
+http.listen(process.env.PORT || 3500, () => {
    console.log('Server running on :', process.env.PORT);
 });

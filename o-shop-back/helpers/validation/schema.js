@@ -4,9 +4,9 @@ const client = require('../../dataMapper/client');
 
     // PRODUCT
     const productSchema = Joi.object({
-        name:       Joi.string().min(3).max(30).required(),
+        name:       Joi.string().min(2).max(30).required(),
         price:      Joi.number().required(),
-        description:Joi.string().max(300).required(),
+        description:Joi.string().max(400).required(),
         image:      Joi.string(), 
         quantity:   Joi.number().required(),
         category:   Joi.string().required()
@@ -38,8 +38,8 @@ const client = require('../../dataMapper/client');
     // USER
     
     const userSchema =  Joi.object({
-        first_name: Joi.string().min(3).max(30).required(),
-        last_name:  Joi.string().min(3).max(30).required(),
+        first_name: Joi.string().min(2).max(30).required(),
+        last_name:  Joi.string().min(1).max(30).required(),
         username:   Joi.string().min(3).max(30).required(),
         password:   Joi.string().min(3).max(30).required(),
         role:       Joi.string().min(3).max(10).required()

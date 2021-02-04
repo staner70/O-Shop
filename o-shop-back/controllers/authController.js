@@ -44,7 +44,7 @@ module.exports = {
         
         const token = request.headers.cookie.split('=')[1];
         const { NODE_ENV } = process.env;
-        console.log(date.toGMTString());
+        
         return response.status(200).cookie("access_token",token,{
             httpOnly: true,
             expires: new Date(Date.now() -  1000 * 60),
