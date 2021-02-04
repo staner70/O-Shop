@@ -4,6 +4,9 @@ import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
 import CategoryModal from '../../containers/CategoryModal';
 import Field from './Field';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit } from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -42,60 +45,62 @@ const AdminCategories = ({
             < Header />
             < NavAdmin />
         
-            <div className="flex flex-col">
-            <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
-                <div className=" flex shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-                    <table className="w-2/4 divide-y divide-gray-200">
-                    <thead className="bg-gray-50">
-                        <tr>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Nom
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Couleur
-                        </th>
-                        
-                        <th scope="col" className="relative px-6 py-3">
-                            <span className="sr-only">Edit</span>
-                        </th>
-                        <th scope="col" className="relative px-6 py-3">
-                            <span className="sr-only">Delete</span>
-                        </th>
-                        </tr>
-                    </thead>
-                    <tbody className="bg-white divide-y divide-gray-200">
+            <div className="w-full	">
+                <div className= "flex">
+                    <div className="w-4/5">
+                                <div className="flex align-justify bg-gray-50 ">
+                                    
+                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Nom
+                                    </div>
+                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Couleur
+                                    </div>
+                                    
+                                    <div className="w-1/4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Edit
+                                    </div>
+                                    <div className="w-1/4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                        Delete
+                                    </div>
+                                    
+                                </div>
+                               
+                              <div className="bg-white divide-y divide-gray-200">
 
-                        {categories.map((category) =>(
-                            <tr className="text-left">
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="text-sm font-medium text-gray-900">
+                            {categories.map((category) =>(
+                                <div className="w-full flex align-justify ">
+                                    
+                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-900 uppercase tracking-wider">
                                         {category.name}
                                     </div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap">
-                                    <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full w-6 h-6"
+                                
+                                    <div className="w-1/4 px-6 py-4 ">
+                                        <div className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full w-6 h-6"
                                      style={{backgroundColor: category.color}}></div>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                <button id={category.id} 
+                                </div>
+                                <div className="w-1/4 px-6 py-4   text-sm font-medium">
+                                    <button 
+                                        id={category.id} 
                                         onClick={() => {editCategory(category.id);
                                         setShowModal(true) }}
-                                        className="text-indigo-600 hover:text-indigo-900">
-                                        Edit
-                                </button>
-                                </td>
-                                <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                    <button id={category.id}
-                                    onClick={() => deleteCategory(category.id)} 
-                                    className="text-indigo-600 hover:text-indigo-900">Delete</button>
-                                </td>
-                            </tr>
-                        ))}
-                        
-                    </tbody>
-                    </table>
-                    <div>
+                                    >
+                                        <FontAwesomeIcon icon={faEdit} />
+                                    </button>
+                                </div>
+                                <div className="w-1/4 px-6 py-4   text-sm font-medium">
+                                    <button 
+                                        id={category.id}
+                                        onClick={() => deleteCategory(category.id)} 
+                                    >
+                                        <FontAwesomeIcon icon={faTrashAlt} />
+                                    </button>
+                                </div>
+                            </div>
+                            ))}
+                        </div>
+                    </div>    
+                    <div className="w-1/5" >
                         <CategoryModal />
 
                         {/* Modale pour edition du produit */}
@@ -189,9 +194,9 @@ const AdminCategories = ({
         {/* Fin de la modale Edit */}
                     </div>
                 </div>
-                </div>
+                
             </div>
-            </div>
+            
     
         </>
     )} return (<AccessForbidden />)
