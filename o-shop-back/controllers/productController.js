@@ -16,8 +16,9 @@ const productController = {
         } else {
             products = await productDataMapper.getAllProduct();
         }
-        io.emit('updateProduct', products);
         
+        io.emit('updateProduct', products);
+
         response.status(200).json({
             success: true,
             data: products

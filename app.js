@@ -8,18 +8,18 @@ const router = require('./o-shop-back/routers');
 const app = express();
 app.use(cors("*"));
 
-// create pipeline socket.io
-const http = require('http').createServer(app);
-const io = require('socket.io')(http);
+
 
 
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'o-shop-back/public')));
 app.use(express.urlencoded({ extended: true }));
 
-
 app.use(router);
 
+// create pipeline socket.io
+const http = require('http').createServer(app);
+const io = require('socket.io')(http);
 io.on('connection', (socket) => {
    console.log('Client connected');
    app.set('socketio', io);
