@@ -23,6 +23,9 @@ module.exports = {
         if (error.code === '23514') {
             customError = new CustomError("Please provide a valid input; color must be in hexadecimal",400);
         }
+        if (error.code === '23503') {
+            customError = new CustomError("Cannot delete this property because it is associated with other object", 400);
+        }
         console.log(customError.message,customError.status);
 
         response.status(customError.status || 500)
