@@ -4,6 +4,7 @@ const client = require('../../dataMapper/client');
 
     // PRODUCT
     const productSchema = Joi.object({
+        bar_code:   Joi.number(),
         name:       Joi.string().min(2).max(30).required(),
         price:      Joi.number().required(),
         description:Joi.string().max(400).required(),
