@@ -11,14 +11,13 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import SizeForbidden from '../SizeForbidden';
 import { useConfirmationDialog } from 'material-ui-confirmation';
-import { IconButton } from '@material-ui/core';
-
+// import { getCategoriesFromApi } from '../../store/actions';
 
 
 const AdminProducts = ({
     products, getProducts,
     deleteProduct,
-    categories, getCategories,
+    categories,getCategories,
 
     handleProductEdit, //handleLogin
     changeAdminProductField, // changeField
@@ -37,7 +36,7 @@ const AdminProducts = ({
     useEffect(() => {
 
         getProducts();
-
+        getCategories();
     }, []);
 
     const handleProductEditFormSubmit = (evt) => {

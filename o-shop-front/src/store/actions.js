@@ -20,7 +20,9 @@ export const CHANGE_EDIT_CATEGORY_FIELD = 'CHANGE_EDIT_CATEGORY_FIELD';
 export const EDIT_CATEGORY_BY_ID_STORE = 'EDIT_CATEGORY_BY_ID_STORE';
 export const EDIT_CATEGORY_BY_ID = 'EDIT_CATEGORY_BY_ID';
 export const SUBMIT_EDIT_CATEGORY= 'SUBMIT_EDIT_CATEGORY';
-
+export const EDIT_USER_BY_ID ='EDIT_USER_BY_ID';
+export const EDIT_USER_BY_ID_STORE ='EDIT_USER_BY_ID_STORE';
+export const SUBMIT_EDIT_USER ='SUBMIT_EDIT_USER';
 
 
 // ACTION POUR MIDDLEWARE : 
@@ -31,6 +33,7 @@ export const GET_ROLES_FROM_API = 'GET_ROLES_FROM_API';
 export const CHANGE_ADD_CATEGORY_FIELD = 'CHANGE_ADD_CATEGORY_FIELD';
 export const CHANGE_ADD_PRODUCT_FIELD = 'CHANGE_ADD_PRODUCT_FIELD';
 export const CHANGE_EDIT_PRODUCT_FIELD = 'CHANGE_EDIT_PRODUCT_FIELD';
+export const CHANGE_EDIT_USER_FIELD = "CHANGE_EDIT_USER_FIELD";
 export const DELETE_PRODUCT_BY_ID = 'DELETE_PRODUCT_BY_ID';
 export const DELETE_USER_BY_ID = 'DELETE_USER_BY_ID';
 export const DELETE_CATEGORY_BY_ID = 'DELETE_CATEGORY_BY_ID';
@@ -111,6 +114,12 @@ export const changeEditCategoryField = (value, name) => ({
   name,
 });
 
+export const changeEditUserField = (value, name) => ({
+  type: CHANGE_EDIT_USER_FIELD,
+  value,
+  name,
+});
+
 export const getCategoriesFromApi = () => ({
   type: GET_CATEGORIES_FROM_API,
 });
@@ -145,6 +154,12 @@ export const editCategoryById = (categoryId) => ({
   type: EDIT_CATEGORY_BY_ID,
   categoryId,
 });
+
+export const editUserById = (userId) => ({
+  type: EDIT_USER_BY_ID,
+  userId,
+});
+
 export const deleteProductInAdminStore = (payload) => ({
   type: DELETE_PRODUCT_BY_ID_STORE,
   payload,

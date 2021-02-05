@@ -36,8 +36,6 @@ export const initialState = {
 const reducer = (oldState = initialState, action={}) => {
   switch (action.type) {
     case UPDATE_ADMIN_PRODUCTS:
-      console.log('update admin product');
-
         return{
             ...oldState,
             ...action.payload,
