@@ -80,7 +80,7 @@ const UserModal = ({
                                         <AdminField
                                             name="first_name"
                                             type="text"
-                                            placeholder="Prenom"
+                                            placeholder="Prénom"
                                             onChange={changeUserField} // sera appelé avec value + name
                                             value={first_name}
                                         />
