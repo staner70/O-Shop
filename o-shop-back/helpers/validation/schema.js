@@ -71,6 +71,39 @@ const client = require('../../dataMapper/client');
                     }),
     });
 
+    // update user
+    const updateUserSchema =  Joi.object({
+        first_name: Joi.string().min(2).max(30).required(),
+        last_name:  Joi.string().min(1).max(30).required(),
+        username:   Joi.string().min(3).max(30).required(),
+        role:       Joi.string().min(3).max(10).required()
+                        .external(async (value) => {
+                            //vérifier que value correspond à un id existant
+                            const role = await client.query(`SELECT * FROM "role" WHERE name = $1`, [value]);
+
+                            if (role.rowCount == 0) {
+                                throw new Error ('role.invalid');
+        
+                            }
+
+                            return value;
+                        
+                        }),
+        shop:       Joi.string()
+                    .required()
+                    .external(async (value) => {
+                        //vérifier que value correspond à un id existant
+                        const shop = await client.query(`SELECT * FROM "shop" WHERE name = $1`, [value]);
+                        console.log(value, "<---shop");
+                        if (shop.rowCount == 0) {
+                            throw new Error ('shop.invalid');
+                        }
+
+                        return value;
+                    
+                    }),
+    });
+
     // SHOP
     const shopSchema = Joi.object({
         name:       Joi.string().min(3).max(30).required(),
@@ -88,4 +121,4 @@ const client = require('../../dataMapper/client');
         name:       Joi.string().min(3).max(30).required(),
     })
 
-module.exports = { productSchema, userSchema, shopSchema, categorySchema, roleSchema  };
+module.exports = { productSchema, userSchema, updateUserSchema, shopSchema, categorySchema, roleSchema  };

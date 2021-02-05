@@ -6,7 +6,7 @@ const productController = {
     getAllProducts: async (request, response, next) => {
        
         let products;
-        
+        let stock = null;
         console.log(request.query.search, "<<-- Search query");
         if (request.query.search) {
             let searchObject = request.query.search.split(' ');
@@ -16,7 +16,15 @@ const productController = {
         } else {
             products = await productDataMapper.getAllProduct();
         }
-        
+        // console.log(products);
+        for (const product of products) {
+            
+            if (product.quantity <= 3) {
+                product.stock = `Attention stock très bas : ${product.quantity}`;
+            } if (product.quantity <= 0) {
+               product.stock = `Attention rupture de stock : ${product.quantity}`;
+            }
+        }
 
 
         response.status(200).json({
