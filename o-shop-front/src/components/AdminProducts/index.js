@@ -191,22 +191,6 @@ const AdminProducts = ({
                                                             />
 
                                                             <Field
-                                                                name="editImage"
-                                                                type="text"
-                                                                placeholder="Image"
-                                                                onChange={changeAdminProductField}
-                                                                value={editImage}
-                                                            />
-
-                                                            <Field
-                                                                name="editCategory"
-                                                                type="text"
-                                                                placeholder="Categorie"
-                                                                onChange={changeAdminProductField}
-                                                                value={editCategory}
-                                                            />
-
-                                                            <Field
                                                                 name="editPrice"
                                                                 type="number"
                                                                 min="1"
@@ -214,6 +198,22 @@ const AdminProducts = ({
                                                                 onChange={changeAdminProductField}
                                                                 value={editPrice}
                                                             />
+                                                            
+                                                            <select  value={editCategory} onChange={(event)=>{changeAdminProductField(event.target.value, "editCategory");}} >
+                                            
+                                                                <option value="" >---- choisissez une categorie----</option>
+                                                                {categories.map((category)=>(
+                                                                    <option value={category.name} >{category.name}</option>
+                                                                ))}
+                                                            </select>
+
+                                                            {/* <Field
+                                                                name="editCategory"
+                                                                type="text"
+                                                                placeholder="Categorie"
+                                                                onChange={changeAdminProductField}
+                                                                value={editCategory}
+                                                            /> */}
 
                                                             <Field
                                                                 name="editDescription"
@@ -229,6 +229,14 @@ const AdminProducts = ({
                                                                 placeholder="Quantite en stock"
                                                                 onChange={changeAdminProductField}
                                                                 value={editQuantity}
+                                                            />
+                                                            
+                                                            <Field
+                                                                name="editImage"
+                                                                type="text"
+                                                                placeholder="Image"
+                                                                onChange={changeAdminProductField}
+                                                                value={editImage}
                                                             />
 
                                                             <Field

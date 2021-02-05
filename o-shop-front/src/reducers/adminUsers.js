@@ -72,7 +72,7 @@ const reducer = (oldState = initialState, action ={}) => {
             editFirstName: action.payload.first_name,
             editLastName: action.payload.last_name,
             // editPassword: action.payload.password,
-            editShop: action.payload.shop,
+            editShop: action.payload.shop[0],
             editRole: action.payload.role,
             } 
         }

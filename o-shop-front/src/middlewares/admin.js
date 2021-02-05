@@ -52,6 +52,7 @@ const admin = (store) => (next) => (action) => {
   
       axios(userconfig) 
         .then((response) => { 
+          console.log(shop);
           toast.success('Votre Utilisateur a bien ete ajoute', {
             position: "bottom-right",
             autoClose: 5000,
@@ -92,6 +93,7 @@ const admin = (store) => (next) => (action) => {
       axios(userconfig)
         .then((response) => {
           if(response.data.success){
+            console.log(response);
             store.dispatch(updateUsersAdmin(response.data.data));
           }else{
             console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/user"));

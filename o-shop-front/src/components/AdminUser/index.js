@@ -219,17 +219,21 @@ const AdminUser = ({
                                                                 onChange={changeAdminUserField}
                                                                 value={editPassword}
                                                             /> */}
-
-                                                            <Field
+                                                            <select  value={editRole} onChange={(event)=>{changeAdminUserField(event.target.value, "editRole");}} >
+                                                                {roles.map((role)=>(
+                                                                    <option value={role.name} >{role.name}</option>
+                                                                ))}
+                                                            </select>
+                                                            {/* <Field
                                                                 name="editRole"
                                                                 type="text"
                                                                 placeholder="Role"
                                                                 onChange={changeAdminUserField}
                                                                 value={editRole}
-                                                            />
+                                                            /> */}
 
                                                             <Field
-                                                                name="shop"
+                                                                name="editShop"
                                                                 type="text"
                                                                 placeholder="Magasin"
                                                                 onChange={changeAdminUserField}
