@@ -8,3 +8,4 @@
 050-trigger-function 2021-01-27T09:50:53Z "Etudiant O'clock",,, <etudiant@teleporteur> # add function with trigger for updated_at
 060-fts 2021-01-31T20:46:13Z "Etudiant O'clock",,, <etudiant@teleporteur> # Full Text Search
 065-view_fts 2021-02-01T09:10:42Z "Etudiant O'clock",,, <etudiant@teleporteur> # the view for Full Text Search
+70-add-bar-code 2021-02-05T09:49:48Z Etudiant O'clock <student@teleporter> # add a column bar_code on product
