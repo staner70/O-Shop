@@ -4,7 +4,7 @@ const CustomError = require('../helpers/CustomError');
 const productController = {
     
     getAllProducts: async (request, response, next) => {
-        let io = request.app.get('socketio');
+        // let io = request.app.get('socketio');
         let products;
         
         console.log(request.query.search, "<<-- Search query");
@@ -17,10 +17,10 @@ const productController = {
             products = await productDataMapper.getAllProduct();
         }
         
-        io.on('connection', (socket) => {
-            console.log("<<<socket on connection getAllproducts");
-            io.emit('updateProduct', products);
-        });
+        // io.on('connection', (socket) => {
+        //     console.log("<<<socket on connection getAllproducts");
+        //     io.emit('updateProduct', products);
+        // });
 
         response.status(200).json({
             success: true,
@@ -29,7 +29,7 @@ const productController = {
     },
 
     getOneProduct: async (request, response, next) => {
-        let io = request.app.get('socketio');
+        // let io = request.app.get('socketio');
         const {id} = request.params;
         let stock = null;
         const product = await productDataMapper.getOneProduct(id);
@@ -38,11 +38,11 @@ const productController = {
         } if (product.quantity <= 0) {
            product.stock = `Attention rupture de stock : ${product.quantity}`;
         }
-        io.on('connection', (socket) => {
-            // socket.on('updateProduct', (msg) => {
-                io.emit('updateProduct', product);
-            // });
-        });
+        // io.on('connection', (socket) => {
+        //     // socket.on('updateProduct', (msg) => {
+        //         io.emit('updateProduct', product);
+        //     // });
+        // });
         response.status(200).json({
             success: true,
             data: product
@@ -50,18 +50,18 @@ const productController = {
     },
 
     getProductsByCategoryId: async (request, response, next) => {
-        let io = request.app.get('socketio');
+        // let io = request.app.get('socketio');
         const {categoryId} = request.params;
         const productsByCategory = await productDataMapper.getProductsByCategory(categoryId);
         if (productsByCategory == null) {
             return next(new CustomError("Category not exist", 400));
         }
 
-        io.on('connection', (socket) => {
-            socket.on('updateProduct', (msg) => {
-                io.emit('updateProduct', productsByCategory);
-            });
-        });
+        // io.on('connection', (socket) => {
+        //     socket.on('updateProduct', (msg) => {
+        //         io.emit('updateProduct', productsByCategory);
+        //     });
+        // });
         
         response.status(200).json({
             
@@ -85,7 +85,7 @@ const productController = {
     },
 
     updateProduct: async (request, response, next) => {
-        let io = request.app.get('socketio');
+        // let io = request.app.get('socketio');
         const {id} = request.params;
         const productInfo = request.body;
         let stock;
@@ -99,11 +99,11 @@ const productController = {
            product.stock = `Attention rupture de stock : ${product.quantity}`;
         }
        
-        io.on('connection', (socket) => {
-            // socket.on('updateProduct', (msg) => {
-                io.emit('updateProduct', product);
-            // });
-        });
+        // io.on('connection', (socket) => {
+        //     // socket.on('updateProduct', (msg) => {
+        //         io.emit('updateProduct', product);
+        //     // });
+        // });
         response.status(200).json({
             success: true,
             message: stock || `product ${id} updated`,
@@ -144,7 +144,7 @@ const productController = {
     },
 
     updateQuantityById: async (request, response, next) => {
-        let io = request.app.get('socketio');
+        // let io = request.app.get('socketio');
         const newProduct = [];
         const cart = request.body;
         // console.log(cart);
@@ -155,11 +155,11 @@ const productController = {
             newProduct.push(newStock);
             // io.emit('updateProduct', newStock);
         }
-        io.on('connection', (socket) => {
+        // io.on('connection', (socket) => {
           
-                io.emit('updateProduct', newProduct);
+        //         io.emit('updateProduct', newProduct);
           
-        });
+        // });
         console.log(newProduct);
         response.status(200)
         .json({

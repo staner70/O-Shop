@@ -13,7 +13,9 @@ app.use(cors({
    "optionsSuccessStatus": 204
  }));
 
-
+setTimeout(() => {
+   socket.removeAllListeners("updateProduct");
+}, 5000);
 
 
 app.use(express.json());
@@ -22,27 +24,27 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use(router);
 
-// create pipeline socket.io
-const server = require('http').createServer(app);
-const options = {
-   origin: '*',
-   methods: ["GET", "POST", "PATCH","DELETE","OPTIONS"],
-   allowedHeaders: {"Access-Control-Allow-Headers": "Content-Type, Authorization",
-   "Access-Control-Allow-Origin": '*',
-   "Access-Control-Allow-Credentials": true},
-   credentials: true
- };
-const io = require('socket.io')(server,options);
+// // create pipeline socket.io
+// const server = require('http').createServer(app);
+// const options = {
+//    origin: '*',
+//    methods: ["GET", "POST", "PATCH","DELETE","OPTIONS"],
+//    allowedHeaders: {"Access-Control-Allow-Headers": "Content-Type, Authorization",
+//    "Access-Control-Allow-Origin": '*',
+//    "Access-Control-Allow-Credentials": true},
+//    credentials: true
+//  };
+// const io = require('socket.io')(server,options);
 
 
 
-io.on('connection', (socket) => {
-   console.log('Client connected');
-   
-   socket.on('disconnect', () => console.log('Client disconnected'));
- });
+// io.on('connection', (socket) => {
+//    console.log('Client connected');
+//    app.set('socketio', io);
+//    socket.on('disconnect', () => console.log('Client disconnected'));
+//  });
 
- app.set('socketio', io);
+ 
 
  server.listen(process.env.PORT || 3500, () => {
    console.log('Server running on :', process.env.PORT);
