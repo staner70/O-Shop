@@ -14,13 +14,13 @@ const { catchErrors } = require('../helpers/catchError');
 const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorization/auth');
 const { checkUserExist } = require('../middlewares/database/databaseErrorHelpers');
 const { validateBody } = require('../helpers/validation/validationMiddleware');
-const { userSchema } = require('../helpers/validation/schema');
+const { userSchema, updateUserSchema } = require('../helpers/validation/schema');
 
 router.get('/', getAccessToRoute, getAdminAccess, catchErrors(getAllUser));
 router.get('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(checkUserExist),  catchErrors(getOneUser));
 
 router.post('/', getAccessToRoute, getAdminAccess, validateBody(userSchema),  catchErrors(addOneUser));
-router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, validateBody(userSchema), catchErrors(updateOneUser));
+router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, validateBody(updateUserSchema), catchErrors(updateOneUser));
 router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(deleteOneUser));
 
 

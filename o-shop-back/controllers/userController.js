@@ -44,10 +44,10 @@ module.exports = {
     updateOneUser: async (request, response, next) => {
         const {id} = request.params;
         const userInfo = request.body;
-        let salt = await bcrypt.genSalt(8);
-        let hash = await bcrypt.hash(userInfo.password, salt);
-        console.log(hash);
-        userInfo.password = hash;
+        // let salt = await bcrypt.genSalt(8);
+        // let hash = await bcrypt.hash(userInfo.password, salt);
+        // console.log(hash);
+        // userInfo.password = hash;
         const user = await userDataMapper.updateOneUser(id, userInfo);
         if (user == null) {
             return next(new CustomError("User not exist", 400));

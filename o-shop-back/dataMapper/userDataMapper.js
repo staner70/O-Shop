@@ -32,7 +32,8 @@ userDataMapper = {
         const shopId = await client.query(`SELECT id FROM shop WHERE name = $1`, [shop]);
         
 
-        const result = await client.query(`INSERT INTO "user"(username,first_name,last_name,password,role_id) VALUES ($1,$2,$3,$4,$5) RETURNING *`,
+        const result = await client.query(`INSERT INTO "user"(username,first_name,last_name,password,role_id) VALUES ($1,$2,$3,$4,$5) 
+                                            RETURNING id,first_name,last_name,username,role_id,created_at,updated_at`,
         [username, first_name, last_name, password, roleId.rows[0].id]);
 
         // we associate the user on a shop
@@ -43,13 +44,14 @@ userDataMapper = {
 
     //update a user
     async updateOneUser(id, userInfo) {
-        const {first_name, last_name, username, password , role, shop} = userInfo ;
+        const {first_name, last_name, username, role, shop} = userInfo ;
 
         const roleId = await client.query(`SELECT id FROM role WHERE name = $1`, [role]);
         const shopId = await client.query(`SELECT id FROM shop WHERE name = $1`, [shop]);
         
-        const result = await client.query(`UPDATE "user" SET first_name = $1, last_name = $2, username = $3 ,  password = $4, role_id = $5 WHERE id = $6 RETURNING *`,
-        [first_name, last_name, username, password ,roleId.rows[0].id, id]);
+        const result = await client.query(`UPDATE "user" SET first_name = $1, last_name = $2, username = $3 , role_id = $4 WHERE id = $5
+                                            RETURNING id,first_name,last_name,username,role_id,created_at,updated_at`,
+        [first_name, last_name, username ,roleId.rows[0].id, id]);
 
         //verification associate work
         const existAssociateWork = await client.query(`SELECT * FROM "work" WHERE shop_id = $1 AND user_id = $2`, [shopId.rows[0].id,id]);
@@ -72,7 +74,8 @@ userDataMapper = {
 
     // delete a user
     async deleteOneUser(userId) {
-        const result = await client.query(`DELETE FROM "user" WHERE id = $1 RETURNING *`, [userId]);
+        const result = await client.query(`DELETE FROM "user" WHERE id = $1 
+                                            RETURNING id,first_name,last_name,username,role_id,created_at,updated_at`, [userId]);
         // if there is no user return null
         if (result.rowCount == 0) {
             return null;
