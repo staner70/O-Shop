@@ -125,12 +125,6 @@ const AdminProducts = ({
                                             >
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>
-                                            {/* <button 
-                                                id={product.id}
-                                                onClick={() => deleteProduct(product.id)} 
-                                            >
-                                                <FontAwesomeIcon icon={faTrashAlt} />
-                                            </button> */}
                                         </div>
                                     </div>
                                 ))}
@@ -207,14 +201,6 @@ const AdminProducts = ({
                                                                 ))}
                                                             </select>
 
-                                                            {/* <Field
-                                                                name="editCategory"
-                                                                type="text"
-                                                                placeholder="Categorie"
-                                                                onChange={changeAdminProductField}
-                                                                value={editCategory}
-                                                            /> */}
-
                                                             <Field
                                                                 name="editDescription"
                                                                 type="text"
@@ -282,5 +268,6 @@ const AdminProducts = ({
     }
     return (<AccessForbidden />)
 };
+
 
 export default AdminProducts;

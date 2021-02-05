@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import ShoppingCartItem from '../../containers/ShoppingCartItem';
 import { useDispatch } from 'react-redux';
-import PrintProvider, { Print } from 'react-easy-print';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import { GET_PRODUCTS_FROM_API } from "../../store/actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
@@ -37,9 +36,6 @@ const ShoppingCart = ({cart}) => {
   }, [cart, totalPrice, totalItems, setTotalPrice, setTotalItems]);
 
   return (
-<PrintProvider>
-<Print single name="foo">
-
 
           <div className="tracking-wider h-4/5 bg-gray-100 h-screen">
             <div className="bg-white p-2 flex align-justify bg-cart rounded-b-xl mx-4 text-gray-500">
@@ -93,7 +89,7 @@ const ShoppingCart = ({cart}) => {
       </button>
 
                 </div>
-                <div className="w-5/6 flex m-auto justify-center">
+                {/* <div className="w-5/6 flex m-auto justify-center">
                   <button
                     className="bg-white border-solid border-2	 border-blue-400 w-full my-2 text-blue-400 font-normal uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
                     type="button"
@@ -106,20 +102,13 @@ const ShoppingCart = ({cart}) => {
 
             Imprimer le Ticket
       </button>
-                </div>
+                </div> */}
 
               </div>
 
             </div>
           </div>
-          </Print>
-
-          </PrintProvider>
-  )
-  
-      
-        
-      
+  )   
 }
   export default ShoppingCart; 
    

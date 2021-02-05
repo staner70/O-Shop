@@ -160,6 +160,10 @@ ProductModal.propTypes = {
     quantity: PropTypes.number.isRequired,
     changeProductField: PropTypes.func.isRequired,
     handleProduct: PropTypes.func.isRequired,
+
 };
+
+ProductModal.defaultProps  = {  
+    image: "https://i.ibb.co/6tjSfsQ/logo.png"};
 
 export default ProductModal;
