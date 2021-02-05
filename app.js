@@ -22,6 +22,6 @@ app.use(router);
 
 
 
- server.listen(process.env.PORT || 3500, () => {
+app.listen(process.env.PORT || 3500, () => {
    console.log('Server running on :', process.env.PORT);
 });
