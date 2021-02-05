@@ -21,7 +21,7 @@ app.use(router);
 const server = require('http').createServer(app);
 const options = {
    origin: '*',
-   methods: ["GET", "POST", "PATCH"],
+   methods: ["GET", "POST", "PATCH","DELETE","OPTIONS"],
    allowedHeaders: {"Access-Control-Allow-Headers": "Content-Type, Authorization",
    "Access-Control-Allow-Origin": '*',
    "Access-Control-Allow-Credentials": true},
