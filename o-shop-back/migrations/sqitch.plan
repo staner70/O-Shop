@@ -6,4 +6,4 @@
 030-add_domain 2021-01-26T13:25:03Z "Etudiant O'clock",,, <etudiant@teleporteur> # added domain constraint
 040-create-view 2021-01-25T20:24:53Z "Etudiant O'clock",,, <etudiant@teleporteur> # Create view for user and product
 050-trigger-function 2021-01-27T09:50:53Z "Etudiant O'clock",,, <etudiant@teleporteur> # add function with trigger for updated_at
-
+060-bar_code 2021-02-05T13:31:41Z "Etudiant O'clock",,, <etudiant@teleporteur> # add column bar_code
