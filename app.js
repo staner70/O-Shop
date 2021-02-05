@@ -20,9 +20,10 @@ app.use(router);
 // create pipeline socket.io
 const server = require('http').createServer(app);
 const options = {
-   origin: "*",
+   origin: '*',
    methods: ["GET", "POST", "PATCH"],
    allowedHeaders: {"Access-Control-Allow-Headers": "Content-Type, Authorization",
+   "Access-Control-Allow-Origin": '*',
    "Access-Control-Allow-Credentials": true},
    credentials: true
  };
