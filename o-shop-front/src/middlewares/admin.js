@@ -140,8 +140,8 @@ const admin = (store) => (next) => (action) => {
       const idItem = localStorage.getItem('id');
       const userconfig = {
         method: 'patch',
-        //url: `https://oshop-lyra.herokuapp.com/user/${idItem}`,
-        url:`http://salih-taner.vpnuser.lan:3500/user/${idItem}`,
+        url: `https://oshop-lyra.herokuapp.com/user/${idItem}`,
+        //url:`http://salih-taner.vpnuser.lan:3500/user/${idItem}`,
         headers: { 
           'Authorization': `Bearer: ${localtoken}`, 
         },
