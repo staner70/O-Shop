@@ -16,7 +16,9 @@ const LoginForm = ({
   };
 
   return (
-    <div className="flex flex-col justify-center sm:py-12  ">
+    <div className="flex flex-col bg-primary justify-center sm:py-12 h-screen w-screen ">
+      <div className="flex flex-col m-auto bg-white rounded-lg p-4">
+
       <img src={Logo} className="object-none" alt="Logo" />
       <form autoComplete="off" className="flex flex-col  items-center justify-center" onSubmit={handleSubmit}>
         <Field
@@ -34,11 +36,12 @@ const LoginForm = ({
         />
         <button
           type="submit"
-          className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
+          className="box-content	px-12 py-3 m-2 text-white rounded-md bg-blue-400 "
         >
           OK
         </button>
       </form>
+      </div>
     </div>
   );
 };

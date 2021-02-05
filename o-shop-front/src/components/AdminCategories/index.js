@@ -7,6 +7,9 @@ import Field from './Field';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import SizeForbidden from '../SizeForbidden';
+import { useConfirmationDialog } from 'material-ui-confirmation';
+
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,6 +30,8 @@ const AdminCategories = ({
 
 
 }) => {
+    const { getConfirmation } = useConfirmationDialog();
+
     useEffect(() => {
         getCategories();
     },[]);
@@ -42,6 +47,7 @@ const AdminCategories = ({
     if(isAdmin == "true"){
         return(
         <>
+        <SizeForbidden />
             < Header />
             < NavAdmin />
         
@@ -89,12 +95,33 @@ const AdminCategories = ({
                                     </button>
                                 </div>
                                 <div className="w-1/4 px-6 py-4   text-sm font-medium">
-                                    <button 
+                                <button
+                                                onClick={() => {
+                                                    getConfirmation({
+                                                        title: 'Voulez-vous supprimer cette categorie ?',
+                                                        body: 'Aucun produit ne doit appartenir a cette categorie pour etre supprime',
+                                                        onAccept: () => {
+                                                            deleteCategory(category.id);
+                                                        },
+
+                                                        dialogProps: {
+                                                            disableBackdropClick: true,
+                                                        },
+                                                        acceptButtonProps: {
+                                                            autoFocus: false,
+                                                            variant: 'contained',
+                                                        },
+                                                    });
+                                                }}
+                                            >
+                                                <FontAwesomeIcon icon={faTrashAlt} />
+                                            </button>
+                                    {/* <button 
                                         id={category.id}
                                         onClick={() => deleteCategory(category.id)} 
                                     >
                                         <FontAwesomeIcon icon={faTrashAlt} />
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                             ))}

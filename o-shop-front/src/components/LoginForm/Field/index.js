@@ -19,7 +19,7 @@ const Field = ({
   const inputId = `field-${name}`;
 
   return (
-    <div className="box-content	p-4 border-4 m-2 outline-none	 rounded-md bg-white">
+    <div className="box-content	p-4 border-2 m-2 outline-none	 rounded-md bg-white">
       <input
         // React - state
         value={value}

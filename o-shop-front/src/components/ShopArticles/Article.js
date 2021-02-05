@@ -5,9 +5,9 @@ const Article = ({ article, addToCart }) => {
     <>
          <div className="flex justify-center">
          <div
-           className="bg-white rounded-lg shadow-lg p-1 flex flex-col justify-center items-center h-72 w-60 m-2	"
+           className="relative bg-white rounded-lg shadow-lg p-1 flex flex-col justify-center items-center h-72 w-60 m-2	"
          >        
-
+<span className="bg-red-400 rounded-l-md text-white uppercase absolute top-4 right-0 bg-red-500 select-none	">{article.stock}</span>
            <img
              className="object-cover object-center rounded-lg w-60 h-40 	"
              src={article.image}

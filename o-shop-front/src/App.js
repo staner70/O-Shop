@@ -1,6 +1,6 @@
 import './App.css';
 import "tailwindcss/tailwind.css";
-import { Route, Redirect, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import  LoginForm from './containers/LoginForm';
 import Home from './components/Home';
 import Admin from './containers/Admin';
@@ -40,7 +40,8 @@ function App(props) {
         </Route>
       </Switch>
     </div>
-  );
+
+  )
 };
 
 

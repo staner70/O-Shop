@@ -24,7 +24,7 @@ const ProductModal = ({
         <>
 
             <button
-                className="bg-bgred text-white active:bg-pink-600 font-bold uppercase text-sm p-6 rounded shadow hover:shadow-lg outline-none focus:outline-none m-4"
+                className="bg-blue-400 text-white active:bg-pink-600 font-normal uppercase text-sm p-6 rounded shadow hover:shadow-lg outline-none focus:outline-none m-4"
                 type="button"
                 style={{ transition: "all .15s ease" }}
                 onClick={() => setShowModal(true)}

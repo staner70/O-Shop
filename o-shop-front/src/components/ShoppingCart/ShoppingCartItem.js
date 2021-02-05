@@ -26,7 +26,7 @@ const ShoppingCartItem = ({ item, adjustQty, removeFromCart }) => {
                     onChange={onChangeHandler}
                 />
             </div>
-            <div className="w-1/6 lg:invisible lg:w-0">{item.price*item.qty} €</div>
+            <div className="lg:invisible sm:invisible md:invisible xl:visible lg:w-0 xl:w-1/6">{item.price*item.qty} €</div>
 
             
           <div className="w-1/6 lg:w-1/12"> 
