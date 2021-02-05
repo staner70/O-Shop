@@ -17,9 +17,6 @@ function App(props) {
         <Route exact path= '/'>
           <LoginForm />
         </Route>
-        <Route exact path= '/home'>
-          <Home />
-        </Route>
         <Route exact path= '/home/category/:id'>
           <Home />
         </Route>

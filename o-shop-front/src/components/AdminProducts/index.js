@@ -276,4 +276,5 @@ const AdminProducts = ({
     return (<AccessForbidden />)
 };
 
+
 export default AdminProducts;

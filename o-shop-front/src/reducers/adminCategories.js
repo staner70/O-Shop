@@ -32,14 +32,12 @@ const reducer = (oldState = initialState, action={}) => {
             };
 
         case CHANGE_EDIT_CATEGORY_FIELD:
-            console.log('change edit category field');
             return {
                 ...oldState,
                 [action.name]: action.value,
                     };
 
         case EDIT_CATEGORY_BY_ID_STORE:{
-            console.log('dans mon edit category id store');     
             return{
              ...oldState,
                 editCategoryName: action.payload.name,

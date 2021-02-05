@@ -14,8 +14,9 @@ const Category = ({ categories, getCategories, getProducts}) => {
             
                 {categories.map((category) => (
 
-                    <li>
+                    <li key={category.name}>
                         <NavLink
+                            key={category.name}
                             activeClassName="focus:ring-blue-400 ring ring-transparent"
                             exact
                             onClick = {getProducts()}

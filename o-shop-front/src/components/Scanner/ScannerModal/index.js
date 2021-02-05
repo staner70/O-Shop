@@ -64,7 +64,7 @@ const ScannerModal = ({article}) => {
                 <div className="h-40 flex items-end justify-end p-6 border-gray-300 rounded-b">
                 
                 <button
-             className="select-none	 uppercase hover:text-white focus:ring-blue-300 undefined bg-profil ring-2 mx-1 focus:ring-offset-2 ring-transparent transform duration-300 ease-in-out focus:outline-none text-white p-2 w-1/2 rounded-lg font-normal"
+             className="select-none	 uppercase hover:text-white focus:ring-blue-300 undefined bg-blue-400 ring-2 mx-1 focus:ring-offset-2 ring-transparent transform duration-300 ease-in-out focus:outline-none text-white p-2 w-1/2 rounded-lg font-normal"
              onClick={handleClickCart}
 
            >Ajouter</button>

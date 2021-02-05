@@ -36,23 +36,18 @@ export const initialState = {
 const reducer = (oldState = initialState, action={}) => {
   switch (action.type) {
     case UPDATE_ADMIN_PRODUCTS:
-      console.log('update admin product');
-
         return{
             ...oldState,
             ...action.payload,
         }
     
     case CHANGE_ADD_PRODUCT_FIELD:
-      console.log('change add product field');
-
         return {
             ...oldState,
             [action.name]: action.value,
         };
 
     case CHANGE_EDIT_PRODUCT_FIELD:
-      console.log('change edit product field');
         return {
             ...oldState,
             [action.name]: action.value,
@@ -91,8 +86,6 @@ const reducer = (oldState = initialState, action={}) => {
     }
 
     case EDIT_PRODUCT_BY_ID_STORE:{
-      console.log('dans mon edit product id store');
-
       return{
           ...oldState,
           editName: action.payload.name,
@@ -127,8 +120,6 @@ const reducer = (oldState = initialState, action={}) => {
       const inCart = oldState.cart.find((item) =>
         item.id === action.payload.id ? true : false,
       );
-      console.log('incart:', inCart);
-      console.log('item:', item);
       return {
         ...oldState,
         cart: inCart

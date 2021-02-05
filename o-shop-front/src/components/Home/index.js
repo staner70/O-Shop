@@ -27,7 +27,6 @@ const Home = () => {
                 <ShopArticles />
 
             </div>
-
             <div className="w-2/5">
                     < ShoppingCart/>
                   </div>

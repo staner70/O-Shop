@@ -46,7 +46,6 @@ const api = (store) => (next) => (action) => {
           localStorage.setItem('role', role);
           history.push('/home/category/Accessoires');
 
-
         })
         .catch((error) => { // cas d'erreur
           console.log(error);
@@ -67,21 +66,23 @@ const api = (store) => (next) => (action) => {
         }
       };
 
-      axios(config) // on lance la requete...
-        .then((response) => { // cas de réussite
-          
-        //On vient recuperer les valeurs qui nous interessent pour le logout et on les enleve du storage et du state
+      axios(config)
+        .then((response) => { 
+          console.log('dans la response logout');
           localStorage.clear();
-          window.localStorage.clear(); //try this to clear all local storage
+          window.localStorage.clear(); 
           const admin =localStorage.getItem('isAdmin');
           localStorage.removeItem(admin);
           history.push('/');
 
 
         })
-        .catch((error) => { // cas d'erreur
-         
-        });
+        .catch((error) => {
+          console.log(error)
+          history.push('/');
+
+        }
+        );
       break;
     }
 
