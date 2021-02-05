@@ -16,7 +16,11 @@ const productController = {
         } else {
             products = await productDataMapper.getAllProduct();
         }
-        io.emit('updateProduct', products);
+        io.on('connection', (socket) => {
+           
+            io.emit('updateProduct', products);
+        
+        });
         
         response.status(200).json({
             success: true,
@@ -34,7 +38,10 @@ const productController = {
         } if (product.quantity <= 0) {
            product.stock = `Attention rupture de stock : ${product.quantity}`;
         }
-        io.emit('updateProduct', product);
+        io.on('connection', (socket) => {
+            
+            io.emit('updateProduct', product);
+        });
         response.status(200).json({
             success: true,
             data: product
@@ -48,7 +55,11 @@ const productController = {
         if (productsByCategory == null) {
             return next(new CustomError("Category not exist", 400));
         }
-        io.emit('updateProduct', productsByCategory);
+        io.on('connection', (socket) => {
+           
+            io.emit('updateProduct', productsByCategory);
+           
+        });
         response.status(200).json({
             
             success: true,
@@ -85,7 +96,11 @@ const productController = {
            product.stock = `Attention rupture de stock : ${product.quantity}`;
         }
        
-        io.emit('updateProduct', product);
+        io.on('connection', (socket) => {
+            
+            io.emit('updateProduct', product);
+           
+        });
         response.status(200).json({
             success: true,
             message: stock || `product ${id} updated`,
@@ -136,8 +151,18 @@ const productController = {
             const newStock = await productDataMapper.updateQuantityById(id, qty);
             newProduct.push(newStock);
             // io.emit('updateProduct', newStock);
+            if (newStock.quantity <= 3) {
+                newStock.stock = `Attention stock très bas : ${newStock.quantity}`;
+            } if (newStock.quantity <= 0) {
+               newStock.stock = `Attention rupture de stock : ${newStock.quantity}`;
+            }
         }
-        io.emit('updateProduct', newProduct);
+
+        io.on('connection', (socket) => {
+           
+            io.emit('updateProduct', newProduct);
+          
+        });
         console.log(newProduct);
         response.status(200)
         .json({
