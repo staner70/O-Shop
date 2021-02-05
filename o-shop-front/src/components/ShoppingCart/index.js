@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import ShoppingCartItem from '../../containers/ShoppingCartItem';
 import { useDispatch } from 'react-redux';
 import PrintProvider, { Print } from 'react-easy-print';
-import io from 'socket.io-client';
+// import io from 'socket.io-client';
 import { GET_PRODUCTS_FROM_API } from "../../store/actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';

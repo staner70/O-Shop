@@ -5,7 +5,6 @@ import Clock from 'react-live-clock';
 import ProfilModal from '../../containers/ProfilModal';
 import WeatherModal from '../WeatherModal';
 
-
 const Header = () => (
     <div className="flex bg-white flex-row flex-wrap p-1 w-full">
         <div className="flex justify-start items-center w-4/12">
@@ -26,7 +25,6 @@ const Header = () => (
         </div>
         <div className="flex justify-center w-4/12	 p-2">
         <Clock className="text-gray-400" format={'HH:mm'} ticking={true} timezone={'Europe/Paris'} />
-
         </div>
         <div className="flex justify-end w-4/12	 p-2">
             <WeatherModal />

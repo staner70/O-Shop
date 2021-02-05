@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
+import ScannerModal from '../Scanner/ScannerModal'
 
 const Category = ({ categories, getCategories, getProducts}) => {
     useEffect(() => {
@@ -7,8 +8,8 @@ const Category = ({ categories, getCategories, getProducts}) => {
     }, []);
 
     return (
-
-        <nav className="flex bg-primary flex-row flex-wrap p-2 w-full">
+<div className="flex w-full">
+        <nav className="flex bg-primary flex-wrap p-2 w-11/12	">
             <ul className="flex  items-center	justify-start h-10 w-full overflow-x-auto overflow-y-hidden overflow-hidden">
             
                 {categories.map((category) => (
@@ -28,6 +29,10 @@ const Category = ({ categories, getCategories, getProducts}) => {
 
             </ul>
         </nav>
+        <nav className="flex bg-primary flex-wrap p-2 w-1/12">
+            <ScannerModal />
+        </nav>
+        </div>
     )
 }
 
