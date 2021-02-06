@@ -24,7 +24,7 @@ router.patch('/:id(\\d+)', getAccessToRoute, getAdminAccess, validateBody(update
 router.delete('/:id(\\d+)', getAccessToRoute, getAdminAccess, catchErrors(deleteOneUser));
 
 
-router.patch('/:userId/shop/:shopId',  getAccessToRoute, getAdminAccess, catchErrors(associateWork));
+router.post('/:userId/shop/:shopId',  getAccessToRoute, getAdminAccess, catchErrors(associateWork));
 router.delete('/:userId/shop/:shopId',  getAccessToRoute, getAdminAccess, catchErrors(dissociateWork));
 
 module.exports = router;

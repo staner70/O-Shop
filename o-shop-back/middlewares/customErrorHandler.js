@@ -6,7 +6,7 @@ module.exports = {
         let customError = error;
         console.log(customError);
 
-        if (error.name === "SyntaxError") {
+        if (error.name === "SyntaxError" || error.code === '42601') {
             customError = new CustomError("Unexpected Syntax", 400);
 
         }

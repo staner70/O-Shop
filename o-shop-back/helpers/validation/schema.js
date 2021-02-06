@@ -121,4 +121,12 @@ const client = require('../../dataMapper/client');
         name:       Joi.string().min(3).max(30).required(),
     })
 
-module.exports = { productSchema, userSchema, updateUserSchema, shopSchema, categorySchema, roleSchema  };
+    //updatePassword
+    const updatePasswordSchema = Joi.object({
+        username:   Joi.string().min(3).max(30).required(),
+        oldPassword:   Joi.string().min(3).max(30).required(),
+        newPassword:   Joi.string().min(3).max(30).required(),
+        confirmPassword:   Joi.string().min(3).max(30).required(),
+    })
+
+module.exports = { productSchema, userSchema, updateUserSchema, shopSchema, categorySchema, roleSchema, updatePasswordSchema  };

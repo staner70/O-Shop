@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const tokenhelper = {
     generateJwtFromUser: (user) => {
         const {JWT_SECRET_KEY,JWT_EXPIRE} = process.env;
-
+        console.log(user, "<<generateJwt");
         const payload = {
             id: user.id,
             username: user.username
@@ -18,9 +18,9 @@ const tokenhelper = {
 
     sendJwtToClient: (user, response) => {
         // Generate JWT
-        
+        console.log(user, "<<<sendJwtToClient");
         const token = tokenhelper.generateJwtFromUser(user);
-        console.log(token);
+        // console.log(token);
         const { JWT_COOKIE, NODE_ENV} = process.env;
         //verification isAdmin
         let isAdmin;
@@ -29,18 +29,20 @@ const tokenhelper = {
         } else {
             isAdmin = false;
         }
-        console.log(typeof isAdmin);
+        // console.log(typeof isAdmin);
         return response
         .status(200)
         .cookie("access_token",token,{
             httpOnly: true,
             expires: new Date(Date.now() + parseInt(JWT_COOKIE) * 1000 * 60),
-            secure: NODE_ENV === "development" ? false : true
+            secure: true
         })
         .json({
             success: true,
             access_token : token,
             data : {
+                first_name: user.first_name,
+                last_name: user.last_name,
                 name: user.username,
                 role: user.role_name,
                 isAdmin: isAdmin               
