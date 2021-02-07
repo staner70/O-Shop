@@ -95,7 +95,6 @@ const admin = (store) => (next) => (action) => {
       axios(userconfig)
         .then((response) => {
           if(response.data.success){
-            console.log(response);
             store.dispatch(updateUsersAdmin(response.data.data));
           }else{
             console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/user"));
@@ -106,7 +105,6 @@ const admin = (store) => (next) => (action) => {
 
     case EDIT_USER_BY_ID: {
       const localtoken =  localStorage.getItem('token');
-      console.log('API ADMIN EDIT USER BY ID');
 
       const userconfig = {
         method: 'get',
@@ -292,7 +290,6 @@ const admin = (store) => (next) => (action) => {
 
     case SEARCH_CHANGE_FIELD: {
       const {adminproduct: {search} } = store.getState();
-      console.log('search:',search);
       const localtoken =  localStorage.getItem('token');
       const searchconfig = {
         method: 'get',
@@ -305,7 +302,6 @@ const admin = (store) => (next) => (action) => {
 
       axios(searchconfig)
         .then((response) => {
-            console.log(response.data)
           
         }).catch((error)=> {console.error(error);});
       break
@@ -343,9 +339,6 @@ const admin = (store) => (next) => (action) => {
     case SUBMIT_EDIT_PRODUCT: {
       const { adminproduct: { editName, editDescription, editPrice, editImage, editQuantity, editShop, editCategory } } = store.getState();
       const localtoken =  localStorage.getItem('token');
-      console.log('API SUBMIT EDIT PRODUCT');
-      console.log(editName);
-      console.log(editCategory);
       const idItem = localStorage.getItem('id');
       const productconfig = {
         method: 'patch',
@@ -501,9 +494,6 @@ const admin = (store) => (next) => (action) => {
     case SUBMIT_EDIT_CATEGORY: {
       const { admincategory: { editCategoryName, editCategoryColor, } } = store.getState();
       const localtoken =  localStorage.getItem('token');
-      console.log('API SUBMIT EDIT CATEGORY');
-      console.log(editCategoryName);
-      console.log(editCategoryColor);
       const idCategoryItem = localStorage.getItem('CategoryId');
       const productconfig = {
         method: 'patch',
@@ -552,7 +542,6 @@ const admin = (store) => (next) => (action) => {
 
     case EDIT_CATEGORY_BY_ID: {
       const localtoken =  localStorage.getItem('token');
-      console.log('API ADMIN EDIT CATEGORY BY ID');
 
       const editconfig = {
         method: 'get',
@@ -565,8 +554,6 @@ const admin = (store) => (next) => (action) => {
       axios(editconfig)
         .then((response) => {
           if(response.data.success){
-            console.log('je suis dans mon MW edit category');
-            console.log(response.data);
             localStorage.setItem('CategoryId', response.data.data.id)
             store.dispatch({
               type: EDIT_CATEGORY_BY_ID_STORE,
@@ -634,7 +621,6 @@ const admin = (store) => (next) => (action) => {
     case SEND_PAYMENT_TO_API: {
       const { adminproduct: { cart } } = store.getState();
       const localtoken =  localStorage.getItem('token');
-      console.log(cart);
       const paymentconfig = {
         method: 'patch',
         url: 'https://oshop-lyra.herokuapp.com/product/cart',
@@ -646,7 +632,6 @@ const admin = (store) => (next) => (action) => {
 
       axios(paymentconfig)
         .then((response) => {
-          console.log(response);
           store.dispatch({type: 'PAYMENT_SUCCESS'})
           toast.success('Votre categorie a bien ete ajoute', {
           position: "bottom-right",
