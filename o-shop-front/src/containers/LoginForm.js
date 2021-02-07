@@ -8,6 +8,7 @@ const mapStateToProps = (state) => ({
   username: state.auth.username,
   password: state.auth.password,
   isAdmin: state.auth.logged,
+  showSpinner:state.adminuser.showSpinner,
 });
 
 // cablage des actions

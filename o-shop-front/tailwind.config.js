@@ -22,6 +22,8 @@ module.exports = {
         'secondary': '#fbfbfe',
         'bgcart': '#f3f4fe',
         'profil': '#1dc9b7',
+        'gif': '#f5fafc',
+        'gif2': '#252321',
        })
     }
   },

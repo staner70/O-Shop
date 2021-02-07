@@ -12,6 +12,8 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import SizeForbidden from '../SizeForbidden';
 import { useConfirmationDialog } from 'material-ui-confirmation';
 // import { getRoleFromApi } from '../../store/actions';
+import Spinner from '../Spinner';
+
 
 const AdminUser = ({
     users, getUsers, 
@@ -28,6 +30,7 @@ const AdminUser = ({
     editPassword,
     editRole,
     editShop,
+    showSpinner,
 }) => {
     const { getConfirmation } = useConfirmationDialog();
 
@@ -49,7 +52,8 @@ const AdminUser = ({
                 <SizeForbidden />
                 < Header />
                 < NavAdmin />
-            
+                {showSpinner && <Spinner />}
+
                 <div className="w-full">
                     <div className= "flex">
                         <div className= "w-5/6 h-screen">

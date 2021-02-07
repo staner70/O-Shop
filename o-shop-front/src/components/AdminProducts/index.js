@@ -12,6 +12,8 @@ import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import SizeForbidden from '../SizeForbidden';
 import { useConfirmationDialog } from 'material-ui-confirmation';
 // import { getCategoriesFromApi } from '../../store/actions';
+import Spinner from '../Spinner';
+
 
 
 const AdminProducts = ({
@@ -29,7 +31,9 @@ const AdminProducts = ({
     editQuantity,
     editShop,
     editCategory,
-    editImage
+    editImage,
+
+    showSpinner,
 }) => {
     const { getConfirmation } = useConfirmationDialog();
 
@@ -53,6 +57,7 @@ const AdminProducts = ({
                 <SizeForbidden />
                 < Header />
                 < NavAdmin />
+                {showSpinner && <Spinner />}
 
                 <div className="w-full ">
                     <div className="flex">

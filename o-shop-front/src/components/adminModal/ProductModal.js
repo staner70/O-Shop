@@ -163,6 +163,7 @@ ProductModal.propTypes = {
 
 };
 
-
+ProductModal.defaultProps  = {  
+    image: "https://i.ibb.co/fSNffyY/logo.png"};
 
 export default ProductModal;

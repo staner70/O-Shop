@@ -12,6 +12,8 @@ const mapStateToProps = (state) => ({
     // editPassword: state.adminuser.editPassword,
     editRole: state.adminuser.editRole,
     editShop: state.adminuser.editShop,
+    showSpinner:state.adminuser.showSpinner,
+
   });
 
   const mapDispatchToProps = (dispatch) => ({

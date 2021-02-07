@@ -7,9 +7,8 @@ const api = (store) => (next) => (action) => {
   switch (action.type) {
 
     case 'LOGIN': {
-      // ici, on va faire la requete pour le login
-      // on commence par récupérer email et password
-      // Double destructuration !
+      store.dispatch({ type: 'SHOW_SPINNER'});
+       
       const { auth: { username, password } } = store.getState();
       const config = {
         method: 'post',
@@ -26,8 +25,6 @@ const api = (store) => (next) => (action) => {
 
       axios(config) // on lance la requete...
         .then((response) => { // cas de réussite
-          // on envoie une action, pour sauvegarder les données dans le reducer
-          // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           const { access_token } = response.data;
           const { role } = response.data.data;
           const { name } = response.data.data;
@@ -36,6 +33,8 @@ const api = (store) => (next) => (action) => {
           localStorage.setItem('token', access_token);
           localStorage.setItem('role', role);
           localStorage.setItem('username', name);
+          store.dispatch({ type: 'HIDE_SPINNER'});
+
           store.dispatch({
             type: 'LOGIN_SUCCESS',
             ...response.data,

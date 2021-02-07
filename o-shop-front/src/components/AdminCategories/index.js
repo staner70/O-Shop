@@ -9,6 +9,7 @@ import { faEdit } from '@fortawesome/free-solid-svg-icons';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import SizeForbidden from '../SizeForbidden';
 import { useConfirmationDialog } from 'material-ui-confirmation';
+import Spinner from '../Spinner';
 
 
 import { ToastContainer } from "react-toastify";
@@ -28,7 +29,7 @@ const AdminCategories = ({
     editCategoryName,
     editCategoryColor,
 
-
+    showSpinner,
 }) => {
     const { getConfirmation } = useConfirmationDialog();
 
@@ -50,7 +51,8 @@ const AdminCategories = ({
         <SizeForbidden />
             < Header />
             < NavAdmin />
-        
+            {showSpinner && <Spinner />}
+
             <div className="w-full	">
                 <div className= "flex">
                     <div className="w-4/5 h-screen">

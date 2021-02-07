@@ -35,6 +35,7 @@ function App(props) {
         <Route exact path= '/accessforbidden'>
           <AccessForbidden />
         </Route>
+        
       </Switch>
     </div>
 

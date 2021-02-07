@@ -23,7 +23,14 @@ import {
   SUBMIT_EDIT_CATEGORY,
   SUBMIT_EDIT_USER,
   SEND_PAYMENT_TO_API,
+  SUBMIT_PRODUCT,
+  SUBMIT_EDIT_PRODUCT_SUCCESS,
+
+  CATEGORY_ADD_SUCCESS,
+  SUBMIT_EDIT_CATEGORY_SUCCESS,
+  PRODUCT_ADD_SUCCESS,
   
+  SUBMIT_CATEGORY,
 } from '../store/actions';
 
 const admin = (store) => (next) => (action) => {
@@ -82,6 +89,7 @@ const admin = (store) => (next) => (action) => {
       }
 
     case GET_USERS_FROM_API: {
+      store.dispatch({ type: 'SHOW_SPINNER'});
       const localtoken =  localStorage.getItem('token');
       const userconfig = {
         method: 'get',
@@ -96,6 +104,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => {
           if(response.data.success){
             store.dispatch(updateUsersAdmin(response.data.data));
+            store.dispatch({ type: 'HIDE_SPINNER'});
           }else{
             console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/user"));
           }
@@ -213,7 +222,7 @@ const admin = (store) => (next) => (action) => {
         return;
     }
 
-    case 'SUBMIT_PRODUCT': {
+    case SUBMIT_PRODUCT: {
       const { adminproduct: { name, image, description, price, quantity, shop, category } } = store.getState();
       const localtoken =  localStorage.getItem('token');
       const productconfig = {
@@ -267,6 +276,7 @@ const admin = (store) => (next) => (action) => {
     }
 
     case GET_PRODUCTS_FROM_API: {
+      store.dispatch({ type: 'SHOW_SPINNER'});
       const localtoken =  localStorage.getItem('token');
       const userconfig = {
         method: 'get',
@@ -281,6 +291,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => {
           if(response.data.success){
             store.dispatch(updateProductsAdmin(response.data.data));
+            store.dispatch({ type: 'HIDE_SPINNER'});
           }else{
             console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/products"));
           }
@@ -363,7 +374,8 @@ const admin = (store) => (next) => (action) => {
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           store.dispatch({ type: GET_PRODUCTS_FROM_API })
-
+          store.dispatch({ type: SUBMIT_EDIT_PRODUCT_SUCCESS});
+          
           toast.success('Votre Produit a bien ete ajoute', {
             position: "bottom-right",
             autoClose: 5000,
@@ -416,7 +428,7 @@ const admin = (store) => (next) => (action) => {
         return;
     }
 
-    case 'SUBMIT_CATEGORY': {
+    case SUBMIT_CATEGORY: {
       // ici, on va faire la requete pour le login
       // on commence par récupérer email et password
       // Double destructuration !
@@ -442,7 +454,8 @@ const admin = (store) => (next) => (action) => {
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           store.dispatch({ type: GET_CATEGORIES_FROM_API })
-
+          store.dispatch({ type: CATEGORY_ADD_SUCCESS});
+          
           toast.success('Votre categorie a bien ete ajoute', {
             position: "bottom-right",
             autoClose: 5000,
@@ -470,6 +483,7 @@ const admin = (store) => (next) => (action) => {
     }
 
     case GET_CATEGORIES_FROM_API: {
+      store.dispatch({ type: 'SHOW_SPINNER'});
       const localtoken =  localStorage.getItem('token');
       const userconfig = {
         method: 'get',
@@ -484,6 +498,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => {
           if(response.data.success){
             store.dispatch(updateCategoriesAdmin(response.data.data));
+            store.dispatch({ type: 'HIDE_SPINNER'});
           }else{
             console.error(new Error("Quelque chose ne c'est pas bien passé avec l'api :http://salih-taner.vpnuser.lan:3500/category"));
           }
@@ -512,7 +527,8 @@ const admin = (store) => (next) => (action) => {
         .then((response) => { // cas de réussite
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-          store.dispatch({ type: GET_CATEGORIES_FROM_API })
+          store.dispatch({ type: GET_CATEGORIES_FROM_API });
+          store.dispatch({ type: SUBMIT_EDIT_CATEGORY_SUCCESS});
 
           toast.success('Votre Categorie a bien ete modifiee', {
             position: "bottom-right",

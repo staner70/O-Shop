@@ -4,6 +4,8 @@ import {
     UPDATE_ADMIN_USERS,
     CHANGE_EDIT_USER_FIELD,
     EDIT_USER_BY_ID_STORE,
+    SUBMIT_EDIT_USER_SUCCESS, //TODO
+    USER_ADD_SUCCESS,
 } from '../store/actions';
 
 export const initialState = {
@@ -21,6 +23,8 @@ export const initialState = {
     editLastName:'',
     editRole:'',
     editShop:'',
+    showSpinner: false,
+
 }
 
 const reducer = (oldState = initialState, action ={}) => {
@@ -32,7 +36,7 @@ const reducer = (oldState = initialState, action ={}) => {
                 [action.name]: action.value,
             };
 
-        case 'USER_ADD_SUCCESS':
+        case USER_ADD_SUCCESS:
             return {
                 ...oldState,
                 // on copie les données de l'action dans le reducer
@@ -44,6 +48,18 @@ const reducer = (oldState = initialState, action ={}) => {
                 role:'',
                 shop:'OSHOP',
             };
+        case SUBMIT_EDIT_USER_SUCCESS:
+             return {
+                 ...oldState,
+                // on copie les données de l'action dans le reducer
+            done: true,
+            editUsername: '',
+            editPassword: '',
+            editFirst_name:'',
+            editLast_name:'',
+            editRole:'',
+            editShop:'OSHOP',
+                };
 
         case UPDATE_ADMIN_USERS:
             return{
@@ -76,6 +92,17 @@ const reducer = (oldState = initialState, action ={}) => {
             editRole: action.payload.role,
             } 
         }
+        case 'SHOW_SPINNER':
+            return { 
+                ...oldState, 
+                showSpinner: true 
+            };
+
+        case 'HIDE_SPINNER':
+            return { 
+                ...oldState, 
+                showSpinner: false 
+            };
 
         default: 
            return {...oldState} ;

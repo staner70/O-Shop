@@ -7,6 +7,8 @@ const mapStateToProps = (state) => ({
     categories: state.admincategory.list,
     editCategoryName: state.admincategory.editCategoryName,
     editCategoryColor: state.admincategory.editCategoryColor,
+    showSpinner:state.adminuser.showSpinner,
+
   });
 
   const mapDispatchToProps = (dispatch) => ({

@@ -3,6 +3,7 @@ import Admin from '../components/Admin';
 
 const mapStateToProps = (state) => ({
     isAdmin: state.auth.isAdmin,
+    showSpinner:state.adminuser.showSpinner,
     
   });
 
