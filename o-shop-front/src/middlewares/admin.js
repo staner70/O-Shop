@@ -52,7 +52,8 @@ const admin = (store) => (next) => (action) => {
   
       axios(userconfig) 
         .then((response) => { 
-          console.log(shop);
+          store.dispatch({ type: GET_USERS_FROM_API })
+
           toast.success('Votre Utilisateur a bien ete ajoute', {
             position: "bottom-right",
             autoClose: 5000,
@@ -62,6 +63,7 @@ const admin = (store) => (next) => (action) => {
             draggable: true,
             progress: undefined,
             });
+
           }).catch((error) => { 
           console.log(error);
             toast.error('Erreur dans votre ajout de utilisateur!', {
@@ -160,6 +162,7 @@ const admin = (store) => (next) => (action) => {
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           
+          store.dispatch({ type: GET_USERS_FROM_API })
           toast.success('Votre Produit a bien ete ajoute', {
             position: "bottom-right",
             autoClose: 5000,
@@ -169,7 +172,7 @@ const admin = (store) => (next) => (action) => {
             draggable: true,
             progress: undefined,
           });
-
+          
         })
         .catch((error) => { // cas d'erreur
         console.log(error);
@@ -200,6 +203,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => {
           if(response.data.success){
             store.dispatch(deleteUserInAdminStore(action.userId));
+            store.dispatch({ type: GET_USERS_FROM_API })
           }else{
             console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/user/${action.userId}`));
           }
@@ -236,7 +240,8 @@ const admin = (store) => (next) => (action) => {
 
       axios(productconfig)
         .then((response) => { 
-          
+          store.dispatch({ type: GET_PRODUCTS_FROM_API })
+
           toast.success('Votre Produit a bien ete ajoute', {
             position: "bottom-right",
             autoClose: 5000,
@@ -308,7 +313,6 @@ const admin = (store) => (next) => (action) => {
 
     case EDIT_PRODUCT_BY_ID: {
       const localtoken =  localStorage.getItem('token');
-      console.log('API ADMIN EDIT PRODUCT BY ID');
 
       const userconfig = {
         method: 'get',
@@ -321,8 +325,6 @@ const admin = (store) => (next) => (action) => {
       axios(userconfig)
         .then((response) => {
           if(response.data.success){
-            console.log('je suis dans mon MW edit product');
-            console.log(response.data);
             localStorage.setItem('id', response.data.data.id)
             store.dispatch({
               type: EDIT_PRODUCT_BY_ID_STORE,
@@ -367,7 +369,8 @@ const admin = (store) => (next) => (action) => {
         .then((response) => { // cas de réussite
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-          
+          store.dispatch({ type: GET_PRODUCTS_FROM_API })
+
           toast.success('Votre Produit a bien ete ajoute', {
             position: "bottom-right",
             autoClose: 5000,
@@ -408,6 +411,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => {
           if(response.data.success){
             store.dispatch(deleteProductInAdminStore(action.productId));
+            store.dispatch({ type: GET_PRODUCTS_FROM_API })
           }else{
             console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/product/${action.productId}`));
           }
@@ -444,7 +448,8 @@ const admin = (store) => (next) => (action) => {
         .then((response) => { // cas de réussite
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-          
+          store.dispatch({ type: GET_CATEGORIES_FROM_API })
+
           toast.success('Votre categorie a bien ete ajoute', {
             position: "bottom-right",
             autoClose: 5000,
@@ -517,7 +522,8 @@ const admin = (store) => (next) => (action) => {
         .then((response) => { // cas de réussite
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-          
+          store.dispatch({ type: GET_CATEGORIES_FROM_API })
+
           toast.success('Votre Categorie a bien ete modifiee', {
             position: "bottom-right",
             autoClose: 5000,
@@ -590,6 +596,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => {
           if(response.data.success){
             store.dispatch(deleteCategoryInAdminStore(action.categoryId));
+            
           }else{
             console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api :https://oshop-lyra.herokuapp.com/category/${action.categoryId}`));
           }

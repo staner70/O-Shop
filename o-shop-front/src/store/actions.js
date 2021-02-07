@@ -160,9 +160,9 @@ export const editUserById = (userId) => ({
   userId,
 });
 
-export const deleteProductInAdminStore = (payload) => ({
+export const deleteProductInAdminStore = (productId) => ({
   type: DELETE_PRODUCT_BY_ID_STORE,
-  payload,
+  productId,
 });
 
 //deleting a user

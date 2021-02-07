@@ -10,7 +10,7 @@ const Header = () => (
         <div className="flex justify-start items-center w-4/12">
             <NavLink
                 exact
-                to="/home/category/Accesoires"
+                to="/home/category/Accessoires"
                 activeClassName="bg-gray-600 text-white focus:ring-blue-200"
                 className="flex items-center mx-4 px-6 h-10 hover:bg-gray-100 hover:text-gray-400 bg-blue-400 focus:ring-gray-200 text-white ring ring-transparent text-xl rounded-md uppercase font-normal focus:outline-none">
                 Caisse
