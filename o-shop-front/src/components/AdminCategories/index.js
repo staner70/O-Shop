@@ -86,7 +86,8 @@ const AdminCategories = ({
                                      style={{backgroundColor: category.color}}></div>
                                 </div>
                                 <div className="w-1/4 px-6 py-4   text-sm font-medium">
-                                    <button 
+                                    <button
+                                        className="text-indigo-600 hover:text-indigo-900"
                                         id={category.id} 
                                         onClick={() => {editCategory(category.id);
                                         setShowModal(true) }}
@@ -193,7 +194,7 @@ const AdminCategories = ({
                                         />      
                                             <button 
                                                 type="submit"
-                                                className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
+                                                className="box-content	px-12 py-3 border-4 rounded-md bg-blue-400 text-white shadow hover:shadow-lg "
                                             >
                                                 OK
                                             </button>
@@ -203,7 +204,7 @@ const AdminCategories = ({
                                 {/*footer*/}
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
                                     <button
-                                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                                        className="items-center mx-4 px-6 h-10 hover:bg-gray-100 hover:text-gray-400 bg-blue-400 focus:ring-gray-200 text-white ring ring-transparent text-xl rounded-md uppercase font-normal focus:outline-none"
                                         type="button"
                                         style={{ transition: "all .15s ease" }}
                                         onClick={() => setShowModal(false)}

@@ -39,7 +39,6 @@ const AdminUser = ({
     const handleUserEditFormSubmit = (evt) => {
         evt.preventDefault();
         handleUserEdit();
-        console.log(handleUserEdit);
     };
     const isAdmin = localStorage.getItem('isAdmin');
     const [showModal, setShowModal] = useState();
@@ -102,6 +101,7 @@ const AdminUser = ({
                                         </div>
                                         <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <button
+                                                className="text-indigo-600 hover:text-indigo-900"
                                                 id={user.id}
                                                 onClick={() => {
                                                     editUser(user.id);
@@ -212,26 +212,12 @@ const AdminUser = ({
                                                                 value={editLastName}
                                                             />
 
-                                                            {/* <Field
-                                                                name="password"
-                                                                type="password"
-                                                                placeholder="Mot de passe"
-                                                                onChange={changeAdminUserField}
-                                                                value={editPassword}
-                                                            /> */}
-                                                            <select  value={editRole} onChange={(event)=>{changeAdminUserField(event.target.value, "editRole");}} >
+                                                            <select className="box-content p-4 border-4 m-2 outline-none rounded-md bg-white w-5/6" value={editRole} onChange={(event)=>{changeAdminUserField(event.target.value, "editRole");}} >
                                                                 {roles.map((role)=>(
                                                                     <option value={role.name} >{role.name}</option>
                                                                 ))}
                                                             </select>
-                                                            {/* <Field
-                                                                name="editRole"
-                                                                type="text"
-                                                                placeholder="Role"
-                                                                onChange={changeAdminUserField}
-                                                                value={editRole}
-                                                            /> */}
-
+                                                            
                                                             <Field
                                                                 name="editShop"
                                                                 type="text"
@@ -241,7 +227,7 @@ const AdminUser = ({
                                                             />
                                                             <button
                                                                 type="submit"
-                                                                className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
+                                                                className="box-content	px-12 py-3 border-4 rounded-md bg-blue-400 text-white shadow hover:shadow-lg "
                                                             >
                                                                 OK
                                                         </button>
@@ -251,7 +237,7 @@ const AdminUser = ({
                                                     {/*footer*/}
                                                     <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
                                                         <button
-                                                            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                                                            className="items-center mx-4 px-6 h-10 hover:bg-gray-100 hover:text-gray-400 bg-blue-400 focus:ring-gray-200 text-white ring ring-transparent text-xl rounded-md uppercase font-normal focus:outline-none"
                                                             type="button"
                                                             style={{ transition: "all .15s ease" }}
                                                             onClick={() => setShowModal(false)}

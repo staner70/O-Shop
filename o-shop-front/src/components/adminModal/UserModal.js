@@ -101,7 +101,7 @@ const UserModal = ({
                                             value={password}
                                         />
 
-                                        <select  value={role} onChange={(event)=>{changeUserField(event.target.value, "role");}} >
+                                        <select className="box-content p-4 border-4 m-2 outline-none rounded-md bg-white"  value={role} onChange={(event)=>{changeUserField(event.target.value, "role");}} >
                                             
                                             <option value="" >---- choisissez une rôle----</option>
                                             {roles.map((role)=>(
@@ -118,7 +118,7 @@ const UserModal = ({
                                         />
                                         
                                             <button type="submit"
-                                                className="box-content	px-12 py-3 border-4 rounded-md bg-bgred ">
+                                                className="box-content	px-12 py-3 border-4 rounded-md bg-blue-400 text-white shadow hover:shadow-lg ">
                                                 OK
                                             </button>            
                                     </form>
@@ -126,7 +126,7 @@ const UserModal = ({
                                 {/*footer*/}
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
                                     <button
-                                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none "
+                                        className="items-center mx-4 px-6 h-10 hover:bg-gray-100 hover:text-gray-400 bg-blue-400 focus:ring-gray-200 text-white ring ring-transparent text-xl rounded-md uppercase font-normal focus:outline-none"
                                         type="button"
                                         style={{ transition: "all .15s ease" }}
                                         onClick={() => setShowModal(false)}

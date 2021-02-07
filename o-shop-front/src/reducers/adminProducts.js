@@ -19,7 +19,7 @@ export const initialState = {
   description: '',
   price: '',
   quantity: '',
-  product_image: '',
+  image: 'https://i.ibb.co/6tjSfsQ/logo.png',
   shop: 'OSHOP',
   done: false,
   NotDone: false,

@@ -58,7 +58,7 @@ const AdminProducts = ({
                     <div className="flex">
                         <div className=" w-5/6">
                             <div className=" flex align-justify bg-gray-50">
-                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
+                                <div className="w-4/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
                                     Nom
                                 </div>
 
@@ -71,17 +71,17 @@ const AdminProducts = ({
                                 <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
                                     Quantité
                                 </div>
-                                <div className="w-2/12 px-6 py-3 text-xs font-medium">
+                                <div className="w-1/12 px-6 py-3 text-xs font-medium">
                                     <span className="sr-only">Edit</span>
                                 </div>
-                                <div className="w-2/12 px-6 py-3 text-xs font-medium">
+                                <div className="w-1/12 px-6 py-3 text-xs font-medium">
                                     <span className="sr-only">Delete</span>
                                 </div>
                             </div>
                             <div className="bg-white divide-y divide-gray-200">
                                 {products.map((product) => (
                                     <div className="w-full flex alig-justify	">
-                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <div className="w-4/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {product.name}
                                         </div>
                                         <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
@@ -93,8 +93,9 @@ const AdminProducts = ({
                                         <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {product.quantity}
                                         </div>
-                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <div className="w-1/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             <button
+                                                className="text-indigo-600 hover:text-indigo-900"
                                                 id={product.id}
                                                 onClick={() => {
                                                     editProduct(product.id);
@@ -104,7 +105,7 @@ const AdminProducts = ({
                                                 <FontAwesomeIcon icon={faEdit} />
                                             </button>
                                         </div>
-                                        <div className="w-2/12">
+                                        <div className="w-1/12 px-6 py-4 whitespace-nowrap text-sm">
                                             <button
                                                 onClick={() => {
                                                     getConfirmation({
@@ -193,9 +194,8 @@ const AdminProducts = ({
                                                                 value={editPrice}
                                                             />
                                                             
-                                                            <select  value={editCategory} onChange={(event)=>{changeAdminProductField(event.target.value, "editCategory");}} >
+                                                            <select className="box-content p-4 border-4 m-2 outline-none rounded-md bg-white w-5/6"  value={editCategory} onChange={(event)=>{changeAdminProductField(event.target.value, "editCategory");}} >
                                             
-                                                                <option value="" >---- choisissez une categorie----</option>
                                                                 {categories.map((category)=>(
                                                                     <option value={category.name} >{category.name}</option>
                                                                 ))}
@@ -234,7 +234,7 @@ const AdminProducts = ({
                                                             />
                                                             <button
                                                                 type="submit"
-                                                                className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
+                                                                className="box-content	px-12 py-3 border-4 rounded-md bg-blue-400 text-white shadow hover:shadow-lg "
                                                             >
                                                                 OK
                                                         </button>
@@ -244,7 +244,7 @@ const AdminProducts = ({
                                                     {/*footer*/}
                                                     <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
                                                         <button
-                                                            className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                                                            className="items-center mx-4 px-6 h-10 hover:bg-gray-100 hover:text-gray-400 bg-blue-400 focus:ring-gray-200 text-white ring ring-transparent text-xl rounded-md uppercase font-normal focus:outline-none"
                                                             type="button"
                                                             style={{ transition: "all .15s ease" }}
                                                             onClick={() => setShowModal(false)}

@@ -76,7 +76,7 @@ const ProductModal = ({
                                             value={name}
                                         />
 
-                                        <select  value={category} onChange={(event)=>{changeProductField(event.target.value, "category");}} >
+                                        <select className="box-content p-4 border-4 m-2 outline-none rounded-md bg-white"  value={category} onChange={(event)=>{changeProductField(event.target.value, "category");}} >
                                             
                                             <option value="" >---- choisissez une categorie----</option>
                                             {categories.map((category)=>(
@@ -126,7 +126,7 @@ const ProductModal = ({
                                         />
                                             <button 
                                                 type="submit"
-                                                className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
+                                                className="box-content	px-12 py-3 border-4 rounded-md bg-blue-400 text-white shadow hover:shadow-lg "
                                             >
                                                 OK
                                             </button>
@@ -136,7 +136,7 @@ const ProductModal = ({
                                 {/*footer*/}
                                 <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
                                     <button
-                                        className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1"
+                                        className="items-center mx-4 px-6 h-10 hover:bg-gray-100 hover:text-gray-400 bg-blue-400 focus:ring-gray-200 text-white ring ring-transparent text-xl rounded-md uppercase font-normal focus:outline-none"
                                         type="button"
                                         style={{ transition: "all .15s ease" }}
                                         onClick={() => setShowModal(false)}
@@ -163,7 +163,6 @@ ProductModal.propTypes = {
 
 };
 
-ProductModal.defaultProps  = {  
-    image: "https://i.ibb.co/6tjSfsQ/logo.png"};
+
 
 export default ProductModal;
