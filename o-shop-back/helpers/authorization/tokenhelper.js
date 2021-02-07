@@ -10,7 +10,8 @@ const tokenhelper = {
         };
     
         const token = jwt.sign(payload,JWT_SECRET_KEY, {
-            expiresIn : JWT_EXPIRE
+            expiresIn : JWT_EXPIRE,
+            algorithm: "HS256" 
         });
         // console.log(token);
         return token;

@@ -43,7 +43,6 @@ module.exports = {
 
     logOut: async (request, response, next) => {
 
-        const { NODE_ENV } = process.env;
         
         return response.status(200).cookie({
             httpOnly: true,
@@ -57,13 +56,11 @@ module.exports = {
 
     profil: async (request, response, next) => {
         console.log(request.user,"<<Profil");
+        const result = await client.query(`SELECT * FROM userView WHERE id = $1`, [request.user.id]);
+        const profil = result.rows[0];
         response.json({
             success: true,
-            data: {
-                id: request.user.id,
-                username: request.user.username,
-               
-            }
+            data: profil
         })
     },
 
