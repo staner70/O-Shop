@@ -13,7 +13,8 @@ const mapStateToProps = (state) => ({
     editShop: state.adminproduct.editShop,
     editQuantity:state.adminproduct.editQuantity,
     editImage:state.adminproduct.editImage,
-    
+    showSpinner:state.adminuser.showSpinner,
+
   });
 
   const mapDispatchToProps = (dispatch) => ({

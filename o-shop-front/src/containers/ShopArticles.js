@@ -8,6 +8,7 @@ import { getProductsFromApi } from '../store/actions';
 
 const mapStateToProps = (state, ownProps) => ({
   articles: getProductsById(state.adminproduct.list, ownProps.match.params.id ),
+  showSpinner:state.adminuser.showSpinner,
   });
 
   const mapDispatchToProps = (dispatch) => ({

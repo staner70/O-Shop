@@ -4,6 +4,8 @@ import {
     DELETE_CATEGORY_BY_ID_STORE,
     EDIT_CATEGORY_BY_ID_STORE,
     CHANGE_EDIT_CATEGORY_FIELD,
+    CATEGORY_ADD_SUCCESS,
+    SUBMIT_EDIT_CATEGORY_SUCCESS
 
 } from '../store/actions';
 
@@ -45,12 +47,20 @@ const reducer = (oldState = initialState, action={}) => {
             } 
         }
 
-        case 'CATEGORY_ADD_SUCCESS':
+        case CATEGORY_ADD_SUCCESS:
             return {
                 ...oldState,
                 done: true,
                 name: '',
                 color: '',
+            };
+
+        case SUBMIT_EDIT_CATEGORY_SUCCESS:
+            return {
+                 ...oldState,
+                done: true,
+                editCategoryName:'',
+                editCategoryColor:'',
             };
 
         case DELETE_CATEGORY_BY_ID_STORE:{

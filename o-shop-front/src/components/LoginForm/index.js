@@ -2,13 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Field from './Field';
 import Logo from './logo.png';
+import Spinner from '../Spinner2';
 
 
 const LoginForm = ({
   username,
   password,
   changeField,//done
-  handleLogin,//done
+  handleLogin,
+  showSpinner//done
 }) => {
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -16,6 +18,10 @@ const LoginForm = ({
   };
 
   return (
+<>
+{showSpinner && <Spinner />}
+
+
     <div className="flex flex-col bg-primary justify-center sm:py-12 h-screen w-screen ">
       <div className="flex flex-col m-auto bg-white rounded-lg p-4">
 
@@ -43,6 +49,7 @@ const LoginForm = ({
       </form>
       </div>
     </div>
+</>
   );
 };
 

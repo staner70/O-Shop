@@ -9,7 +9,10 @@ import {
   SEARCH_CHANGE_FIELD,
   EDIT_PRODUCT_BY_ID_STORE,
   SEND_PAYMENT_TO_API,
-  PAYMENT_SUCCESS
+  PAYMENT_SUCCESS,
+  EDIT_PRODUCT_ADD_SUCCESS,
+  PRODUCT_ADD_SUCCESS,
+  SUBMIT_EDIT_PRODUCT_SUCCESS,
 } from '../store/actions';
 
 export const initialState = {
@@ -53,7 +56,7 @@ const reducer = (oldState = initialState, action={}) => {
             [action.name]: action.value,
           };
 
-    case 'PRODUCT_ADD_SUCCESS':
+    case PRODUCT_ADD_SUCCESS:
         return {
             ...oldState,
             done: true,
@@ -64,6 +67,17 @@ const reducer = (oldState = initialState, action={}) => {
             image:'',
             shop:'OSHOP',
         };
+    case  SUBMIT_EDIT_PRODUCT_SUCCESS:
+        return {
+            ...oldState,
+          done: true,
+          editName:'',
+          editPrice:'',
+          editQuantity:'',
+          editDescription:'',
+          editShop:'OSHOP',
+          editImage:'',
+          };
 
     case PAYMENT_SUCCESS:
         return {
