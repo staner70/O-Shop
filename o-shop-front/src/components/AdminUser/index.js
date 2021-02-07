@@ -52,32 +52,32 @@ const AdminUser = ({
             
                 <div className="w-full">
                     <div className= "flex">
-                        <div className= "w-5/6">
+                        <div className= "w-5/6 h-screen">
                             <div className="flex align-justify bg-gray-50">
-                                <div  className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div  className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
                                     Prénom
                                 </div>
-                                <div  className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div  className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
                                     Nom
                                 </div>
-                                <div className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
                                     Utilisateur
                                 </div>
-                                <div  className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div  className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
                                     Permission
                                 </div>
-                                <div className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                <div className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
                                     Magasin
                                 </div>
                                 <div className="w-1/6 px-6 py-3">
-                                    Edit
+                                <span className="sr-only">Edit</span>
                                 </div>
                                 <div  className="w-1/6 px-6 py-3">
-                                    Delete
+                                <span className="sr-only">Delete</span>
                                 </div>
                             </div>
                                 
-                            <div className="  bg-white divide-y divide-gray-200">
+                            <div className="  bg-white divide-y divide-gray-200 overflow-hidden overflow-y-auto h-3/4">
                                 
                                 {users.map((user) => (
                                     <div className="w-full flex align-justify">
@@ -132,10 +132,6 @@ const AdminUser = ({
                                             >
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>
-                                            
-                                            {/* <button  id={user.id}
-                                            onClick={() => deleteUser(user.id)}  
-                                            className="text-gray-400 hover:text-indigo-900"><FontAwesomeIcon icon={faTrashAlt} /></button> */}
                                         </div>
                                     </div>
                                 ))}

@@ -5,9 +5,9 @@ const ShopArticles = ({articles}) => {
   
     return  (
     
-    <div className="bg-primary flex ">
+    <div className="bg-primary flex h-screen ">
     
-    <div className="flex p-1 flex-wrap overflow-auto h-screen justify-center">
+    <div className="flex p-1 flex-wrap overflow-hidden overflow-y-auto h-5/6 justify-center">
 
     {articles.map((article) => (
       <Article key={article.id} article={article} />  

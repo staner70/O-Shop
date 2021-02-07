@@ -9,7 +9,7 @@ const Category = ({ categories, getCategories, getProducts}) => {
 
     return (
 <div className="flex w-full">
-        <nav className="flex bg-primary flex-wrap p-2 w-11/12	">
+        <nav className="flex bg-primary flex-wrap p-2 w-11/12 lg:w-5/6	">
             <ul className="flex  items-center	justify-start h-10 w-full overflow-x-auto overflow-y-hidden overflow-hidden">
             
                 {categories.map((category) => (
@@ -30,7 +30,7 @@ const Category = ({ categories, getCategories, getProducts}) => {
 
             </ul>
         </nav>
-        <nav className="flex bg-primary flex-wrap p-2 w-1/12">
+        <nav className="flex bg-primary flex-wrap lg:ml-5 p-2 w-1/12">
             <ScannerModal />
         </nav>
         </div>

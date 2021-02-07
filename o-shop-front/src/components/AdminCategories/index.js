@@ -53,21 +53,21 @@ const AdminCategories = ({
         
             <div className="w-full	">
                 <div className= "flex">
-                    <div className="w-4/5">
+                    <div className="w-4/5 h-screen">
                                 <div className="flex align-justify bg-gray-50 ">
                                     
-                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
                                         Nom
                                     </div>
-                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
                                         Couleur
                                     </div>
                                     
-                                    <div className="w-1/4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Edit
+                                    <div className="w-1/4 px-6 py-3 text-xs font-medium">
+                                        <span className="sr-only">Edit</span>
                                     </div>
-                                    <div className="w-1/4 px-6 py-3 text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Delete
+                                    <div className="w-1/4 px-6 py-3 text-xs font-medium">
+                                        <span className="sr-only">Delete</span>
                                     </div>
                                     
                                 </div>

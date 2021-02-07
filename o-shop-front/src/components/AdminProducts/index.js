@@ -56,19 +56,18 @@ const AdminProducts = ({
 
                 <div className="w-full ">
                     <div className="flex">
-                        <div className=" w-5/6">
+                        <div className=" w-5/6 h-screen">
                             <div className=" flex align-justify bg-gray-50">
-                                <div className="w-4/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
+                                <div className="w-4/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider font-bold">
                                     Nom
                                 </div>
-
-                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
+                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider font-bold">
                                     Prix (€)
                                 </div>
-                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
+                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider font-bold">
                                     Magasin
                                 </div>
-                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
+                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider font-bold">
                                     Quantité
                                 </div>
                                 <div className="w-1/12 px-6 py-3 text-xs font-medium">
@@ -78,7 +77,7 @@ const AdminProducts = ({
                                     <span className="sr-only">Delete</span>
                                 </div>
                             </div>
-                            <div className="bg-white divide-y divide-gray-200">
+                            <div className="bg-white divide-y divide-gray-200 overflow-hidden overflow-y-auto h-3/4">
                                 {products.map((product) => (
                                     <div className="w-full flex alig-justify	">
                                         <div className="w-4/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
