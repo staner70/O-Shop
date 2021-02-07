@@ -90,7 +90,7 @@ const AdminCategories = ({
                                         id={category.id} 
                                         onClick={() => {editCategory(category.id);
                                         setShowModal(true) }}
-                                    >
+                                        className="text-indigo-600 hover:text-indigo-900">
                                         <FontAwesomeIcon icon={faEdit} />
                                     </button>
                                 </div>
@@ -113,7 +113,7 @@ const AdminCategories = ({
                                                         },
                                                     });
                                                 }}
-                                            >
+                                                className="text-gray-400 hover:text-indigo-900">
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>
                                     {/* <button 

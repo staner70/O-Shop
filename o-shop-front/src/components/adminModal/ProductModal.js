@@ -126,7 +126,7 @@ const ProductModal = ({
                                         />
                                             <button 
                                                 type="submit"
-                                                className="box-content	px-12 py-3 border-4 rounded-md bg-bgred "
+                                                className="items-center mx-4 px-6 h-10 hover:bg-gray-100 hover:text-gray-400 bg-blue-400 focus:ring-gray-200 text-white ring ring-transparent text-xl rounded-md uppercase font-normal focus:outline-none  "
                                             >
                                                 OK
                                             </button>

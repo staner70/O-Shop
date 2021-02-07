@@ -69,7 +69,7 @@ const AdminUser = ({users, getUsers, deleteUser,roles, getRoles}) => {
                                             {user.role}
                                         </div>
                                         <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            Chez momo
+                                            O'Shop
                                         </div>
                                         <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <a href="#" className="text-indigo-600 hover:text-indigo-900"><FontAwesomeIcon icon={faEdit} /></a>
