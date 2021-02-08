@@ -61,7 +61,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => { 
           store.dispatch({ type: GET_USERS_FROM_API })
 
-          toast.success('Votre Utilisateur a bien ete ajoute', {
+          toast.success('Votre Utilisateur a bien été ajouté', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -170,7 +170,7 @@ const admin = (store) => (next) => (action) => {
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           
           store.dispatch({ type: GET_USERS_FROM_API })
-          toast.success('Votre Produit a bien ete ajoute', {
+          toast.success('Votre Utilisateur a bien été modifié', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -249,7 +249,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => { 
           store.dispatch({ type: GET_PRODUCTS_FROM_API })
 
-          toast.success('Votre Produit a bien ete ajoute', {
+          toast.success('Votre Produit a bien été ajouté', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -376,7 +376,7 @@ const admin = (store) => (next) => (action) => {
           store.dispatch({ type: GET_PRODUCTS_FROM_API })
           store.dispatch({ type: SUBMIT_EDIT_PRODUCT_SUCCESS});
           
-          toast.success('Votre Produit a bien ete ajoute', {
+          toast.success('Votre Produit a bien été modifié', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -456,7 +456,7 @@ const admin = (store) => (next) => (action) => {
           store.dispatch({ type: GET_CATEGORIES_FROM_API })
           store.dispatch({ type: CATEGORY_ADD_SUCCESS});
           
-          toast.success('Votre categorie a bien ete ajoute', {
+          toast.success('Votre catégorie a bien été ajouté', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -530,7 +530,7 @@ const admin = (store) => (next) => (action) => {
           store.dispatch({ type: GET_CATEGORIES_FROM_API });
           store.dispatch({ type: SUBMIT_EDIT_CATEGORY_SUCCESS});
 
-          toast.success('Votre Categorie a bien ete modifiee', {
+          toast.success('Votre Catégorie a bien été modifiée', {
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -649,7 +649,7 @@ const admin = (store) => (next) => (action) => {
       axios(paymentconfig)
         .then((response) => {
           store.dispatch({type: 'PAYMENT_SUCCESS'})
-          toast.success('Votre categorie a bien ete ajoute', {
+          toast.success('Paiement exécuté', {
           position: "bottom-right",
           autoClose: 5000,
           hideProgressBar: false,
