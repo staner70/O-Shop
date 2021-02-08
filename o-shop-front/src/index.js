@@ -5,8 +5,7 @@ import { Provider } from 'react-redux';
 import store from './store';
 import { Router } from 'react-router'
 import { ConfirmationDialogProvider } from 'material-ui-confirmation';
-
-import createBrowserHistory from 'history/createBrowserHistory'
+import { createBrowserHistory } from "history";
 
 
 import './index.css';
