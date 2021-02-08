@@ -648,7 +648,8 @@ const admin = (store) => (next) => (action) => {
 
       axios(paymentconfig)
         .then((response) => {
-          store.dispatch({type: 'PAYMENT_SUCCESS'})
+          store.dispatch({type: 'PAYMENT_SUCCESS'});
+          store.dispatch({ type: GET_PRODUCTS_FROM_API });
           toast.success('Paiement exécuté', {
           position: "bottom-right",
           autoClose: 5000,

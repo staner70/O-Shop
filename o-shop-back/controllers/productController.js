@@ -20,9 +20,9 @@ const productController = {
         for (const product of products) {
             
             if (product.quantity <= 3) {
-                product.stock = `stock bas : ${product.quantity}`;
+                product.stock = `stock bas`;
             } if (product.quantity <= 0) {
-               product.stock = `rupture de stock : ${product.quantity}`;
+               product.stock = `rupture de stock`;
             }
         }
 
@@ -39,9 +39,9 @@ const productController = {
         let stock = null;
         const product = await productDataMapper.getOneProduct(id);
         if (product.quantity <= 3) {
-            product.stock = `stock bas : ${product.quantity}`;
+            product.stock = `stock bas`;
         } if (product.quantity <= 0) {
-           product.stock = `rupture de stock : ${product.quantity}`;
+           product.stock = `rupture de stock`;
         }
         
         response.status(200).json({
@@ -90,9 +90,9 @@ const productController = {
             return next(new CustomError("Product not exist", 400));
         }
         if (product.quantity <= 3) {
-            product.stock = `stock bas : ${product.quantity}`;
+            product.stock = `stock bas`;
         } if (product.quantity <= 0) {
-           product.stock = `rupture de stock : ${product.quantity}`;
+           product.stock = `rupture de stock`;
         }
        
         response.status(200).json({
