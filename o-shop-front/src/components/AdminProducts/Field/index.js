@@ -30,7 +30,6 @@ const Field = ({
         placeholder={placeholder}
         name={name}
         min="1"
-        maxLength="40"
         required
       />
     </div>
