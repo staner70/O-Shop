@@ -1,0 +1,22 @@
+{
+    "inputStream": {
+      "type": "LiveStream",
+      "constraints": {
+        "width": { "max": 300, "min":300 },
+        "height": { "max": 300 , "min":200},
+        "facingMode": "environment",
+        "aspectRatio": { "min": 1, "max": 2 }
+      }
+    },
+    "locator": {
+      "patchSize": "medium",
+      "halfSample": false
+    },
+    "numOfWorkers": 2,
+    "frequency": 10,
+    "decoder": {
+      "readers": ["ean_8_reader"]
+    },
+    "locate": true
+  }
+  

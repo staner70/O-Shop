@@ -1,25 +1,46 @@
-import logo from './logo.svg';
 import './App.css';
+import "tailwindcss/tailwind.css";
+import { Route, Switch } from 'react-router-dom';
+import  LoginForm from './containers/LoginForm';
+import Home from './components/Home';
+import Admin from './containers/Admin';
+import AdminUser from './containers/AdminUser';
+import AdminProducts from './containers/AdminProduct';
+import AdminCategories from './containers/AdminCategory';
+import AccessForbidden from './components/AccessForbidden';
 
-function App() {
+function App(props) {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App bg-white">
+      <Switch>
+        <Route exact path= '/'>
+          <LoginForm />
+        </Route>
+        <Route exact path= '/home/category/:id'>
+          <Home />
+        </Route>
+        <Route exact path= '/admin/'>
+        <Admin />
+        </Route>
+        <Route exact path= '/admin/user'>
+        <AdminUser />
+        </Route>
+        <Route exact path= '/admin/products'>
+        <AdminProducts />
+        </Route>
+        <Route exact path= '/admin/categories'>
+        <AdminCategories />
+        </Route>
+        <Route exact path= '/accessforbidden'>
+          <AccessForbidden />
+        </Route>
+        
+      </Switch>
     </div>
-  );
-}
+
+  )
+};
+
 
 export default App;

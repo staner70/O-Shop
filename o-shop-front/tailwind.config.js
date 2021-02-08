@@ -1,8 +1,31 @@
+const { faLaptop } = require("@fortawesome/free-solid-svg-icons");
+
 module.exports = {
-  purge: [],
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    screems:{
+      
+      
+    },
+
+    extend: {
+      height: {
+        '80' : '80%',
+'20':'20%',
+      },
+      backgroundColor: theme => ({
+        ...theme('colors'),
+        'bgred': '#cc3e37',
+        'bgback': '#ebe8de',
+        'primary':'#e7eafc',
+        'secondary': '#fbfbfe',
+        'bgcart': '#f3f4fe',
+        'profil': '#1dc9b7',
+        'gif': '#f5fafc',
+        'gif2': '#252321',
+       })
+    }
   },
   variants: {
     extend: {},
