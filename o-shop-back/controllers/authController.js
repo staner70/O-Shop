@@ -4,6 +4,8 @@ const {validateUserInput, comparePassword} = require('../helpers/input/inputHelp
 const {sendJwtToClient} = require('../helpers/authorization/tokenhelper');
 const bcrypt = require('bcryptjs');
 const userDataMapper = require('../dataMapper/userDataMapper');
+const { addTokenToBlackList } = require("../helpers/authorization/redis.service");
+const { isTokenIncluded, getAccessTokenFrom } = require('../helpers/authorization/tokenhelper');
 
 module.exports = {
 
@@ -43,6 +45,10 @@ module.exports = {
 
     logOut: async (request, response, next) => {
 
+        const token = getAccessTokenFrom(request);
+        // let token = request.header("access_token");
+        await addTokenToBlackList(token);
+        
         
         return response.status(200).cookie({
             httpOnly: true,

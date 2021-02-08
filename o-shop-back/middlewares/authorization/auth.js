@@ -3,6 +3,7 @@ const { isTokenIncluded, getAccessTokenFrom } = require('../../helpers/authoriza
 const CustomError = require('../../helpers/CustomError');
 const jwt = require('jsonwebtoken');
 const client = require('../../dataMapper/client');
+const { isTokenInBlackList } = require('../../helpers/authorization/redis.service');
 
 module.exports = {
     getAccessToRoute: async (request, response, next) => {
@@ -12,9 +13,14 @@ module.exports = {
             console.log("<-- isTokenIncluded");
             return next(new CustomError("You are not authorized to access this route", 401));
         }
-
         const accessToken = getAccessTokenFrom(request);
         console.log(accessToken, "<-- getAccessToRoute");
+        console.log(await isTokenInBlackList(accessToken), "<<< getAccess isTokenINBlack");
+        if (await isTokenInBlackList(accessToken)) {
+            return next(new CustomError("Invalid Token", 401));
+        }
+
+
         jwt.verify(accessToken, process.env.JWT_SECRET_KEY, (err, decoded) => {
             if (err) {
                 console.log(accessToken, "<--- verify");
