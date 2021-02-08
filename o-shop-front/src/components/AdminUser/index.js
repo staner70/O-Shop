@@ -65,7 +65,7 @@ const AdminUser = ({
                                     Nom
                                 </div>
                                 <div className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
-                                    Utilisateur
+                                    Identifiant
                                 </div>
                                 <div  className="w-1/6 px-6 py-3  text-xs font-medium text-gray-500 uppercase tracking-wider font-bold">
                                     Permission
@@ -85,22 +85,19 @@ const AdminUser = ({
                                 
                                 {users.map((user) => (
                                     <div className="w-full flex align-justify">
-                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap">
-                                            
-                                                {user.first_name}
-                                            
+                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                            {user.first_name.toUpperCase()}
                                         </div>
-                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap">
-                                            {user.last_name}
+                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                            {user.last_name.toUpperCase()}
                                         </div>
-                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             {user.username}
                                         </div>
-                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap">
-                            
+                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             {user.role}
                                         </div>
-                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             O'Shop
                                         </div>
                                         <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm font-medium">

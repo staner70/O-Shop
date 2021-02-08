@@ -22,6 +22,8 @@ const reducer = (oldState = initialState, action = {}) => {
         // on copie les données de l'action dans le reducer
         token: action.token,
         isAdmin: action.isAdmin,
+        username: '',
+        password: '',
       };
     case LOGOUT:
       return {

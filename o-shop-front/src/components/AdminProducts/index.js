@@ -85,19 +85,19 @@ const AdminProducts = ({
                             <div className="bg-white divide-y divide-gray-200 overflow-hidden overflow-y-auto h-3/4">
                                 {products.map((product) => (
                                     <div className="w-full flex alig-justify	">
-                                        <div className="w-4/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            {product.name}
+                                        <div className="w-4/12 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
+                                            {product.name.toUpperCase()}
                                         </div>
-                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             {product.price}
                                         </div>
-                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             O'Shop
                                         </div>
-                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <div className="w-2/12 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             {product.quantity}
                                         </div>
-                                        <div className="w-1/12 px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                        <div className="w-1/12 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             <button
                                                 className="text-indigo-600 hover:text-indigo-900"
                                                 id={product.id}
