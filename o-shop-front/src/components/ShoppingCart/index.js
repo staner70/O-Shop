@@ -67,12 +67,12 @@ const ShoppingCart = ({cart}) => {
         <div className="bg-white flex flex-col bg-cart rounded-lg h-64 mx-4 pt-2 items-center sticky bottom-0 right-0 w-full">
           <div className="flex flex-col justify-around bg-cart rounded-lg m-4 p-4 h-20 items-center w-full ">
             <div className="flex justify-around bg-cart rounded-lg h-10 items-center w-full">
-              <div className="flex text-center font-semibold text-blue-400">Total:</div>
-              <div className="flex font-semibold text-blue-400">{totalPrice} € TTC </div>
-            </div>
-            <div className=" flex justify-around bg-cart rounded-lg h-10 items-center w-full ">
               <div className="w-1/2 font-semibold text-green-500 flex justify-center">Dont TVA (20%):</div>
               <div className="w-1/2 flex justify-center font-semibold text-green-500 ">{((totalPrice) * (0.2)).toFixed(2)} € TTC </div>
+            </div>
+            <div className=" flex justify-around bg-cart rounded-lg h-10 items-center w-full ">
+              <div className="flex text-center font-semibold text-blue-400">Total:</div>
+              <div className="flex font-semibold text-blue-400">{totalPrice} € TTC </div>
             </div>
           </div>
           <div className="flex">({totalItems} Articles)</div>

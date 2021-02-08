@@ -29,6 +29,7 @@ import {
   CATEGORY_ADD_SUCCESS,
   SUBMIT_EDIT_CATEGORY_SUCCESS,
   PRODUCT_ADD_SUCCESS,
+  USER_ADD_SUCCESS,
   
   SUBMIT_CATEGORY,
 } from '../store/actions';
@@ -60,7 +61,7 @@ const admin = (store) => (next) => (action) => {
       axios(userconfig) 
         .then((response) => { 
           store.dispatch({ type: GET_USERS_FROM_API })
-
+          store.dispatch({ type: USER_ADD_SUCCESS});
           toast.success('Votre Utilisateur a bien été ajouté', {
             position: "bottom-right",
             autoClose: 5000,
@@ -248,7 +249,7 @@ const admin = (store) => (next) => (action) => {
       axios(productconfig)
         .then((response) => { 
           store.dispatch({ type: GET_PRODUCTS_FROM_API })
-
+          store.dispatch({ type: PRODUCT_ADD_SUCCESS});
           toast.success('Votre Produit a bien été ajouté', {
             position: "bottom-right",
             autoClose: 5000,
@@ -373,7 +374,7 @@ const admin = (store) => (next) => (action) => {
         .then((response) => { // cas de réussite
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
-          store.dispatch({ type: GET_PRODUCTS_FROM_API })
+          store.dispatch({ type: GET_PRODUCTS_FROM_API });
           store.dispatch({ type: SUBMIT_EDIT_PRODUCT_SUCCESS});
           
           toast.success('Votre Produit a bien été modifié', {
