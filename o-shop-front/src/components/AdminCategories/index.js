@@ -40,7 +40,6 @@ const AdminCategories = ({
     const handleCategoryEditFormSubmit = (evt) => {
         evt.preventDefault();
         handleCategoryEdit();
-        console.log(handleCategoryEdit);
     };
     const [showModal, setShowModal] = useState();
     const isAdmin = localStorage.getItem('isAdmin');

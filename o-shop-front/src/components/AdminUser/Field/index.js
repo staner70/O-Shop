@@ -19,7 +19,6 @@ const Field = ({
 
   return (
     <div className="box-content	p-4 border-4 m-2 outline-none	 rounded-md bg-white">
-      {console.log(value)}
       <input
         // React - state
         value={value}

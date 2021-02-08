@@ -21,7 +21,6 @@ const mapStateToProps = (state) => ({
       dispatch(getUsersFromApi());
     },
     deleteUser: (idUser) => {
-      console.log(idUser);
       dispatch(deleteUserById(idUser));
     },
     getRoles: () => {

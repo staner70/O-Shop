@@ -7,16 +7,16 @@ const productController = {
        
         let products;
         let stock = null;
-        console.log(request.query.search, "<<-- Search query");
+    
         if (request.query.search) {
             let searchObject = request.query.search.split(' ');
             searchObject = searchObject.join(' | ');
-            console.log(searchObject, "<<join");
+            
             products = await productDataMapper.getAllProduct(searchObject);
         } else {
             products = await productDataMapper.getAllProduct();
         }
-        // console.log(products);
+    
         for (const product of products) {
             
             if (product.quantity <= 3) {
@@ -68,7 +68,7 @@ const productController = {
 
     addNewProduct: async (request, response, next) => {
         const productInfo = request.body;
-        console.log("addOneProduct");
+        
         const product = await productDataMapper.addOneProduct(productInfo);
         if (product == null) {
             return next(new CustomError("Product already exist", 400));
@@ -120,7 +120,6 @@ const productController = {
             // we are looking for the id of product
             const productImage = req.savedProductImage;
             const {id} = req.params;
-            console.log(id);
             const product = await productDataMapper.imageUpload(productImage, id);
             
             res.status(200)
@@ -138,7 +137,7 @@ const productController = {
        
         const newProduct = [];
         const cart = request.body;
-        // console.log(cart);
+        
         for (const product of cart) {
             const {id, qty} = product;
 
@@ -147,7 +146,6 @@ const productController = {
            
         }
 
-        console.log(newProduct);
         response.status(200)
         .json({
             success: true,

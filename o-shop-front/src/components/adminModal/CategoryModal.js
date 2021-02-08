@@ -16,7 +16,6 @@ const CategoryModal = ({
     const handleCategoryFormSubmit = (evt) => {
         evt.preventDefault();
         handleCategory();
-        console.log(handleCategory);
     };
 
     return (

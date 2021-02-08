@@ -14,7 +14,6 @@ roleDataMapper = {
     },
 
     async updateOneRole(id, name) {
-        console.log(id);
         // we test if the product alreayd exist 
         const existRole = await client.query(`SELECT * FROM "role" WHERE id = $1`, [id]);
         

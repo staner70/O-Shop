@@ -27,7 +27,7 @@ module.exports = {
         const {id} = request.params;
         
         const role = await roleDataMapper.updateOneRole(id,name);
-        console.log(role);
+        
         if (role == null) {
             return next(new CustomError("Role not exist with that id", 400));
         }

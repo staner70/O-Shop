@@ -46,7 +46,6 @@ const AdminProducts = ({
     const handleProductEditFormSubmit = (evt) => {
         evt.preventDefault();
         handleProductEdit();
-        console.log(handleProductEdit);
     };
     const isAdmin = localStorage.getItem('isAdmin');
     const [showModal, setShowModal] = useState();

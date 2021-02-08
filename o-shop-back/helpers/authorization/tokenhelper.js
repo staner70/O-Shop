@@ -12,7 +12,6 @@ const tokenhelper = {
         const token = jwt.sign(payload,JWT_SECRET_KEY, {
             expiresIn : JWT_EXPIRE
         });
-        // console.log(token);
         return token;
     },
 
@@ -20,7 +19,6 @@ const tokenhelper = {
         // Generate JWT
         
         const token = tokenhelper.generateJwtFromUser(user);
-        console.log(token);
         const { JWT_COOKIE, NODE_ENV} = process.env;
         //verification isAdmin
         let isAdmin;
@@ -29,7 +27,6 @@ const tokenhelper = {
         } else {
             isAdmin = false;
         }
-        console.log(typeof isAdmin);
         return response
         .status(200)
         .cookie("access_token",token,{
@@ -52,7 +49,6 @@ const tokenhelper = {
     },
 
     isTokenIncluded: (request) => {
-        console.log(request.headers.authorization, "<-- istokenincluded");
         return (
             request.headers.authorization && request.headers.authorization.startsWith("Bearer:")
         );
@@ -61,7 +57,6 @@ const tokenhelper = {
     getAccessTokenFrom: (request) => {
         const authorization = request.headers.authorization;
         const access_token = authorization.split(" ")[1];
-        console.log(access_token, "<---getAccesTokenFrom");
         return access_token;
     }
 }
