@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
+import { toast } from "react-toastify";
 
 
 const api = (store) => (next) => (action) => {
@@ -24,7 +25,7 @@ const api = (store) => (next) => (action) => {
 
       axios(config) // on lance la requete...
         .then((response) => { // cas de réussite
-          store.dispatch({ type: 'SHOW_SPINNER'});
+          // store.dispatch({ type: 'SHOW_SPINNER'});
 
           if(response.data.success){
             const { access_token } = response.data;
@@ -42,13 +43,16 @@ const api = (store) => (next) => (action) => {
             const cookies = new Cookies();
             cookies.set(`Bearer: ${response.data.access_token}`, "{ path: '/' }");
             localStorage.setItem('role', role);
-            history.push('/home/category/Accessoires');
+            history.push('/home/category/Accessoires'); //comme redirect vers une page
           }else{
+            alert(response.data.message);
+            console.log(response.data.message);
             console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api auth`));
           }
         })
         .catch((error) => { // cas d'erreur
-          console.log(error);
+        console.log('erreur');
+          console.log(error.message);
         }).finally(
           // store.dispatch({ type: 'HIDE_SPINNER'})
         );

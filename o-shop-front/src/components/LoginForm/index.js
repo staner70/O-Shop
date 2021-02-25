@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';  // pour vérifier les données comme joi
 import Field from './Field';
 import Logo from './logo.png';
 import Spinner from '../Spinner2';
@@ -19,6 +19,7 @@ const LoginForm = ({
 
   return (
 <>
+
 {showSpinner && <Spinner />}
 
 
@@ -59,6 +60,7 @@ LoginForm.propTypes = {
   changeField: PropTypes.func.isRequired,
   handleLogin: PropTypes.func.isRequired,
 };
+
 
 
 export default LoginForm;
