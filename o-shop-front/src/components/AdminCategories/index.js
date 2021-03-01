@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
@@ -118,12 +119,6 @@ const AdminCategories = ({
                                             >
                                                 <FontAwesomeIcon icon={faTrashAlt} />
                                             </button>
-                                    {/* <button 
-                                        id={category.id}
-                                        onClick={() => deleteCategory(category.id)} 
-                                    >
-                                        <FontAwesomeIcon icon={faTrashAlt} />
-                                    </button> */}
                                 </div>
                             </div>
                             ))}
@@ -231,6 +226,20 @@ const AdminCategories = ({
     )} return (<AccessForbidden />)
 }
 
+AdminCategories.propTypes = {
+    editCategory: PropTypes.func,
+    getCategories: PropTypes.func,
+    deleteCategory: PropTypes.func,
+    changeAdminCategoryField: PropTypes.func,
+    handleCategoryEdit: PropTypes.func,
+    showSpinner: PropTypes.bool.isRequired,
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({
+        editCategoryColor: PropTypes.string.isRequired,
+        editCategoryName: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+  };
 export default AdminCategories;
 
 
