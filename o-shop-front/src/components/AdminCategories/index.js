@@ -36,7 +36,7 @@ const AdminCategories = ({
 
     useEffect(() => {
         getCategories();
-    },[]);
+    },[getCategories]);
 
     const handleCategoryEditFormSubmit = (evt) => {
         evt.preventDefault();
@@ -45,7 +45,7 @@ const AdminCategories = ({
     const [showModal, setShowModal] = useState();
     const isAdmin = localStorage.getItem('isAdmin');
 
-    if(isAdmin == "true"){
+    if(isAdmin === "true"){
         return(
         <>
         <SizeForbidden />
@@ -77,7 +77,7 @@ const AdminCategories = ({
                               <div className="bg-white divide-y divide-gray-200">
 
                             {categories.map((category) =>(
-                                <div className="w-full flex align-justify ">
+                                <div key={category.name} className="w-full flex align-justify ">
                                     
                                     <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-800 uppercase tracking-wider">
                                         {category.name.toUpperCase()}
@@ -235,10 +235,10 @@ AdminCategories.propTypes = {
     showSpinner: PropTypes.bool.isRequired,
     categories: PropTypes.arrayOf(
       PropTypes.shape({
-        editCategoryColor: PropTypes.string.isRequired,
-        editCategoryName: PropTypes.string.isRequired,
+        editCategoryColor: PropTypes.string,
+        editCategoryName: PropTypes.string,
       }),
-    ).isRequired,
+    ),
   };
 export default AdminCategories;
 

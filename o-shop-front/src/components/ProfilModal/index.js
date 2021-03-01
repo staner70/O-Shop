@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const ProfilModal = ({onLogoutClick}) => {
   const [showModal, setShowModal] = React.useState(false);
@@ -82,5 +83,8 @@ const ProfilModal = ({onLogoutClick}) => {
     </>
   );
 };
+
+ProfilModal.propTypes = {
+  onLogoutClick: PropTypes.func.isRequired};
 
 export default ProfilModal;

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
@@ -41,7 +42,7 @@ const AdminProducts = ({
 
         getProducts();
         getCategories();
-    }, []);
+    }, [getCategories, getProducts]);
 
     const handleProductEditFormSubmit = (evt) => {
         evt.preventDefault();
@@ -50,7 +51,7 @@ const AdminProducts = ({
     const isAdmin = localStorage.getItem('isAdmin');
     const [showModal, setShowModal] = useState();
 
-    if (isAdmin == "true") {
+    if (isAdmin === "true") {
         return (
             <>
                 <SizeForbidden />
@@ -83,7 +84,7 @@ const AdminProducts = ({
                             </div>
                             <div className="bg-white divide-y divide-gray-200 overflow-hidden overflow-y-auto h-3/4">
                                 {products.map((product) => (
-                                    <div className="w-full flex alig-justify	">
+                                    <div key={product.name} className="w-full flex alig-justify	">
                                         <div className="w-4/12 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             {product.name.toUpperCase()}
                                         </div>
@@ -272,5 +273,24 @@ const AdminProducts = ({
     return (<AccessForbidden />)
 };
 
+AdminProducts.propTypes = {
+   getProducts: PropTypes.func,
+    getCategories: PropTypes.func,
+    deleteProduct: PropTypes.func,
+    editProduct: PropTypes.func,
+    changeAdminProductField: PropTypes.func,
+    handleProductEdit: PropTypes.func,
+    showSpinner: PropTypes.bool.isRequired,
+    products: PropTypes.arrayOf(
+      PropTypes.shape({
+        editCategory: PropTypes.string.isRequired,
+        editPrice: PropTypes.number.isRequired,
+        editDescription: PropTypes.string.isRequired,
+        editShop: PropTypes.string.isRequired,
+        editQuantity: PropTypes.number.isRequired,
+        editImage: PropTypes.string.isRequired,
+      }),
+    ).isRequired,
+  };
 
 export default AdminProducts;

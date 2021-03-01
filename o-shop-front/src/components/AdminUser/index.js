@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import PropTypes from 'prop-types';
 import Header from '../Header';
 import NavAdmin from '../NavAdmin';
 import AccessForbidden from '../AccessForbidden';
@@ -37,7 +38,7 @@ const AdminUser = ({
     useEffect(()=>{
         getUsers();
         getRoles();
-    },[]);
+    },[getRoles, getUsers]);
 
     const handleUserEditFormSubmit = (evt) => {
         evt.preventDefault();
@@ -46,7 +47,7 @@ const AdminUser = ({
     const isAdmin = localStorage.getItem('isAdmin');
     const [showModal, setShowModal] = useState();
 
-    if(isAdmin == "true"){
+    if(isAdmin === "true"){
         return (
             <>
                 <SizeForbidden />
@@ -84,7 +85,7 @@ const AdminUser = ({
                             <div className="  bg-white divide-y divide-gray-200 overflow-hidden overflow-y-auto h-3/4">
                                 
                                 {users.map((user) => (
-                                    <div className="w-full flex align-justify">
+                                    <div key={user.id}className="w-full flex align-justify">
                                         <div className="w-1/6 px-6 py-4 whitespace-nowrap text-sm text-gray-800">
                                             {user.first_name.toUpperCase()}
                                         </div>
@@ -211,7 +212,7 @@ const AdminUser = ({
 
                                                             <select className="box-content p-4 border-4 m-2 outline-none rounded-md bg-white w-5/6" value={editRole} onChange={(event)=>{changeAdminUserField(event.target.value, "editRole");}} >
                                                                 {roles.map((role)=>(
-                                                                    <option value={role.name} >{role.name}</option>
+                                                                    <option value={role.name} key={role.name} >{role.name}</option>
                                                                 ))}
                                                             </select>
                                                             
@@ -258,5 +259,25 @@ const AdminUser = ({
     }
     return (<AccessForbidden />)
 };
+
+AdminUser.propTypes = {
+    getUsers: PropTypes.func,
+     deleteUser: PropTypes.func,
+     getRoles: PropTypes.func,
+     editUser: PropTypes.func,
+     changeAdminUserField: PropTypes.func,
+     handleUserEdit: PropTypes.func,
+     showSpinner: PropTypes.bool.isRequired,
+     users: PropTypes.arrayOf(
+       PropTypes.shape({
+         roles: PropTypes.string,
+         editLastName: PropTypes.string,
+         editFirstName: PropTypes.string,
+         editUserName: PropTypes.string,
+         editRole: PropTypes.string,
+         editShop: PropTypes.string,
+       }),
+     ).isRequired,
+   };
 
 export default AdminUser;

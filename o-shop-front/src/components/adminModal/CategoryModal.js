@@ -111,8 +111,8 @@ const CategoryModal = ({
 CategoryModal.propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
-    changeCategoryColorField : PropTypes.func.isRequired,
-    changeCategoryField: PropTypes.func.isRequired,
+    changeCategoryColorField : PropTypes.func,
+    changeCategoryField: PropTypes.func,
     handleCategory: PropTypes.func.isRequired,
 };
 

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 
 const ShoppingCartTotal = ({ total }) => {
 
@@ -10,5 +11,8 @@ const ShoppingCartTotal = ({ total }) => {
   );
 };
 
+ShoppingCartTotal.propTypes = {
+  total: PropTypes.number,}
+  
 export default ShoppingCartTotal; 
 

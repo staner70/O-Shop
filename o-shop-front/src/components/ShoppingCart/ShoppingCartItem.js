@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from 'prop-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
@@ -37,6 +38,11 @@ const ShoppingCartItem = ({ item, adjustQty, removeFromCart }) => {
       </div>
   );
 };
+
+ShoppingCartItem.propTypes = {
+  adjustQty: PropTypes.func,
+  removeFromCart: PropTypes.func,
+ };
 
 export default ShoppingCartItem; 
 

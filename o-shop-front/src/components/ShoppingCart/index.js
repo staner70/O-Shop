@@ -3,10 +3,8 @@ import ShoppingCartItem from '../../containers/ShoppingCartItem';
 import { useDispatch } from 'react-redux';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { GET_PRODUCTS_FROM_API } from "../../store/actions";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCreditCard } from '@fortawesome/free-solid-svg-icons';
-import { faPrint } from '@fortawesome/free-solid-svg-icons';
 
 
 const ShoppingCart = ({cart}) => {
@@ -14,9 +12,6 @@ const ShoppingCart = ({cart}) => {
   const [totalItems, setTotalItems] = useState(0);
   const dispatch= useDispatch();
 
-  const handleClick = (event) => {
-    window.print()
-  };
 
   useEffect(() => {
 
@@ -89,27 +84,14 @@ const ShoppingCart = ({cart}) => {
               </button>
 
             </div>
-            {/* <div className="w-5/6 flex m-auto justify-center">
-              <button
-                className="bg-white border-solid border-2	 border-blue-400 w-full my-2 text-blue-400 font-normal uppercase text-sm px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1"
-                type="button"
-                onClick={handleClick}
-              >
-                <FontAwesomeIcon
-                  icon={faPrint}
-                  className="mx-4"
-                />
-
-              Imprimer le Ticket
-            </button>
-              </div> */}
-
           </div>
         </div>
       </div>
     </>
   )   
-}
+};
+
+
   export default ShoppingCart; 
    
 

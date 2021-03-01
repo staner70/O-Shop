@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Article from '../../containers/Article';
 import Spinner from '../Spinner';
 
@@ -16,8 +17,14 @@ const ShopArticles = ({articles,  showSpinner}) => {
       </div>
     </div>
 
-)
-    }
+            )
+};
 
+ShopArticles.propTypes = {
+  showSpinner: PropTypes.bool,
+  articles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number}),)
+    };
 
 export default ShopArticles;
