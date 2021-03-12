@@ -1,3 +1,4 @@
+// Personnalisation de toutes les erreurs (erreur MW DB etc etc...)
 const CustomError = require("../helpers/CustomError");
 
 module.exports = {
@@ -8,7 +9,6 @@ module.exports = {
 
         if (error.name === "SyntaxError") {
             customError = new CustomError("Unexpected Syntax", 400);
-
         }
         if (error.name === "ValidationError") {
             customError = new CustomError(error.message, 400)

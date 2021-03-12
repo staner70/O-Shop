@@ -7,16 +7,17 @@ const productController = {
        
         let products;
         let stock = null;
-    
+   
+         // cette partie gere la fonction de recherche
         if (request.query.search) {
             let searchObject = request.query.search.split(' ');
             searchObject = searchObject.join(' | ');
-            
+            // le searchObject correspond (ou barcode) a celui dans le product DataMapper
             products = await productDataMapper.getAllProduct(searchObject);
         } else {
             products = await productDataMapper.getAllProduct();
         }
-    
+    // Ici on envoie une info dans la requete si le stock est inferieur a un certain nombre
         for (const product of products) {
             
             if (product.quantity <= 3) {

@@ -4,6 +4,7 @@ const CustomError = require('../../helpers/CustomError');
 const jwt = require('jsonwebtoken');
 const client = require('../../dataMapper/client');
 
+// Middleware pour autoriser l'acces a la route si presence JWT
 module.exports = {
     getAccessToRoute: async (request, response, next) => {
         // const {JWT_SECRET_KEY} = process.env;

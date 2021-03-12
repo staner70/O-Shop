@@ -3,11 +3,11 @@ const client = require('./client');
 productDataMapper = {
 
     // get the list of all products
-    async getAllProduct(name) {
+    async getAllProduct(searchObject) {
         let result;
 
         if (name) {
-            result = await client.query(`SELECT * FROM productView WHERE (name || bar_code) ~* $1`,[name]);
+            result = await client.query(`SELECT * FROM productView WHERE (name || bar_code) ~* $1`,[searchObject]);
 
         } else {
             result = await client.query(`SELECT * FROM productView`);  

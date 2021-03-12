@@ -1,3 +1,5 @@
+// Ancienne version de verification avant d'utiliser joi
+
 const CustomError = require('../../helpers/CustomError');
 const client = require('../../dataMapper/client');
 

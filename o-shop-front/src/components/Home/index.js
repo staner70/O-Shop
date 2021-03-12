@@ -11,7 +11,7 @@ const Home = () => {
   
   //Je regarde si mon parametre isAdmin existe en localstorage
   const isAdmin = localStorage.getItem('isAdmin');
-  if(isAdmin == "true" || isAdmin == "false" ){
+  if(isAdmin === "true" || isAdmin === "false" ){
       return (
         <>
         < Header />

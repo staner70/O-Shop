@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 const tokenhelper = {
+    // ici on genere un JWT si user existe (login success)
     generateJwtFromUser: (user) => {
         const {JWT_SECRET_KEY,JWT_EXPIRE} = process.env;
 
@@ -14,7 +15,7 @@ const tokenhelper = {
         });
         return token;
     },
-
+// Ici on envoie la reponse fonction du role de l'utilisateur
     sendJwtToClient: (user, response) => {
         // Generate JWT
         

@@ -15,7 +15,7 @@ const { getAccessToRoute, getAdminAccess } = require('../middlewares/authorizati
 
 router.get('/', catchErrors(getAllCategories));
 router.get('/:id(\\d+)', catchErrors(getOneCategory));
-
+// Dans chaque route on retrouve des middlewares , ici ai je acces a la route, ai je acces si je suis admin, validation avec Joi des donnees envoyees et gestion des erreurs
 router.post('/',getAccessToRoute, getAdminAccess, validateBody(categorySchema), catchErrors(createCategory));
 
 router.patch('/:id(\\d+)',getAccessToRoute, getAdminAccess, validateBody(categorySchema), catchErrors(updateCategory));

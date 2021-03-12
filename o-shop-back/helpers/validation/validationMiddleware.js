@@ -1,5 +1,5 @@
 module.exports = {
-
+// MIddleware pour customiser les messages d'erreur en fonction de chaque schema
     validateBody(schema) {
         return async (request, response, next) => {
             try {

@@ -63,16 +63,16 @@ const AdminProducts = ({
                     <div className="flex">
                         <div className=" w-5/6 h-screen">
                             <div className=" flex align-justify bg-gray-50">
-                                <div className="w-4/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider font-bold">
+                                <div className="w-4/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
                                     Nom
                                 </div>
-                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider font-bold">
+                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
                                     Prix (€)
                                 </div>
-                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider font-bold">
+                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
                                     Magasin
                                 </div>
-                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider font-bold">
+                                <div className="w-2/12 px-6 py-3  text-xs font-medium text-gray-500 uppercase divacking-wider">
                                     Quantité
                                 </div>
                                 <div className="w-1/12 px-6 py-3 text-xs font-medium">

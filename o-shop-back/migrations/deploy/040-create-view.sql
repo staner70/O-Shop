@@ -1,7 +1,7 @@
 -- Deploy eshop:030-create-view to pg
 
 BEGIN;
-
+-- Une view permet d'avoir un template de requete, ca evite de devoir re ecrire l'integralite de la requete a chaque fois dans le dataMapper
 CREATE VIEW userView AS
     SELECT u.id, u.first_name, u.last_name, u.username, u.created_at, u.updated_at, r.name AS role, JSON_AGG(s.name) AS shop
         FROM "user" As u 

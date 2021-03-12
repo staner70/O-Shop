@@ -8,7 +8,7 @@ const {
     
     } = require('../controllers/authController');
 const {catchErrors} = require('../helpers/catchError');
-
+// Listing des routes GET/ POST ect... route complete /auth/login .....
 router.post('/login', catchErrors(login));
 router.get('/logout',getAccessToRoute, catchErrors(logOut));
 router.get('/profil',getAccessToRoute,getAdminAccess, catchErrors(profil));
