@@ -59,7 +59,6 @@ userDataMapper = {
             const associate = await client.query(`INSERT INTO "work"(user_id , shop_id) VALUES ($1, $2) RETURNING *`, [id, shopId.rows[0].id]);
         } 
 
-        console.log(existAssociateWork.rows);
         // else {
         //     const associate = await client.query(`UPDATE work SET user_id = $1, shop_id = $2 WHERE user_id = $3 RETURNING *`, [id, shopId.rows[0].id, id]);
         // }

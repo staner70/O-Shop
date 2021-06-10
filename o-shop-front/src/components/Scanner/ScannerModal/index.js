@@ -18,7 +18,6 @@ const ScannerModal = ({article}) => {
 
   const onDetected = result => {
     setResult(result);
-    console.log(result);
   };
   
   const handleClickCart = () => {

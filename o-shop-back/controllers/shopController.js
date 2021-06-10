@@ -38,8 +38,8 @@ module.exports = {
 
     createShop: async (request, response, next) => {
         const shopInfo = request.body;
-        console.log(shopInfo);
         const shop = await shopDataMapper.addOneShop(shopInfo);
+        
         if (shop == null) {
             return next(new CustomError("Shop already exist", 400));
         }

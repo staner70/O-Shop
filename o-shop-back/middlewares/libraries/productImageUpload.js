@@ -30,7 +30,6 @@ const fileFilter = (req,file,callback) => {
 };
 
 const maxSize = 10 * 1024 * 1024;
-console.log(maxSize);
 const productImageUpload = multer({storage, fileFilter, limits:{fileSize: maxSize}});
 
 module.exports = {productImageUpload};

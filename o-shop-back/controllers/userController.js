@@ -27,7 +27,6 @@ module.exports = {
         
         let salt = await bcrypt.genSalt(8);
         let hash = await bcrypt.hash(userInfo.password, salt);
-        console.log(hash);
         userInfo.password = hash;
 
         const user = await userDataMapper.addOneUser(userInfo);
@@ -44,15 +43,11 @@ module.exports = {
     updateOneUser: async (request, response, next) => {
         const {id} = request.params;
         const userInfo = request.body;
-        // let salt = await bcrypt.genSalt(8);
-        // let hash = await bcrypt.hash(userInfo.password, salt);
-        // console.log(hash);
-        // userInfo.password = hash;
         const user = await userDataMapper.updateOneUser(id, userInfo);
+
         if (user == null) {
             return next(new CustomError("User not exist", 400));
         }
-        console.log(user);
         response.status(200).json({
             id: id,
             success: true,

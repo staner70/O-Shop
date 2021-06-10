@@ -39,7 +39,7 @@ const ProfilModal = ({onLogoutClick}) => {
                   </button>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto">
+                <div className="relative p-6 flex-auto m-auto">
 
                   <div className="shadow-lg rounded-2xl w-64 bg-white dark:bg-gray-800">
                     <img alt="profil" src="https://images.pexels.com/photos/3978352/pexels-photo-3978352.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" className="rounded-t-lg h-28 w-full mb-10" />

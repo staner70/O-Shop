@@ -14,7 +14,6 @@ const client = require('../../dataMapper/client');
                         .external(async (value) => {
                             //vérifier que value correspond à un id existant
                             const category = await client.query(`SELECT * FROM "category" WHERE name = $1`,[value]);
-                            console.log(value, "<-- value");
                             if (category.rowCount == 0) {
                                 throw new Error ('category.invalid');
                             }
@@ -26,7 +25,6 @@ const client = require('../../dataMapper/client');
                         .external(async (value) => {
                             //vérifier que value correspond à un id existant
                             const shop = await client.query(`SELECT * FROM "shop" WHERE name = $1`, [value]);
-                            console.log(value, "<---shop");
                             if (shop.rowCount == 0) {
                                 throw new Error ('shop.invalid');
                             }
@@ -61,7 +59,6 @@ const client = require('../../dataMapper/client');
                     .external(async (value) => {
                         //vérifier que value correspond à un id existant
                         const shop = await client.query(`SELECT * FROM "shop" WHERE name = $1`, [value]);
-                        console.log(value, "<---shop");
                         if (shop.rowCount == 0) {
                             throw new Error ('shop.invalid');
                         }
@@ -94,7 +91,6 @@ const client = require('../../dataMapper/client');
                     .external(async (value) => {
                         //vérifier que value correspond à un id existant
                         const shop = await client.query(`SELECT * FROM "shop" WHERE name = $1`, [value]);
-                        console.log(value, "<---shop");
                         if (shop.rowCount == 0) {
                             throw new Error ('shop.invalid');
                         }

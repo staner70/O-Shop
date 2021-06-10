@@ -12,7 +12,7 @@ module.exports = {
             if (!validateUserInput(username, password)) {
                 return next(new CustomError("Please check your inputs", 400));
             }
-           console.log(password, "<<--login");
+
             // we look for the info of the user: the username and the role
             const result = await client.query(`SELECT u.* , r.name AS role_name FROM "user" As u JOIN "role" AS r ON u.role_id = r.id WHERE username = $1`, [username]);
                 if (!result.rows[0]) {
@@ -22,7 +22,6 @@ module.exports = {
                 });
             }
 
-            console.log(result.rows[0].password, password);
             if (!comparePassword(password, result.rows[0].password)) {
                 return next(new CustomError("Please check your credentials",400));
             }

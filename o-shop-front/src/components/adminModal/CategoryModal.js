@@ -10,13 +10,11 @@ const CategoryModal = ({
     changeCategoryField, // changeField
     name,
     color,
-
 }) => {
     const [showModal, setShowModal] = useState();
     const handleCategoryFormSubmit = (evt) => {
         evt.preventDefault();
         handleCategory();
-        console.log(handleCategory);
     };
 
     return (
@@ -73,6 +71,7 @@ const CategoryModal = ({
                                             onChange={changeCategoryField} // sera appelé avec value + name
                                             value={name}
                                         />
+
                                             <AdminField
                                             name="color"
                                             type="color"

@@ -2,10 +2,7 @@ import React from 'react';
 import Logo from './logo.gif';
 
 
-const Spinner = ({
-    
-    
-}) => {
+const Spinner = () => {
     
     return (
     <>

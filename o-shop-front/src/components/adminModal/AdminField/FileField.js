@@ -7,7 +7,6 @@ const FileField = ({
 }) => {
   const handleFileChange = (evt) => {
     const file = evt.target.files[0];
-    console.log(file.name);
   };
 
 

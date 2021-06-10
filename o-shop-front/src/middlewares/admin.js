@@ -375,7 +375,7 @@ const admin = (store) => (next) => (action) => {
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           store.dispatch({ type: GET_PRODUCTS_FROM_API });
-          store.dispatch({ type: SUBMIT_EDIT_PRODUCT_SUCCESS});
+          
           
           toast.success('Votre Produit a bien été modifié', {
             position: "bottom-right",
@@ -529,7 +529,7 @@ const admin = (store) => (next) => (action) => {
           // on envoie une action, pour sauvegarder les données dans le reducer
           // cette action ne sera pas traitée dans le middleware, et ira jusqu'au reducer
           store.dispatch({ type: GET_CATEGORIES_FROM_API });
-          store.dispatch({ type: SUBMIT_EDIT_CATEGORY_SUCCESS});
+          
 
           toast.success('Votre Catégorie a bien été modifiée', {
             position: "bottom-right",

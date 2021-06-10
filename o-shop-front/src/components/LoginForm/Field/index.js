@@ -13,7 +13,6 @@ const Field = ({
 }) => {
   const handleChange = (evt) => {
     onChange(evt.target.value, name);
-    console.log(evt.target.value);
   };
 
   const inputId = `field-${name}`;

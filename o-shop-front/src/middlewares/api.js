@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { history } from '../index';
 import Cookies from 'universal-cookie';
+import { toast } from "react-toastify";
 
 
 const api = (store) => (next) => (action) => {
   switch (action.type) {
 
-    case 'LOGIN': {
-      store.dispatch({ type: 'SHOW_SPINNER'});
-       
+    case 'LOGIN': {   
       const { auth: { username, password } } = store.getState();
       const config = {
         method: 'post',
@@ -21,40 +20,51 @@ const api = (store) => (next) => (action) => {
           username,
           password,
         },
+        
       };
 
       axios(config) // on lance la requete...
         .then((response) => { // cas de réussite
-          const { access_token } = response.data;
-          const { role } = response.data.data;
-          const { name } = response.data.data;
-          const { isAdmin } = response.data.data;
-          localStorage.setItem('isAdmin', isAdmin);
-          localStorage.setItem('token', access_token);
-          localStorage.setItem('role', role);
-          localStorage.setItem('username', name);
-          store.dispatch({ type: 'HIDE_SPINNER'});
+          // store.dispatch({ type: 'SHOW_SPINNER'});
 
-          store.dispatch({
-            type: 'LOGIN_SUCCESS',
-            ...response.data,
-          });
-          // Gestion de l'affichage du message de succes
-          const cookies = new Cookies();
-          cookies.set(`Bearer: ${response.data.access_token}`, "{ path: '/' }");
-          localStorage.setItem('role', role);
-          history.push('/home/category/Accessoires');
-
+          if(response.data.success){
+            const { access_token } = response.data;
+            const { role } = response.data.data;
+            const { name } = response.data.data;
+            const { isAdmin } = response.data.data;
+            localStorage.setItem('isAdmin', isAdmin);
+            localStorage.setItem('token', access_token);
+            localStorage.setItem('role', role);
+            localStorage.setItem('username', name);
+            store.dispatch({
+              type: 'LOGIN_SUCCESS',
+              ...response.data,
+            });
+            const cookies = new Cookies();
+            cookies.set(`Bearer: ${response.data.access_token}`, "{ path: '/' }");
+            localStorage.setItem('role', role);
+            history.push('/home/category/Accessoires'); //comme redirect vers une page
+          }else{
+            alert(response.data.message);
+            console.log(response.data.message);
+            console.error(new Error(`Quelque chose ne c'est pas bien passé avec l'api auth`));
+          }
         })
         .catch((error) => { // cas d'erreur
-          console.log(error);
-        });
+        console.log('erreur');
+          console.log(error.message);
+        }).finally(
+          // store.dispatch({ type: 'HIDE_SPINNER'})
+        );
       break;
     }
     case 'LOGOUT': {
-      // ici, on va faire la requete pour le login
-      // on commence par récupérer email et password
-      // Double destructuration !
+      localStorage.clear();
+      window.localStorage.clear(); 
+      const admin =localStorage.getItem('isAdmin');
+      localStorage.removeItem(admin);
+      history.push('/');
+
       const localtoken =  localStorage.getItem('token');
       const config = {
         method: 'get',
@@ -67,14 +77,7 @@ const api = (store) => (next) => (action) => {
 
       axios(config)
         .then((response) => { 
-          console.log('dans la response logout');
-          localStorage.clear();
-          window.localStorage.clear(); 
-          const admin =localStorage.getItem('isAdmin');
-          localStorage.removeItem(admin);
-          history.push('/');
-
-
+      
         })
         .catch((error) => {
           console.log(error)

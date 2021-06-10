@@ -12,7 +12,7 @@ const ShoppingCartItem = ({ item, adjustQty, removeFromCart }) => {
 
   return (
     <div className=" flex inline-block flex m-4" >
-          <div className=" w-2/6 lg:w-1/2">{item.name}</div>
+          <div className=" w-2/6 lg:w-1/2">{item.name.toUpperCase()}</div>
           <div className="w-1/6 lg:w-1/5">{item.price}€</div>
 
           <div className="w-1/4 lg:w-1/5">

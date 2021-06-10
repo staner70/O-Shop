@@ -23,7 +23,6 @@ const UserModal = ({
     const handleUserFormSubmit = (evt) => {
         evt.preventDefault();
         handleUser();
-        console.log(handleUser);
     };
 
     return (
