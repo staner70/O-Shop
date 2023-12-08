@@ -8,8 +8,8 @@ const WeatherModal = () => {
 
   const { data, isLoading, errorMessage } = useOpenWeather({
     key: '2289c7dd3de72dc4ee08143fd8a85cf7',
-    lat: '45.764043',
-    lon: '4.835659',
+    lat: '44.9308',
+    lon: '2.44482',
     lang: 'fr',
     unit: 'metric', // values are (metric, standard, imperial)
   });
@@ -40,7 +40,7 @@ isLoading={isLoading}
 errorMessage={errorMessage}
 data={data}
 lang="fr"
-locationLabel="Lyon"
+locationLabel="Aurillac"
 unitsLabels={{ temperature: 'C', windSpeed: 'Km/h' }}
 showForecast
 />

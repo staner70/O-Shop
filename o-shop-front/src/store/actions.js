@@ -56,7 +56,7 @@ export const USER_ADD_SUCCESS = 'USER_ADD_SUCCESS';
 // une fonction pure qui renvoie une action
 export const changeAuthField = (value, name) => ({
   type: CHANGE_AUTH_FIELD,
-  name,
+  name ,
   value,
 });
 

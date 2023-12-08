@@ -40,7 +40,6 @@ const AdminCategories = ({
     const handleCategoryEditFormSubmit = (evt) => {
         evt.preventDefault();
         handleCategoryEdit();
-        console.log(handleCategoryEdit);
     };
     const [showModal, setShowModal] = useState();
     const isAdmin = localStorage.getItem('isAdmin');
@@ -79,8 +78,8 @@ const AdminCategories = ({
                             {categories.map((category) =>(
                                 <div className="w-full flex align-justify ">
                                     
-                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-900 uppercase tracking-wider">
-                                        {category.name}
+                                    <div className="w-1/4 px-6 py-3  text-xs font-medium text-gray-800 uppercase tracking-wider">
+                                        {category.name.toUpperCase()}
                                     </div>
                                 
                                     <div className="w-1/4 px-6 py-4 ">

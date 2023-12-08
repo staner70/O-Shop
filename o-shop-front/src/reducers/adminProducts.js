@@ -64,7 +64,7 @@ const reducer = (oldState = initialState, action={}) => {
             description: '',
             price: '',
             quantity:'',
-            image:'',
+            image:'https://i.ibb.co/6tjSfsQ/logo.png',
             shop:'OSHOP',
         };
     case  SUBMIT_EDIT_PRODUCT_SUCCESS:

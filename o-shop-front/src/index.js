@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { CookiesProvider } from "react-cookie";
-import { Provider } from 'react-redux';
+import { Provider } from 'react-redux'; //Gérer l'éta
 import store from './store';
-import { Router } from 'react-router'
-import { ConfirmationDialogProvider } from 'material-ui-confirmation';
-
-import createBrowserHistory from 'history/createBrowserHistory'
+import { Router } from 'react-router' // Gère à changer page
+import { ConfirmationDialogProvider } from 'material-ui-confirmation'; 
+import { createBrowserHistory } from "history";   
 
 
 import './index.css';
